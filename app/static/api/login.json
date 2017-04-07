@@ -1,0 +1,12 @@
+{
+	"status": 200,
+	"message": "Success",
+	"data": {
+		"id": "ba55d348-74ab-4919-911f-d3bb72de4415",
+		"userName": "Rajeev Soni",
+		"role": "Customer",
+		"firstName": "Rajeev",
+		"lastName": "Soni",
+		"guidePhoto": null
+	}
+}

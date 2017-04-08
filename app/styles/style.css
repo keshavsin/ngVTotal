@@ -1,5 +1,5 @@
-@import url('../css/media-quires.css');
-@import url('../css/imagehover.min.css');
+@import url('./media-quires.css');
+@import url('./imagehover.min.css');
 body {
   font-family: 'Open Sans';
   overflow-x: hidden;

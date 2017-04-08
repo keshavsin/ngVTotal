@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the vtApp
  */
-vtApp.controller('MainCtrl',['$scope', 'appSettings', '$location', function ($scope, appSettings, $location) {
+vtApp.controller('MainCtrl',['$scope', '$location', function ($scope, $location) {
 	
 	$scope.init = function() {
     	console.log("Init Called -- Main Controller");

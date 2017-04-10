@@ -156,7 +156,7 @@
 			}
 			.sidebar .sidebar-header {
 			  position: relative;
-			  height: 157.5px;
+			  % height: 157.5px;
 			  margin-bottom: 8px;
 			  -webkit-transition: all 0.2s ease-in-out;
 			  -o-transition: all 0.2s ease-in-out;

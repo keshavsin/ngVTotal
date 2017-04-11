@@ -1,0 +1,252 @@
+<script type="text/javascript">
+  /**
+* [To show filters in mobile]
+* @return {[type]} [description]
+*/
+function showFilters(){
+$('.filtersWidth').removeClass('hidden-xs hidden-sm');
+$('.itemThumbnail').hide();
+$('.filt-hide,.footer-links').addClass('dis-mobil');
+}
+
+function hideFilters() {
+$('.filtersWidth').addClass('hidden-xs hidden-sm');
+$('.filt-hide,.footer-links').removeClass('dis-mobil');
+$('.itemThumbnail').show();
+}
+</script> 
+<!-- ===============
+MOBILE FILTER AND SORT BUTOON SECTION 
+=============== -->
+<div class="col-md-4 col-sm-12 col-xs-12 clearfix">
+  <div class="row mobfixed">
+    <div class="col-xs-6 col-sm-6">
+      <button type="button" class="btn btn-primary hidden-lg hidden-md" onclick="showFilters()"> <i class="fa fa-filter"></i> FILTERS </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 sortbtn">
+      <input type="hidden" name="offset_val" id="offset_val" value="48">
+      <select name="sort_discount" id="sort_discount" class="sortField" onchange="getSearchResults('sort-fltr')">
+        <option value="" disabled="" selected="">↑↓ &nbsp;&nbsp;SORT</option>
+        <option value="">Popular</option>
+        <option value="1">Price: Low to High</option>
+        <option value="2">Price: High to Low</option>
+        <option value="3">Discount: High to Low</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- ================
+BREADCRUMBS  SECTION 
+================ -->
+<div class="container">
+<ol class="breadcrumb breadcrumb-custom">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="active">Product List</li>
+</ol>
+</div>
+<!-- ================
+LIST  SECTION 
+================ -->
+<div class="filter-outer-wrap">
+  <div class="container padg20">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 filtersWidth hidden-xs hidden-sm">
+        <form action="javascript:void(0);" method="post" id="" name="filter">
+          <div class="filterheading hidden-xs hidden-sm">
+            <h4>Product Name <span>10 Results</span></h4>
+            <h3>Filters</h3>
+          </div>
+          <div class="filterheading hidden-lg hidden-md"> <span class="close-fltr" onclick="hideFilters()"> X </span> FILTERS </div>
+          <ul class="filterUlBlock1">
+            <li>
+              <div class="pricediv">HEALTH CATEGORY <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox" ng-repeat="healthFilter in healthCategoryFilter">
+                      <label>
+                        <input type="checkbox" name="prod_brand" value="HEALTH CATEGORY 1 ">
+                        <span>{{healthFilter}}</span> </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+            <li>
+              <div class="pricediv">MANUFACTURES <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="prod_brand[]" value="MANUFACTURES 1 ">
+                        <span>MANUFACTURES 1 </span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="MANUFACTURES 2">
+                        <span>MANUFACTURES 2</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="" name="MANUFACTURES 3">
+                        <span>MANUFACTURES 3</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="MANUFACTURES 4" name="prod_brand[]">
+                        <span>MANUFACTURES 4</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="MANUFACTURES 5" name="prod_brand[]">
+                        <span>MANUFACTURES 5</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="MANUFACTURES 6" name="prod_brand[]">
+                        <span>MANUFACTURES 6</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="MANUFACTURES 7" name="prod_brand[]">
+                        <span>MANUFACTURES 7</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" value="MANUFACTURES 8" name="prod_brand[]">
+                        <span>MANUFACTURES 8</span> </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+            <li>
+              <div class="pricediv">VEG/NON-VEG <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="prod_brand[]" value="VEG">
+                        <span>VEG</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="NON VEG">
+                        <span>NON VEG</span> </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+            <li>
+              <div class="pricediv">HEALTH SYSTEMS <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="prod_brand[]" value="AYURVEDA">
+                        <span>AYURVEDA</span> </label>
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="UNNANI">
+                        <span>UNNANI</span> </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+          </ul>
+          <div class="col-xs-12 filterfooter">
+            <button type="button" class="btn btn-block btn-sm clr-fltr-btn pull-left hidden-lg hidden-md">CLEAR ALL</button>
+            <button type="button" class="btn  btn-block btn-sm apply-fltr-btn pull-left hidden-lg hidden-md" onclick="getSearchResults('ap-filter')">APPLY FILTERS</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide"> 
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/1.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/2.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/3.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/4.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
+        <div class="product-content">
+          <h3>Heading</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt u ... </p>
+        </div>
+        </a> </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'views/common/testimonial.html'"></div>

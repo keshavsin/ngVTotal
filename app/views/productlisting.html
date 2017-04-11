@@ -80,46 +80,12 @@ LIST  SECTION
               <ul class="filterUlBlock">
                 <li>
                   <div id="prod_brand" class="panel-body inner">
-                    <div class="checkbox">
+                    <div class="checkbox" ng-repeat="manufacture in manufactureFilter">
                       <label>
                         <input type="checkbox" name="prod_brand[]" value="MANUFACTURES 1 ">
-                        <span>MANUFACTURES 1 </span> </label>
+                        <span>{{manufacture}} </span> </label>
                     </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="MANUFACTURES 2">
-                        <span>MANUFACTURES 2</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="" name="MANUFACTURES 3">
-                        <span>MANUFACTURES 3</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="MANUFACTURES 4" name="prod_brand[]">
-                        <span>MANUFACTURES 4</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="MANUFACTURES 5" name="prod_brand[]">
-                        <span>MANUFACTURES 5</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="MANUFACTURES 6" name="prod_brand[]">
-                        <span>MANUFACTURES 6</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="MANUFACTURES 7" name="prod_brand[]">
-                        <span>MANUFACTURES 7</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" value="MANUFACTURES 8" name="prod_brand[]">
-                        <span>MANUFACTURES 8</span> </label>
-                    </div>
+                    
                   </div>
                 </li>
               </ul>

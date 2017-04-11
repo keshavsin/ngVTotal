@@ -172,80 +172,17 @@ LIST  SECTION
           </div>
         </form>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide"> 
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/1.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/2.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/3.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/4.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-      <div class="box-list"> <a href="product-details.html"> <img src="images/banner/5.jpg"  class="img-responsive">
-        <div class="product-content">
-          <h3>Heading</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt u ... </p>
-        </div>
-        </a> </div>
-    </div>
-  </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide"> 
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="product in productList">
+				<div class="box-list"> 
+				<a href="{{product.url}}"> <img src="{{product.image}}"  class="img-responsive">
+				<div class="product-content">
+					<h3>{{product.name}}</h3>
+					<p>{{product.description}}</p>
+				</div>
+				</div>
+			</div>
+		</div>
     </div>
   </div>
 </div>

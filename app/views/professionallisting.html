@@ -1,0 +1,113 @@
+
+<!-- ===============
+MOBILE FILTER AND SORT BUTOON SECTION 
+=============== -->
+<div class="col-md-4 col-sm-12 col-xs-12 clearfix">
+  <div class="row mobfixed">
+    <div class="col-xs-6 col-sm-6">
+      <button type="button" class="btn btn-primary hidden-lg hidden-md" onclick="showFilters()"> <i class="fa fa-filter"></i> FILTERS </button>
+    </div>
+    <div class="col-xs-6 col-sm-6 sortbtn">
+      <input type="hidden" name="offset_val" id="offset_val" value="48">
+      <select name="sort_discount" id="sort_discount" class="sortField" onchange="getSearchResults('sort-fltr')">
+        <option value="" disabled="" selected="">↑↓ &nbsp;&nbsp;SORT</option>
+        <option value="">Popular</option>
+        <option value="1">Price: Low to High</option>
+        <option value="2">Price: High to Low</option>
+        <option value="3">Discount: High to Low</option>
+      </select>
+    </div>
+  </div>
+</div>
+<!-- ================
+BREADCRUMBS  SECTION 
+================ -->
+<div class="container">
+<ol class="breadcrumb breadcrumb-custom">
+  <li>
+    <a href="index.html">Home</a>
+  </li>
+  <li class="active">Professional List</li>
+</ol>
+</div>
+<!-- ================
+LIST  SECTION 
+================ -->
+<div class="filter-outer-wrap">
+  <div class="container padg20">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 filtersWidth hidden-xs hidden-sm">
+        <form action="javascript:void(0);" method="post" id="" name="filter">
+          <div class="filterheading hidden-xs hidden-sm">
+            <h4>Professional  Name <span>10 Results</span></h4>
+            <h3>Filters</h3>
+          </div>
+          <div class="filterheading hidden-lg hidden-md"> <span class="close-fltr" onclick="hideFilters()"> X </span> FILTERS </div>
+          <ul class="filterUlBlock1">
+             <li>
+              <div class="pricediv">HEALTH SYSTEMS <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox" ng-repeat="system in healthSystemFilter">
+                      <label>
+                        <input type="checkbox" name="prod_brand[]" value="AYURVEDA">
+                        <span>{{system}}</span> </label>
+                    </div>
+                    
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+            <li>
+              <div class="pricediv">LOCATION <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox" ng-repeat="location in locationFilter">
+                      <label>
+                        <input type="checkbox" name="prod_brand[]" value="BANGALORE">
+                        <span>{{location}}</span> </label>
+                    </div>                   
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+            <li>
+              <div class="pricediv">SPECIALISATION  TYPE <i class="fa fa-angle-down pull-right"></i> </div>
+              <ul class="filterUlBlock">
+                <li>
+                  <div id="prod_brand" class="panel-body inner">
+                    <div class="checkbox" ng-repeat="specialization in specializationFilter">
+                      <label>
+                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="SPECIALISATION TYPE 1">
+                        <span>{{specialization}}</span> </label>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <div class="brderBottm"></div>
+          </ul>
+          <div class="col-xs-12 filterfooter">
+            <button type="button" class="btn btn-block btn-sm clr-fltr-btn pull-left hidden-lg hidden-md">CLEAR ALL</button>
+            <button type="button" class="btn  btn-block btn-sm apply-fltr-btn pull-left hidden-lg hidden-md" onclick="getSearchResults('ap-filter')">APPLY FILTERS</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide mb-45"> 
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="Doctor in doctorDetails">
+      <div class="box-list"> <a href={{Doctor.url}}> <img src={{Doctor.image}}  class="img-responsive">
+        <div class="product-content">
+          <h3>{{Doctor.name}}</h3>
+          <p>{{Doctor.details}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+<div ng-include="'views/common/testimonial.html'"></div>

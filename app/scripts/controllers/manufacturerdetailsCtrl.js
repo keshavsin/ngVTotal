@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name vtApp.controller:HeaderCtrl
+ * @name vtApp.controller:manufacturerdetailsCtrl
  * @description
- * # HeaderCtrl
- * Header Controller of the vtApp
+ * # ManufacturerdetailsCtrl
+ * Manufacturer Details Controller of the vtApp
  */
 vtApp.controller('manufacturerdetailsCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
 

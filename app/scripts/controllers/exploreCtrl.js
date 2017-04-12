@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name vtApp.controller:HeaderCtrl
+ * @name vtApp.controller:exploreCtrl
  * @description
- * # HeaderCtrl
- * Header Controller of the vtApp
+ * # exploreCtrl
+ * explore Controller of the vtApp
  */
 vtApp.controller('exploreCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
 	

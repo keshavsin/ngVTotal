@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name vtApp.controller:HeaderCtrl
+ * @name vtApp.controller:ProfessionalCtrl
  * @description
- * # HeaderCtrl
- * Header Controller of the vtApp
+ * # ProfessionalCtrl
+ * Professional Controller of the vtApp
  */
 vtApp.controller('professionalCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
 	

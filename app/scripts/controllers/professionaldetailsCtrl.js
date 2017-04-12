@@ -17,6 +17,8 @@ vtApp.controller('professionaldetailsCtrl',['$scope', '$route', '$log', function
 								{"name":"Doctor5","image":"images/doctors/5.jpg","url":"", "Qualification":"MBBS"},
 								{"name":"Doctor6","image":"images/doctors/3.jpg","url":"", "Qualification":"MBBS"},
 								{"name":"Doctor7","image":"images/doctors/2.jpg","url":"", "Qualification":"MBBS"},];
+								
+	
 	
 	$scope.init = function() {
 		console.log(" Inside init of product Controller");

@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name vtApp.controller:HeaderCtrl
+ * @name vtApp.controller:ProductCtrl
  * @description
- * # HeaderCtrl
- * Header Controller of the vtApp
+ * # ProductCtrl
+ * Product Controller of the vtApp
  */
 vtApp.controller('ProductCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
 	
@@ -14,6 +14,11 @@ vtApp.controller('ProductCtrl',['$scope', '$route', '$log', function ($scope, $r
 	$scope.productList=[{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"},{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"},{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"}];
 	
 	$scope.manufactureFilter = ["Manufacture1","Manufacture2","Manufacture3","Manufacture4","Manufacture5","Manufacture6"];
+	
+	$scope.recipeTypeFilter = ["Veg","Non-Veg"];
+	
+	$scope.healthSystemFilter = ["Ayurveda","Unnani"];	
+	
 	$scope.init = function() {
 		console.log(" Inside init of product Controller");
 	}

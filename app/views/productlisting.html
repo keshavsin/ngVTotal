@@ -96,15 +96,10 @@ LIST  SECTION
               <ul class="filterUlBlock">
                 <li>
                   <div id="prod_brand" class="panel-body inner">
-                    <div class="checkbox">
+                    <div class="checkbox" ng-repeat="recipe in recipeTypeFilter">
                       <label>
-                        <input type="checkbox" name="prod_brand[]" value="VEG">
-                        <span>VEG</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="NON VEG">
-                        <span>NON VEG</span> </label>
+                        <input type="checkbox" value="lg" name="NON VEG">
+                        <span>{{recipe}}</span> </label>
                     </div>
                   </div>
                 </li>
@@ -116,15 +111,10 @@ LIST  SECTION
               <ul class="filterUlBlock">
                 <li>
                   <div id="prod_brand" class="panel-body inner">
-                    <div class="checkbox">
+                    <div class="checkbox"  ng-repeat="healthSystem in healthSystemFilter">
                       <label>
-                        <input type="checkbox" name="prod_brand[]" value="AYURVEDA">
-                        <span>AYURVEDA</span> </label>
-                    </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" onclick="getSearchResults()" value="lg" name="UNNANI">
-                        <span>UNNANI</span> </label>
+                        <input type="checkbox" name="" value="AYURVEDA">
+                        <span>{{healthSystem}}</span> </label>
                     </div>
                   </div>
                 </li>

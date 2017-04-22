@@ -24,3 +24,7 @@ var vtApp = angular
     ]);
 
 var APPLOGIN = true;
+
+vtApp.constant('_',
+    window._
+);

@@ -66,19 +66,16 @@ LATEST EXPLORATION SECTION
        <div class="tab-bottom col-md-12 clearfix">
           <h1 class="new-heading  pull-left">{{exploreDetails.herb}}</h1>
       <ul class="nav nav-pills nav-tabs-custom animated fadeInRight" role="tablist">
-        <li role="presentation" class="active"> <a data-target="#Benefits,#Benefits_else" href="#Benefits" aria-controls="Benefits" role="tab" data-toggle="tab" aria-expanded="true">Benefits</a> </li>
-        <li role="presentation" class=""> <a data-target="#Side_effects,#Side_effects_else" href="#Side_effects" aria-controls="Side_effects" role="tab" data-toggle="tab" aria-expanded="false">Side effects</a> </li>
-        <li role="presentation" class=""> <a data-target="#Uses,#Uses_else" href="#Uses" aria-controls="Uses" role="tab" data-toggle="tab" aria-expanded="false">Uses</a> </li>
-        <li role="presentation" class=""> <a data-target="#References,#References_else" href="#References" aria-controls="References" role="tab" data-toggle="tab" aria-expanded="false">References</a> </li>
+        <li role="presentation" ng-class="(selectedTab==property) ? 'active':''" ng-repeat="property in properties"> <a aria-controls="Benefits" role="tab" aria-expanded="true" ng-click="updateData(property)">{{property}}</a> </li>
       </ul>
       </div>
       <!-- Tab panes -->
      <div class="white-box">
         <div class="col-md-4  border-rght animated fadeInLeft"> <img src="{{exploreDetails.image}}" class="img-responsive center-block" alt="Image">
           <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-          <h4 class="txt1"><span ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.name}}({{native.language}}) </span></h4>
-          <p class="border-btm text-center"><span ng-repeat="tAction in exploreDetails.therapeuticActions">{{tAction}} </span></p>
-          <p class="text-center"> <span class="txt-colour" ng-repeat="tType in exploreDetails.therapeuticTypes"> {{tType}}&nbsp;&nbsp;</span></p>
+          <h4 class="txt1"><span ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.nativeName}}({{native.name}}) </span></h4>
+          <p class="border-btm text-center"><span ng-repeat="tAction in exploreDetails.therapeuticActions">{{tAction.name}} </span></p>
+          <p class="text-center"> <span class="txt-colour" ng-repeat="tType in exploreDetails.therapeuticTypes"> {{tType.name}}&nbsp;&nbsp;</span></p>
           <p class="text-justify">            
 					<ul class="ul-basic">
               <li  ng-repeat="booster in exploreDetails.boosters">{{booster}}</li>
@@ -93,63 +90,7 @@ LATEST EXPLORATION SECTION
                   <div class="col-md-12">
                     <h4 class="txt1 ">Indications</h4>
                     <ul class="pl-10">
-                      <li ng-repeat="defaultText in contentText">{{defaultText}}</li>
-                    </ul>
-                  </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="Side_effects">
-                  <div class="col-md-12">
-                    <h4 class="txt1 ">Indications</h4>
-                    <ul class="pl-10">
-                      <li>Side_effects Indications Side_effects Indications  Side_effects Indications</li>
-                      <li>Side_effects Indications Side_effects Indications  Side_effects Indications</li>
-                      <li>Side_effects Indications Side_effects Indications  Side_effects Indications</li>
-                      <li>Side_effects Indications Side_effects Indications  Side_effects Indications</li>
-                      <li>Side_effects Indications Side_effects Indications  Side_effects Indications</li>
-                      <li>Side_effects Indications Side_effects Indications  Side_effects Indications</li>
-                      <li>Side_effects Indications</li>
-                      <li>Side_effects Indications</li>
-                      <li>Side_effects Indications</li>
-                      <li>Side_effects Indications</li>
-                      <li>Side_effects Indications</li>
-                      <li>Side_effects Indications</li>
-                    </ul>
-                  </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="Uses">
-                  <div class="col-md-12">
-                    <h4 class="txt1 ">Indications</h4>
-                    <ul class="pl-10">
-                      <li>Uses Indications Uses Indications  Uses Indications</li>
-                      <li>Uses Indications Uses Indications  Uses Indications</li>
-                      <li>Uses Indications Uses Indications  Uses Indications</li>
-                      <li>Uses Indications Uses Indications  Uses Indications</li>
-                      <li>Uses Indications Uses Indications  Uses Indications</li>
-                      <li>Uses Indications Uses Indications  Uses Indications</li>
-                      <li>Uses Indications </li>
-                      <li>Uses Indications </li>
-                      <li>Uses Indications </li>
-                      <li>Uses Indications </li>
-                      <li>Uses Indications </li>
-                      <li>Uses Indications </li>
-                    </ul>
-                  </div>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="References">
-                  <div class="col-md-12">
-                    <h4 class="txt1 ">Indications</h4>
-                    <ul class="pl-10">
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications </li>
-                      <li>References Indications </li>
-                      <li>References Indications References Indications </li>
-                      <li>References Indications References Indications References Indications </li>
-                      <li>References Indications References Indications </li>
+                      <li>{{contentObject.defaultText}}</li>
                     </ul>
                   </div>
                 </div>
@@ -164,112 +105,12 @@ LATEST EXPLORATION SECTION
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="Benefits_else">
                   <ul class="pl-10">
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                    <li>Benefits Indications </li>
-                  </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="Side_effects_else">
-                  <ul class="pl-10">
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                    <li>Side_effects Indications</li>
-                  </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="Uses_else">
-                  <ul class="pl-10">
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                    <li>Uses Indications </li>
-                  </ul>
-                </div>
-                <div role="tabpanel" class="tab-pane" id="References_else">
-                  <ul class="pl-10">
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
-                    <li>References Indications </li>
+                    <li ng-repeat="primary in contentObject"  ng-click="displaySecondary(primary.text)">{{primary.name}}</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-12 share">
-            <ul class="list-unstyled sicon pull-right">
-              <span>Share</span>
-              <li>
-                <div class="icon-circle"> <a href="#" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a> </div>
-              </li>
-              <li>
-                <div class="icon-circle"> <a href="#" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a> </div>
-              </li>
-              <li>
-                <div class="icon-circle"> <a href="#" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a> </div>
-              </li>
-              <li>
-                <div class="icon-circle"> <a href="#" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a> </div>
-              </li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </div>
@@ -816,27 +657,27 @@ BLOG SECTION
  -->
 <section class="pt-50 pb-70  animatedParent animateOnce">
   <div class="container">
-  <h2 class="first_heading animated fadeInLeft go">Vedic Total Feeds</h2>
-  <div class="col-md-8 animated fadeInLeft mb-20 go">
-    <div class="inner blog-bg  mCustomScrollbar _mCS_1"><div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: -116px; left: 0px;" dir="ltr">
+  <h2 class="first_heading animated fadeInLeft">Vedic Total Feeds</h2>
+  <div class="col-md-8 animated fadeInLeft mb-20">
+    <div class="">
+		<div id="mCSB_1" class="" tabindex="0">
+		<div id="mCSB_1_container" class="" style="position: relative; top: -116px; left: 0px;" dir="ltr">
       <!-- ================ FIRST BLOG STATRT SECTION =============== -->
-      <div class="pt-15 pb-15 clearfix">
-        <div class="col-md-10 pb-15"> <img src="./images/doctors/2.jpg" class="img-circle pull-left limit-blog-image" alt="Image">
-          <p class="pt-10"><b>Author Name</b><br>
-            <i class="fa fa-clock-o"></i> 20 minutes Ago</p>
+      <div class="pt-15 pb-15 clearfix"  ng-repeat="blogDetails in blogList">
+        <div class="col-md-10 pb-15"> <img src="{{blogDetails.authorImage}}" class="img-circle pull-left limit-blog-image" alt="Image" width="75px">
+          <p class="pt-10"><b>{{blogDetails.authorName}}</b><br>
+            <i class="fa fa-clock-o"></i>{{blogDetails.timePosted}}</p>
         </div>
-        <div class="col-md-2 pb-15"> <a type="button" class="btn btn-success mt-15">Ayurveda</a> </div>
-        <div class="col-md-12 img-bg"> <img src="./images/banner/1.jpg" class="img-responsive" alt="Image">
-          <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</h5>
+        <div class="col-md-2 pb-15"> <a type="button" class="btn btn-success mt-15">{{blogDetails.system}}</a> </div>
+        <div class="col-md-12 img-bg"> <img src="{{blogDetails.image}}" class="img-responsive" alt="Image">
+          <h5>{{blogDetails.content}}</h5>
         </div>
         <div class="col-md-12 clearfix">
           <div class="comments">
             <div class="col-md-7">
               <ul class="list-inline">
-                <li> <a href=""><i class="fa fa-thumbs-up"></i> Like (25) </a></li>
-                <li> <a data-toggle="collapse" data-target="#demo1"> <i class="fa fa-comments"></i> Comments (25) </a></li>
+                <li> <a href=""><i class="fa fa-thumbs-up"></i> Like ({{blogDetails.likesCount}}) </a></li>
+                <li> <a data-toggle="collapse" ng-click="toggleComments()"> <i class="fa fa-comments"></i> Comments ({{blogDetails.commentsCount}}) </a></li>
               </ul>
             </div>
             <div class="col-md-5">
@@ -851,24 +692,16 @@ BLOG SECTION
           </div>
         </div>
         <div class="col-md-12 blog-comments">
-          <div id="demo1" class="collapse">
+          <div id="demo1" ng-show="showComments">
             <p><b>Comments</b></p>
             <div class="col-md-12">
               <div class="row"> 
                 <!-- Cooment Ecah Section -->
-                <div class="media">
-                  <div class="media-left"> <img src="./images/doctors/2.jpg" class="media-object" style="width:60px"> </div>
+                <div class="media" ng-repeat="comment in commentsList">
+                  <div class="media-left"> <img src="{{comment.commenterImage}}" class="media-object" style="width:60px"> </div>
                   <div class="media-body">
-                    <h4 class="media-heading">Somashekhar <small><i>Posted on February 19, 2017</i></small></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-                <!-- Cooment Ecah Section -->
-                <div class="media">
-                  <div class="media-left"> <img src="./images/doctors/2.jpg" class="media-object" style="width:60px"> </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Sunil Kumar <small><i>Posted on February 20, 2017</i></small></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h4 class="media-heading">{{comment.commentedBy}} <small><i>Posted on {{comment.datetime}}</i></small></h4>
+                    <p>{{comment.comment}}</p>
                   </div>
                 </div>
               </div>
@@ -888,141 +721,7 @@ BLOG SECTION
         </div>
       </div>
       <!-- ================ SECOND BLOG STATRT SECTION =============== -->
-      <div class="pt-15 pb-15 clearfix">
-        <div class="col-md-10 pb-15"> <img src="./images/doctors/2.jpg" class="img-circle pull-left limit-blog-image" alt="Image">
-          <p class="pt-10"><b>Author Name</b><br>
-            <i class="fa fa-clock-o"></i> 20 minutes Ago</p>
-        </div>
-        <div class="col-md-2 pb-15"> <a type="button" class="btn btn-success mt-15">Ayurveda</a> </div>
-        <div class="col-md-12 img-bg"> <img src="./images/banner/2.jpg" class="img-responsive" alt="Image">
-          <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</h5>
-        </div>
-        <div class="col-md-12 clearfix">
-          <div class="comments">
-            <div class="col-md-7">
-              <ul class="list-inline">
-                <li> <a href=""><i class="fa fa-thumbs-up"></i> Like (25) </a></li>
-                <li> <a data-toggle="collapse" data-target="#demo2"> <i class="fa fa-comments"></i> Comments (25) </a></li>
-              </ul>
-            </div>
-            <div class="col-md-5">
-              <ul class="list-inline  pull-right">
-                <span>Share</span>
-                <li> <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a> </li>
-                <li> <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a> </li>
-                <li> <a href="#" title="Google+"><i class="fa fa-google-plus"></i></a> </li>
-                <li> <a href="#" title="Linkedin"><i class="fa fa-linkedin"></i></a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 blog-comments">
-          <div id="demo2" class="collapse">
-            <p><b>Comments</b></p>
-            <div class="col-md-12">
-              <div class="row"> 
-                <!-- Cooment Ecah Section -->
-                <div class="media">
-                  <div class="media-left"> <img src="./images/doctors/2.jpg" class="media-object" style="width:60px"> </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Somashekhar <small><i>Posted on February 19, 2017</i></small></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-                <!-- Cooment Ecah Section -->
-                <div class="media">
-                  <div class="media-left"> <img src="./images/doctors/2.jpg" class="media-object" style="width:60px"> </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Sunil Kumar <small><i>Posted on February 20, 2017</i></small></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <p><b>Enter Your comments</b></p>
-                <form action="" method="POST" role="form">
-                  <div class="form-group">
-                    <textarea name="" id="input" class="form-control" rows="3" required="required" placeholder="Enter your Comments"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <!-- ================ THIRD BLOG STATRT SECTION =============== -->
-      <div class="pt-15 pb-15 clearfix">
-        <div class="col-md-10 pb-15"> <img src="./images/doctors/2.jpg" class="img-circle pull-left limit-blog-image" alt="Image">
-          <p class="pt-10"><b>Author Name</b><br>
-            <i class="fa fa-clock-o"></i> 20 minutes Ago</p>
-        </div>
-        <div class="col-md-2 pb-15"> <a type="button" class="btn btn-success mt-15">Ayurveda</a> </div>
-        <div class="col-md-12 img-bg"> <img src="./images/banner/3.jpg" class="img-responsive" alt="Image">
-          <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</h5>
-        </div>
-        <div class="col-md-12 clearfix">
-          <div class="comments">
-            <div class="col-md-7">
-              <ul class="list-inline">
-                <li> <a href=""><i class="fa fa-thumbs-up"></i> Like (25) </a></li>
-                <li> <a data-toggle="collapse" data-target="#demo3"> <i class="fa fa-comments"></i> Comments (25) </a></li>
-              </ul>
-            </div>
-            <div class="col-md-5">
-              <ul class="list-inline  pull-right">
-                <span>Share</span>
-                <li> <a href="#" title="Facebook"><i class="fa fa-facebook"></i></a> </li>
-                <li> <a href="#" title="Twitter"><i class="fa fa-twitter"></i></a> </li>
-                <li> <a href="#" title="Google+"><i class="fa fa-google-plus"></i></a> </li>
-                <li> <a href="#" title="Linkedin"><i class="fa fa-linkedin"></i></a> </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 blog-comments">
-          <div id="demo3" class="collapse">
-            <p><b>Comments</b></p>
-            <div class="col-md-12">
-              <div class="row"> 
-                <!-- Cooment Ecah Section -->
-                <div class="media">
-                  <div class="media-left"> <img src="./images/doctors/2.jpg" class="media-object" style="width:60px"> </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Somashekhar <small><i>Posted on February 19, 2017</i></small></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-                <!-- Cooment Ecah Section -->
-                <div class="media">
-                  <div class="media-left"> <img src="./images/doctors/2.jpg" class="media-object" style="width:60px"> </div>
-                  <div class="media-body">
-                    <h4 class="media-heading">Sunil Kumar <small><i>Posted on February 20, 2017</i></small></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row">
-                <p><b>Enter Your comments</b></p>
-                <form action="" method="POST" role="form">
-                  <div class="form-group">
-                    <textarea name="" id="input" class="form-control" rows="3" required="required" placeholder="Enter your Comments"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; display: block; height: 183px; max-height: 522px; top: 40px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
   </div>
   

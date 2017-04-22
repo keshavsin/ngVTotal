@@ -2,6 +2,7 @@
 (function() {
     'use strict';
     vtApp.constant('appSettings', {
+				"_":window._,
         "dataType": "local",
         "local": {
             "baseURL": "http://localhost:9000/static"

@@ -1,0 +1,43 @@
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "createdDate": null,
+    "updatedDate": null,
+    "createdBy": null,
+    "updateBy": null,
+    "id": "63c35e76-fcf1-45b5-b458-f96cdbb3797c",
+    "name": "Dr.Ramanujan",
+    "education": "education",
+    "certifications": "certifications",
+    "college": "college",
+    "registrationNo": "registrationNo",
+    "practicingFrom": "2016-01-01",
+    "specialization": "specialization",
+    "about": "about",
+    "system": "system",
+    "organization": "organization",
+    "website": "website",
+    "contentPublishing": "contentPublishing",
+    "profileVerified": true,
+    "address": {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "5157336b-4c33-48aa-9e13-3f9f2c980e59",
+      "addressLine1": "addressLine1",
+      "addressLine2": "addressLine2",
+      "city": "Blore",
+      "state": "KAR",
+      "country": "INDIA",
+      "pincode": "563120",
+      "phoneNo": "1111111111",
+      "mobileNo": "222222222",
+      "email": "email@email.com",
+      "parentId": "63c35e76-fcf1-45b5-b458-f96cdbb3797c",
+      "user": null
+    },
+    "user": null
+  }
+}

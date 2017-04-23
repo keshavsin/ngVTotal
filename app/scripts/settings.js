@@ -46,28 +46,50 @@
                     "url": "/api/explore/getexplore",
                     "method": "GET"
                 },
-                "login": {
-                    "url": "/api/login",
+				"getActiveExplorations": {
+                    "url": "/api/explore/activeexplorations",
+                    "method": "GET"
+                }
+            },
+			"product": {
+                "getProduct": {
+                    "url": "/api/product/getproduct",
                     "method": "GET"
                 },
-                "logout": {
-                    "url": "/api/logout",
+				"getActiveProducts": {
+                    "url": "/api/product/getactiveproducts",
                     "method": "GET"
                 },
-                "validate": {
-                    "url": "/api/validate",
+				"getRelatedProducts": {
+                    "url": "/api/product/relatedproducts",
+                    "method": "GET"
+                }
+            },
+			"manufacture": {
+                "getManufacture": {
+                    "url": "/api/manufacture/getmanufacture",
                     "method": "GET"
                 },
-                "changePassword": {
-                    "url": "/api/changepassword",
-                    "method": "POST"
+				"getActiveManufactures": {
+                    "url": "/api/manufacture/getactivemanufacturers",
+                    "method": "GET"
                 },
-                "forgotPassword": {
-                    "url": "/api/forgot",
-                    "method": "POST"
+				"getFeaturedManufacture": {
+                    "url": "/api/manufacture/featuredmanufacturers",
+                    "method": "GET"
+                }
+            },
+			"professional": {
+                "getProfessional": {
+                    "url": "/api/professional/getprofessional",
+                    "method": "GET"
                 },
-                "validateEmail": {
-                    "url": "/api/validateEmail",
+				"getActiveProfessionals": {
+                    "url": "/api/professional/getactiveprofessionals",
+                    "method": "GET"
+                },
+				"getFeaturedProfessionals": {
+                    "url": "/api/professional/featuredprofessionals",
                     "method": "GET"
                 }
             }

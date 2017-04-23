@@ -1,0 +1,27 @@
+{
+  "status": 200,
+  "message": "Success",
+  "data": {
+    "createdDate": null,
+    "updatedDate": null,
+    "createdBy": null,
+    "updateBy": null,
+    "id": "c6bff65b-ae9a-4e3c-a754-d02e10381fad",
+    "name": "Product 1",
+    "manufacturer": "Cipla",
+    "keyIngredients": "KeyIngredients",
+    "allIngredients": "allIngredients",
+    "indications": "indications",
+    "type": "type",
+    "dosage": "dosage",
+    "system": "system",
+    "clinicalArtifacts": "clinicalArtifacts",
+    "classicalReference": "classicalReference",
+    "form": null,
+    "specialContents": "specialContents",
+    "reviews": "reviews",
+    "exportDetails": "exportDetails",
+    "sideEffects": "sideEffects",
+    "user": null
+  }
+}

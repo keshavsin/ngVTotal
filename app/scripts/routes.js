@@ -36,7 +36,7 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ProfessionalCtrl',
 		controllerAs: 'ProfessionalCtrl'
 	})
-	.when('/productdetails', {
+	.when('/productdetails/:id', {
 		templateUrl: 'views/productdetails.html',
 		controller: 'ProductCtrl',
 		controllerAs: 'ProductCtrl'

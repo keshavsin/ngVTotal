@@ -7,16 +7,27 @@
  * # ExploreCtrl
  * explore Controller of the vtApp
  */
-vtApp.controller('ExploreCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
+vtApp.controller('ExploreCtrl',['$scope', '$route', '$log', 'ExploreService', function ($scope, $route, $log, exploreService) {
 	
-	$scope.explorelist =[{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"},{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"},{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"}];
-
 	$scope.productslist=[{"url":"","name":"ProductName","image":"images/products/1.jpg","details":"description"},
 							{"url":"","name":"ProductName","image":"images/products/1.jpg","details":"description"},
 							{"url":"","name":"ProductName","image":"images/products/1.jpg","details":"description"}];
 
+
+	$scope.getActiveExplorations = function() {
+		var myActiveExplorations = exploreService.getActiveExplorations();
+		myActiveExplorations.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.exploreList = msg.data;
+			} else {
+				toastr.error("Error fetching Exploration Details ... ");
+			}
+		});
+	}
+
 	$scope.init = function() {
 		console.log(" Inside init of product Controller");
+		$scope.getActiveExplorations();
 	}
 	
 	$scope.init();

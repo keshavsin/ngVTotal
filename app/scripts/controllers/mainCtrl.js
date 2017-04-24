@@ -34,7 +34,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 	}
 	
 	$scope.getExploreDetails = function() {
-		var myExploreDetails = exploreService.getExploreDetails();
+		var myExploreDetails = exploreService.getExploreDetails('78d3e109-b892-491e-a851-b8f669c8ee5d');
 		myExploreDetails.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.exploreDetails = msg.data;

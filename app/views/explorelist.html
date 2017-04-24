@@ -127,11 +127,11 @@ LIST  SECTION
         </form>
       </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide"> 
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="listitem in explorelist">
-      <div class="box-list"> <a href="{{listitem.url}}"> <img src="{{listitem.image}}"  class="img-responsive">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="exploreItem in exploreList">
+      <div class="box-list"> <a href=""> <img src="{{exploreItem.image}}"  class="img-responsive">
         <div class="product-content">
-          <h3>{{listitem.name}}</h3>
-          <p>{{listitem.description}} </p>
+          <h3>{{exploreItem.name}}</h3>
+          <p>{{exploreItem.description}} </p>
         </div>
       </div>
     </div>

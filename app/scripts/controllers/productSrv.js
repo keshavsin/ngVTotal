@@ -20,7 +20,7 @@ vtApp.service('ProductService',['appSettings', 'apiServices', function (appSetti
 	};
 	
 	this.getActiveProducts = function() {
-		console.log("Isnide Service for Product  ");
+		console.log("Inside Service for Product  ");
 		return apiServices.doAPIRequest(appSettings.appAPI.product.getActiveProducts, null, null, "sessionStorage");
 	};
 }]);

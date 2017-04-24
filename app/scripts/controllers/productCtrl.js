@@ -7,7 +7,7 @@
  * # ProductCtrl
  * Product Controller of the vtApp
  */
-vtApp.controller('ProductCtrl',['$scope', '$route', '$log', 'ProductService',  function ($scope, $route, $log, productService) {
+vtApp.controller('ProductCtrl',['$scope', '$route', '$routeParams', '$log', '$location', 'ProductService',  function ($scope, $route, $routeParams, $log, $location, productService) {
 	
 	$scope.healthCategoryFilter=["Health Category 1","Health Category 2","Health Category 3","Health Category 4","Health Category 5"];
 	
@@ -16,7 +16,7 @@ vtApp.controller('ProductCtrl',['$scope', '$route', '$log', 'ProductService',  f
 	$scope.recipeTypeFilter = ["Veg","Non-Veg"];
 	
 	$scope.healthSystemFilter = ["Ayurveda","Unnani"];	
-	
+
 	
 	$scope.otherProductList = [{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},
 								{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},
@@ -25,7 +25,7 @@ vtApp.controller('ProductCtrl',['$scope', '$route', '$log', 'ProductService',  f
 								{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},];
 								
 	$scope.getActiveProducts = function() {
-		var myActiveProducts = productService.getActiveProducts('dummyHerb');
+		var myActiveProducts = productService.getActiveProducts();
 		myActiveProducts.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.productList = msg.data;
@@ -35,13 +35,34 @@ vtApp.controller('ProductCtrl',['$scope', '$route', '$log', 'ProductService',  f
 			}
 		});
 	}
-	
-	
+
+	$scope.getProductDetails = function(productId) {
+		var myProductDetails = productService.getProductDetails(productId);
+		myProductDetails.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.productDetails = msg.data;
+				//$scope.initializeExploreData();
+			} else {
+				toastr.error("Error fetching Exploration Details ... ");
+			}
+		});
+	}
+
+
+	$scope.getProduct = function(productId) {
+		$location.path('/get/'+productId);
+	}
+
 	$scope.init = function() {
 		console.log(" Inside init of product Controller");
-		$scope.getActiveProducts();
+		console.log($location);
+		if ($location.$$path.startsWith('/productdetails')) {
+			$scope.getProductDetails($routeParams.id);
+		} else {
+			$scope.getActiveProducts();
+		}
 	}
-	
+
 	$scope.init();
-	
+		
 }]);

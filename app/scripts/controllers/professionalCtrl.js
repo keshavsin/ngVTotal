@@ -7,7 +7,7 @@
  * # ProfessionalCtrl
  * Professional Controller of the vtApp
  */
-vtApp.controller('professionalCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
+vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
 	
 	$scope.healthSystemFilter=["Ayurveda","system1","system2","system3"];
 	$scope.locationFilter=["location1","location2","location3","location4","location5","location6"];

@@ -7,11 +7,9 @@
  * # ProductCtrl
  * Product Controller of the vtApp
  */
-vtApp.controller('ProductCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
+vtApp.controller('ProductCtrl',['$scope', '$route', '$log', 'ProductService',  function ($scope, $route, $log, productService) {
 	
 	$scope.healthCategoryFilter=["Health Category 1","Health Category 2","Health Category 3","Health Category 4","Health Category 5"];
-	
-	$scope.productList=[{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"},{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"},{"name":"My Product1", "image":"images/banner/1.jpg", "url":"", "description":"Product DEscription for the product djks djds dks jds"}];
 	
 	$scope.manufactureFilter = ["Manufacture1","Manufacture2","Manufacture3","Manufacture4","Manufacture5","Manufacture6"];
 	
@@ -25,9 +23,23 @@ vtApp.controller('ProductCtrl',['$scope', '$route', '$log', function ($scope, $r
 								{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},
 								{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},
 								{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},];
+								
+	$scope.getActiveProducts = function() {
+		var myActiveProducts = productService.getActiveProducts('dummyHerb');
+		myActiveProducts.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.productList = msg.data;
+				//$scope.initializeExploreData();
+			} else {
+				toastr.error("Error fetching Exploration Details ... ");
+			}
+		});
+	}
+	
 	
 	$scope.init = function() {
 		console.log(" Inside init of product Controller");
+		$scope.getActiveProducts();
 	}
 	
 	$scope.init();

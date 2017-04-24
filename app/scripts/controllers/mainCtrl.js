@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the vtApp
  */
-vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService','appSettings', function ($scope, $location, exploreService, appSettings) {
+vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductService', 'ManufactureService', 'ProfessionalService', 'appSettings', function ($scope, $location, exploreService, productService, manufactureService, professionalService, appSettings) {
 	
 	$scope.updateData = function(prop) {
 		var qArray=[];
@@ -46,8 +46,20 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService','appSetting
 	}
 	
 
+	$scope.getRelatedProducts = function() {
+		var myRelatedProducts = productService.getRelatedProducts('dummyHerb');
+		myRelatedProducts.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.relatedProducts = msg.data;
+				//$scope.initializeExploreData();
+			} else {
+				toastr.error("Error fetching Exploration Details ... ");
+			}
+		});
+	}
+	
 	$scope.getFeaturedProfessionals = function() {
-		var myFeaturedProfessionals = exploreService.getFeaturedProfessionals();
+		var myFeaturedProfessionals = professionalService.getFeaturedProfessionals();
 		myFeaturedProfessionals.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.featuredProfessionals = msg.data;
@@ -59,7 +71,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService','appSetting
 	}
 
 	$scope.getFeaturedManufacturers = function() {
-		var myFeaturedManufacturers = exploreService.getFeaturedManufacturers();
+		var myFeaturedManufacturers = manufactureService.getFeaturedManufacturers();
 		myFeaturedManufacturers.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.featuredManufacturers = msg.data;
@@ -170,6 +182,8 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService','appSetting
 	$scope.init = function() {
 		console.log("Init Called -- Main Controller");
 		$scope.getExploreDetails();
+		$scope.getRelatedProducts();
+		$scope.getFeaturedProfessionals();
 		//Default Text comes from Benefit since onload this will be shown first
 		//$scope.contentText = $scope.exploreDetails.properties[0].defaultText;
 	}

@@ -19,42 +19,42 @@ vtApp.config(function ($routeProvider) {
 	.when('/productlisting', {
 		templateUrl: 'views/productlisting.html',
 		controller: 'ProductCtrl',
-		controllerAs: 'productCtrl'
+		controllerAs: 'ProductCtrl'
 	})
 	.when('/explorelist', {
 		templateUrl: 'views/explorelist.html',
-		controller: 'exploreCtrl',
-		controllerAs: 'exploreCtrl'
+		controller: 'ExploreCtrl',
+		controllerAs: 'ExploreCtrl'
 	})
-	.when('/professionallisting', {
+	.when('/professionalslist', {
 		templateUrl: 'views/professionallisting.html',
-		controller: 'professionalCtrl',
-		controllerAs: 'professionalCtrl'
+		controller: 'ProfessionalCtrl',
+		controllerAs: 'ProfessionalCtrl'
 	})
 	.when('/professionaldetails', {
 		templateUrl: 'views/professionaldetails.html',
-		controller: 'professionaldetailsCtrl',
-		controllerAs: 'professionaldetailsCtrl'
+		controller: 'ProfessionalCtrl',
+		controllerAs: 'ProfessionalCtrl'
 	})
 	.when('/productdetails', {
 		templateUrl: 'views/productdetails.html',
-		controller: 'productdetailsCtrl',
-		controllerAs: 'productdetailsCtrl'
+		controller: 'ProductCtrl',
+		controllerAs: 'ProductCtrl'
 	})
-	.when('/manufacturerlisting', {
+	.when('/manufacturerlist', {
 		templateUrl: 'views/manufacturerlisting.html',
-		controller: 'manufacturerlistingCtrl',
-		controllerAs: 'manufacturerlistingCtrl'
+		controller: 'ManufacturerCtrl',
+		controllerAs: 'ManufacturerCtrl'
 	})
 	.when('/manufacturerdetails', {
 		templateUrl: 'views/manufacturerdetails.html',
-		controller: 'manufacturerdetailsCtrl',
-		controllerAs: 'manufacturerdetailsCtrl'
+		controller: 'ManufacturerCtrl',
+		controllerAs: 'ManufacturerCtrl'
 	})
 	.when('/exploredetails', {
 		templateUrl: 'views/exploredetails.html',
-		controller: 'exploredetailsCtrl',
-		controllerAs: 'exploredetailsCtrl'
+		controller: 'ExploreCtrl',
+		controllerAs: 'ExploreCtrl'
 	})
 	.otherwise({
 		redirectTo: '/'

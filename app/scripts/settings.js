@@ -65,16 +65,16 @@
                     "method": "GET"
                 }
             },
-			"manufacture": {
+			"manufacturer": {
                 "getManufacture": {
-                    "url": "/api/manufacture/getmanufacture",
+                    "url": "/api/manufacture/getmanufacturer",
                     "method": "GET"
                 },
-				"getActiveManufactures": {
+				"getActiveManufacturers": {
                     "url": "/api/manufacture/getactivemanufacturers",
                     "method": "GET"
                 },
-				"getFeaturedManufacture": {
+				"getFeaturedManufacturers": {
                     "url": "/api/manufacture/featuredmanufacturers",
                     "method": "GET"
                 }

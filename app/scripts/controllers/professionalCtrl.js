@@ -7,7 +7,7 @@
  * # ProfessionalCtrl
  * Professional Controller of the vtApp
  */
-vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$log', function ($scope, $route, $log) {
+vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$location', '$routeParams', '$log','ProfessionalService', function ($scope, $route, $location, $routeParams, $log, professionalService) {
 	
 	$scope.healthSystemFilter=["Ayurveda","system1","system2","system3"];
 	$scope.locationFilter=["location1","location2","location3","location4","location5","location6"];
@@ -26,8 +26,37 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$log', function ($scop
 								{"name":"Doctor6","image":"images/doctors/3.jpg","url":"", "Qualification":"MBBS"},
 								{"name":"Doctor7","image":"images/doctors/2.jpg","url":"", "Qualification":"MBBS"},];
 	
+	$scope.getActiveProfessionals = function(){
+		var myActiveProfessionals = professionalService.getActiveProfessionals();
+		myActiveProfessionals.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.professionalList = msg.data;
+				//$scope.initializeExploreData();
+			} else {
+				toastr.error("Error fetching Active Professionals... ");
+			}
+		});
+	}
+	
+	$scope.getProfessionalDetails = function(professionalId){
+		var getProfessionalDetails = professionalService.getProfessionalDetails(professionalId);
+		getProfessionalDetails.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.professionalDetails = msg.data;
+				//$scope.initializeExploreData();
+			} else {
+				toastr.error("Error fetching Professional Details ... ");
+			}
+		});
+	}
+
 	$scope.init = function() {
-		console.log(" Inside init of product Controller");
+	console.log(" Inside init of Professional Controller");
+		if ($location.$$path.startsWith('/professionaldetails')) {
+			$scope.getProfessionalDetails($routeParams.id);
+		} else {
+			$scope.getActiveProfessionals();
+		}
 	}
 	
 	$scope.init();

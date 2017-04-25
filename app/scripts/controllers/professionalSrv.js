@@ -18,4 +18,10 @@ vtApp.service('ProfessionalService',['appSettings', 'apiServices', function (app
 		console.log("Isnide Service for Active Professional ");
 		return apiServices.doAPIRequest(appSettings.appAPI.professional.getActiveProfessionals, null, null, "sessionStorage");
 	};
+
+	this.getProfessionalDetails = function(professionalId) {
+		console.log("Isnide Service for Product  " + professionalId);
+		return apiServices.doAPIRequest(appSettings.appAPI.professional.getProfessional, null, professionalId, "sessionStorage");
+	};	
+
 }]);

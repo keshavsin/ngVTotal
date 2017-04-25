@@ -4,8 +4,8 @@ BREADCRUMBS  SECTION
 <div class="container">
   <ol class="breadcrumb breadcrumb-custom">
     <li> <a href="index.html">Home</a> </li>
-    <li> <a href="product-listing.html">Product List</a> </li>
-    <li class="active">Tulasi (Perticular Product Name)</li>
+    <li> <a href="#/productlisting">Product List</a> </li>
+    <li class="active">{{productDetails.name}}</li>
   </ol>
 </div>
 <!-- 
@@ -25,18 +25,16 @@ LATEST EXPLORATION SECTION
             <h1 class="new-heading pull-left">{{productDetails.name}}</h1>
               <!-- Nav tabs -->
               <ul class="nav nav-pills nav-tabs-custom" role="tablist">
-                <li role="presentation" class="active"> <a data-target="#description" href="#description" aria-controls="description" role="tab" data-toggle="tab">Description</a> </li>
-                <li role="presentation" > <a data-target="#Specifications" href="#Specifications" aria-controls="Specifications" role="tab" data-toggle="tab">Specifications</a> </li>
+                <li role="presentation" class="active"> <a data-target="#description" href="" aria-controls="description" role="tab" data-toggle="tab">Description</a> </li>
+                <li role="presentation" > <a data-target="#Specifications" href="" aria-controls="Specifications" role="tab" data-toggle="tab">Specifications</a> </li>
               </ul>
             </div>
           </div>
         <!-- Tab panes -->
         <div class="white-box">
-          <div class="col-md-4  border-rght pt-20"> <img src="images/tulasi.jpg" class="img-responsive center-block" alt="Image"> 
+          <div class="col-md-4  border-rght pt-20"> <img ng-src="{{productDetails.image == null ? 'images/noimage.jpg' : productDetails.image}}"  class="img-responsive center-block"" alt="Image"> 
             <!-- <h3 class="organge-box ">Manufacturer Name</h3> -->
-            <h4 class="txt1 ">Native Names</h4>
-            <p class="border-btm text-center">Anti-infective,Anti alleggic</p>
-            <p class="text-justify">Do’s & Dont’s for respiratory health. Do’s & Dont’s for respiratory health. Do’s & Dont’s for respiratory health. Do’s & Dont’s for respiratory health. Do’s & Dont’s.</p>
+            <h4 class="txt1 ">{{productDetails.manufacturer}}</h4>
           </div>
           <div class="col-md-8  bg-light-gray border-lft">
             <div class="col-md-12">
@@ -45,16 +43,13 @@ LATEST EXPLORATION SECTION
                   <div role="tabpanel" class="tab-pane active" id="description">
                     <div class="col-md-12">
                       <h3 class="txt2-brder head-0">DESCRIPTION</h3>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                       <ul>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor</li>
+                        <li><b>System</b><br />{{productDetails.system}}</li><br />
+                        <li><b>Key Ingredients</b><br />{{productDetails.keyIngredients}}</li><br />
+                        <li><b>All Ingredients</b><br />{{productDetails.allIngredients}}</li><br />
+                        <li><b>Indications</b><br />{{productDetails.indications}}</li><br />
+                        <li><b>Clinical Artifacts</b><br />{{productDetails.clinicalArtifacts}}</li><br />
+                        <li><b>Special Contents</b><br />{{productDetails.specialContents}}</li><br />
                       </ul>
                     </div>
                   </div>

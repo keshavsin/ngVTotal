@@ -6,7 +6,7 @@ BREADCRUMBS  SECTION
   <li>
     <a href="index.html">Home</a>
   </li>
-  <li class="active">Product List</li>
+  <li class="active">Manufacturer List</li>
 </ol>
 </div>
 <!-- ================
@@ -79,11 +79,10 @@ LIST  SECTION
       </div>
       
 			<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide mb-45"> 
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="manufacturerDetails in manufacturerDetailsList ">
-      <div class="box-list"> <a href={{manufacturerDetails.url}}> <img src={{manufacturerDetails.image}}  class="img-responsive">
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="manufacturerDetails in manufacturersList">
+			<a href="#/manufacturerdetails/{{manufacturerDetails.id}}"> <img ng-src="{{manufacturerDetails.image == null ? 'images/noimage.jpg' : manufacturerDetails.image}}"  class="img-responsive center-block"" alt="Image">
         <div class="product-content">
-          <h3>{{manufacturerDetails.heading}}</h3>
-          <p>{{manufacturerDetails.details}} </p>
+          <h3>{{manufacturerDetails.name}}</h3>
         </div>
       </div>
     </div>

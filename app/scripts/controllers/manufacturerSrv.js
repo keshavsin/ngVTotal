@@ -18,5 +18,10 @@ vtApp.service('ManufactureService',['appSettings', 'apiServices', function (appS
 		console.log("Isnide Service for Manufacturer ");
 		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.getActiveManufacturers, null, null, "sessionStorage");
 	};
-	
+
+	this.getManufacturerDetails = function(manufacturerId) {
+		console.log("Isnide Service for Manufacturer ");
+		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.getManufacturer, null, manufacturerId, "sessionStorage");
+	};
+
 }]);

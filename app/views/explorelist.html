@@ -128,7 +128,7 @@ LIST  SECTION
       </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide"> 
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="exploreItem in exploreList">
-      <div class="box-list"> <a href=""> <img src="{{exploreItem.image}}"  class="img-responsive">
+      <div class="box-list"> <a href="#/exploredetails/{{exploreItem.id}}"> <img ng-src="{{exploreItem.image == null ? 'images/noimage.jpg' : exploreItem.image}}"  class="img-responsive center-block">
         <div class="product-content">
           <h3>{{exploreItem.name}}</h3>
           <p>{{exploreItem.description}} </p>

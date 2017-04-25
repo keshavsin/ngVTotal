@@ -1503,7 +1503,8 @@ PRODUCT LISTING PAGE
   text-align: justify;
 }
 .box-list img {
-  min-height: 220px;
+  min-height: 200px;
+  max-height: 200px;
 }
 .product-content h3 {
   margin: 0;

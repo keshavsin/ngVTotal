@@ -26,12 +26,12 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ExploreCtrl',
 		controllerAs: 'ExploreCtrl'
 	})
-	.when('/professionalslist', {
+	.when('/professionallisting', {
 		templateUrl: 'views/professionallisting.html',
 		controller: 'ProfessionalCtrl',
 		controllerAs: 'ProfessionalCtrl'
 	})
-	.when('/professionaldetails', {
+	.when('/professionaldetails/:id', {
 		templateUrl: 'views/professionaldetails.html',
 		controller: 'ProfessionalCtrl',
 		controllerAs: 'ProfessionalCtrl'
@@ -41,17 +41,17 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ProductCtrl',
 		controllerAs: 'ProductCtrl'
 	})
-	.when('/manufacturerlist', {
+	.when('/manufacturerlisting', {
 		templateUrl: 'views/manufacturerlisting.html',
 		controller: 'ManufacturerCtrl',
 		controllerAs: 'ManufacturerCtrl'
 	})
-	.when('/manufacturerdetails', {
+	.when('/manufacturerdetails/:id', {
 		templateUrl: 'views/manufacturerdetails.html',
 		controller: 'ManufacturerCtrl',
 		controllerAs: 'ManufacturerCtrl'
 	})
-	.when('/exploredetails', {
+	.when('/exploredetails/:id', {
 		templateUrl: 'views/exploredetails.html',
 		controller: 'ExploreCtrl',
 		controllerAs: 'ExploreCtrl'

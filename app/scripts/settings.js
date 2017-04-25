@@ -2,12 +2,12 @@
 (function() {
     'use strict';
     vtApp.constant('appSettings', {
-        "dataType": "local",
+        "dataType": "production",
         "local": {
             "baseURL": "http://localhost:9000/static"
         },
         "production": {
-            "baseURL": "http://localhost:8080"
+            "baseURL": "http://localhost:8080/controllers"
         },
       //API URL
         "appAPI": {
@@ -43,11 +43,11 @@
             },
 			"explore": {
                 "getExplore": {
-                    "url": "/api/explore/get",
+                    "url": "/api/herb/get",
                     "method": "GET"
                 },
 				"getActiveExplorations": {
-                    "url": "/api/explore/active",
+                    "url": "/api/herb/getall",
                     "method": "GET"
                 }
             },
@@ -57,7 +57,7 @@
                     "method": "GET"
                 },
 				"getActiveProducts": {
-                    "url": "/api/product/active",
+                    "url": "/api/product/getall",
                     "method": "GET"
                 },
 				"getRelatedProducts": {
@@ -66,16 +66,16 @@
                 }
             },
 			"manufacturer": {
-                "getManufacture": {
-                    "url": "/api/manufacture/get",
+                "getManufacturer": {
+                    "url": "/api/manufacturer/get",
                     "method": "GET"
                 },
 				"getActiveManufacturers": {
-                    "url": "/api/manufacture/active",
+                    "url": "/api/manufacturer/getall",
                     "method": "GET"
                 },
 				"getFeaturedManufacturers": {
-                    "url": "/api/manufacture/featured",
+                    "url": "/api/manufacturer/featured",
                     "method": "GET"
                 }
             },
@@ -85,7 +85,7 @@
                     "method": "GET"
                 },
 				"getActiveProfessionals": {
-                    "url": "/api/professional/active",
+                    "url": "/api/professional/getall",
                     "method": "GET"
                 },
 				"getFeaturedProfessionals": {

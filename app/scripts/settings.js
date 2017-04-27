@@ -92,6 +92,37 @@
                     "url": "/api/professional/featured",
                     "method": "GET"
                 }
+            },
+			"blog": {
+                "getBlog": {
+                    "url": "/api/blog/get",
+                    "method": "GET"
+                },
+				"getAllBlogs": {
+                    "url": "/api/blog/getall",
+                    "method": "GET"
+                },
+				"getBlogComments": {
+                    "url": "/api/blogcomment/getall",
+                    "method": "GET"
+                },
+				"getCommentReplies": {
+                    "url": "/api/commentreply/getall",
+                    "method": "GET"
+                },
+				"getBlogLikes": {
+                    "url": "/api/bloglike/getall",
+                    "method": "GET"
+                },
+				"insertBlogComment": {
+                    "url": "/api/blogcomment/create",
+                    "method": "POST"
+                },
+				"insertBlogLike": {
+                    "url": "/api/bloglike/create",
+                    "method": "POST"
+                }
+
             }
         },
         "dateFormat": 'dd/MMM/yyyy hh:mm:ss a'

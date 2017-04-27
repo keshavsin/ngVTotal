@@ -56,6 +56,11 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ExploreCtrl',
 		controllerAs: 'ExploreCtrl'
 	})
+	.when('/blogdetails/', {
+		templateUrl: 'views/blog-details.html',
+		controller: 'ExploreCtrl',
+		controllerAs: 'ExploreCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

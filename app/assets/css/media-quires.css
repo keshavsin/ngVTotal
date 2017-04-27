@@ -1,0 +1,26 @@
+@media (min-width: 2301px){	
+/* your code */	
+}
+@media (min-width: 1920px) and (max-width: 2300px){	
+/* your code */		
+}
+@media (min-width: 1367px) and (max-width: 1919px){	
+/* your code */	
+
+}
+@media (min-width: 1281px) and (max-width: 1366px){
+/* your code */	
+}
+@media (min-width: 992px) and (max-width: 1280px){		
+
+}
+@media (min-width: 768px) and (max-width: 991px){
+
+}
+@media (min-width: 320px) and (max-width: 768px){
+  body,
+  html{
+  	overflow-x: hidden;
+  }
+}
+

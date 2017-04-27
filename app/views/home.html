@@ -64,16 +64,16 @@ LATEST EXPLORATION SECTION
     <div role="tabpanel" class="row white-box">
       <!-- Nav tabs -->
        <div class="tab-bottom col-md-12 clearfix">
-          <h1 class="new-heading  pull-left">{{exploreDetails.herb}}</h1>
+          <h1 class="new-heading  pull-left">{{exploreDetails.name}}</h1>
       <ul class="nav nav-pills nav-tabs-custom animated fadeInRight" role="tablist">
         <li role="presentation" ng-class="(selectedTab==property) ? 'active':''" ng-repeat="property in properties"> <a aria-controls="Benefits" role="tab" aria-expanded="true" ng-click="updateData(property)">{{property}}</a> </li>
       </ul>
       </div>
       <!-- Tab panes -->
      <div class="white-box">
-        <div class="col-md-4  border-rght animated fadeInLeft"> <img src="{{exploreDetails.image}}" class="img-responsive center-block" alt="Image">
+        <div class="col-md-4  border-rght animated fadeInLeft"> <img ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}"  class="img-responsive center-block">
           <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-          <h4 class="txt1"><span ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.nativeName}}({{native.name}}) </span></h4>
+          <h4 class="txt1"><span ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.name}}({{native.nativeName}}) </span></h4>
           <p class="border-btm text-center"><span ng-repeat="tAction in exploreDetails.therapeuticActions">{{tAction.name}} </span></p>
           <p class="text-center"> <span class="txt-colour" ng-repeat="tType in exploreDetails.therapeuticTypes"> {{tType.name}}&nbsp;&nbsp;</span></p>
           <p class="text-justify">            
@@ -143,30 +143,24 @@ PRODUCTS SLIDER SECTION
 <section class="mb-20 animatedParent animateOnce">
   <div class="container">
   <div class=" col-md-12 bg-shadow">
-    <h2 class="first_heading animated fadeInLeft go">Products Of Tulasi</h2>
+    <h2 class="first_heading animated fadeInLeft go">Products Of {{exploreDetails.name}}</h2>
     <div class="animated fadeInRight go">
       <div class="lSSlideOuter "><div class="lSSlideWrapper usingCss"><ul id="Business_slide" class="lightSlider lsGrab lSSlide" style="width: 3920px; transform: translate3d(-1120px, 0px, 0px); height: 264px; padding-bottom: 0%;">
-      <li class="clone left" style="width: 270px; margin-right: 10px;" ng-repeat="product in relatedProducts">
+      <li class="clone left" style="width: 270px; margin-right: 10px;" ng-repeat="product in activeProducts">
           <div class="box-white"> <a href="#">
             <div class="imghvr-zoom-in">
               <figure>
-                <div class="no-bg"> <img src="images/products/1.jpg" alt="Vedic Total">
+                <div class="no-bg"> <img ng-src="{{product.image == null ? 'images/noimage.jpg' : product.image}}"  class="img-responsive center-block">
                   <h3>{{product.name}}</h3>
                   <h5>{{product.manufacturer}}</h5>
                 </div>
-                <figcaption>
-                  <h3>{{product.name}}</h3>
-                  <h5>{{product.manufacturer}}</h5>
-                  <p>{{product.exportDetails}}</p>
-                  <button type="button" class="btn btn-primary">Read more <i class="fa fa-angle-double-right faa-passing animated go"></i></button>
-                </figcaption>
               </figure>
             </div>
             </a> </div>
         </li>
         </ul><div class="lSAction"><a class="lSPrev"></a><a class="lSNext"></a></div></div></div>
     </div>
-    <div class="text-center animated fadeInRight mt-15 mb-15 col-md-12 go"> <a type="submit" href="explore-list.html" class="btn btn-primary btn-view mt-25 mb-15 ">View All Exploration</a> </div>
+    <div class="text-center animated fadeInRight mt-15 mb-15 col-md-12 go"> <a type="submit" href="#/explorelist" class="btn btn-primary btn-view mt-25 mb-15 ">View All Exploration</a> </div>
   </div>
   </div>
 </section>
@@ -178,20 +172,15 @@ DOCTORS SLIDER SECTION
     <h2 class="first_heading animated fadeInLeft go">Professionals Joined With US</h2>
     <div class="animated fadeInRight go">
       <div class="lSSlideOuter "><div class="lSSlideWrapper usingCss"><ul id="doctors_slide" class="lightSlider lsGrab lSSlide" style="width: 3737.5px; transform: translate3d(-1150px, 0px, 0px); height: 360px; padding-bottom: 0%;">
-      <li class="clone left" style="width: 277.5px; margin-right: 10px;" ng-repeat="professional in featuredProfessionals">
+      <li class="clone left" style="width: 277.5px; margin-right: 10px;" ng-repeat="professional in activeProfessionals">
           <div class="box-white"> <a href="#">
             <div class="imghvr-zoom-in">
               <figure>
-                <div class="no-bg"> <img src="./images/doctors/5.jpg" alt="Vedic Total" class="img-responsive">
-                  <h3>Dr. Lela Mohan </h3>
-                  <h5>Skin speclist</h5>
+                <div class="no-bg"> <img ng-src="{{professional.image == null ? 'images/noimage.jpg' : professional.image}}"  class="img-responsive center-block">
+                  <h3>{{professional.name}}</h3>
+                  <h5>{{professional.education}}</h5>
+                  <h6>{{professional.specialization}}</h6>
                 </div>
-                <figcaption>
-                  <h3>Dr. Lela Mohan </h3>
-                  <h5>Skin speclist</h5>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
-                  <button type="button" class="btn btn-primary">Read more <i class="fa fa-angle-double-right faa-passing animated go"></i></button>
-                </figcaption>
               </figure>
             </div>
             </a> </div>
@@ -207,18 +196,17 @@ BLOG SECTION
  -->
 <section class="pt-50 pb-70  animatedParent animateOnce">
   <div class="container">
-  <h2 class="first_heading animated fadeInLeft">Vedic Total Feeds</h2>
+     <h2 class="first_heading animated fadeInLeft">Vedic Total Feeds</h2>
   <div class="col-md-8 animated fadeInLeft mb-20">
     <div class="">
 		<div id="mCSB_1" class="" tabindex="0">
 		<div id="mCSB_1_container" class="" style="position: relative; top: -116px; left: 0px;" dir="ltr">
       <!-- ================ FIRST BLOG STATRT SECTION =============== -->
       <div class="pt-15 pb-15 clearfix"  ng-repeat="blogDetails in blogList">
-        <div class="col-md-10 pb-15"> <img src="{{blogDetails.authorImage}}" class="img-circle pull-left limit-blog-image" alt="Image" width="75px">
-          <p class="pt-10"><b>{{blogDetails.authorName}}</b><br>
-            <i class="fa fa-clock-o"></i>{{blogDetails.timePosted}}</p>
+        <div class="col-md-10 pb-15"> <img ng-src="{{blogDetails.authorImage == null ? 'images/noimage.jpg' : blogDetails.authorImage}}" class="img-circle pull-left limit-blog-image" alt="Image" width="75px">
+          <p class="pt-10"><b>{{blogDetails.author}}</b><br>
+            <i class="fa fa-clock-o"></i>{{blogDetails.date}}</p>
         </div>
-        <div class="col-md-2 pb-15"> <a type="button" class="btn btn-success mt-15">{{blogDetails.system}}</a> </div>
         <div class="col-md-12 img-bg"> <img src="{{blogDetails.image}}" class="img-responsive" alt="Image">
           <h5>{{blogDetails.content}}</h5>
         </div>
@@ -226,8 +214,8 @@ BLOG SECTION
           <div class="comments">
             <div class="col-md-7">
               <ul class="list-inline">
-                <li> <a href=""><i class="fa fa-thumbs-up"></i> Like ({{blogDetails.likesCount}}) </a></li>
-                <li> <a data-toggle="collapse" ng-click="toggleComments()"> <i class="fa fa-comments"></i> Comments ({{blogDetails.commentsCount}}) </a></li>
+                <li > <a href="" ng-click="likeBlog(blogDetails.id)"><i class="fa fa-thumbs-up"></i> Like ({{blogDetails.likes.length}}) </a></li>
+                <li> <a data-toggle="collapse" ng-click="showComments(blogDetails)"> <i class="fa fa-comments"></i> Comments ({{blogDetails.comments.length}}) </a></li>
               </ul>
             </div>
             <div class="col-md-5">
@@ -242,16 +230,17 @@ BLOG SECTION
           </div>
         </div>
         <div class="col-md-12 blog-comments">
-          <div id="demo1" ng-show="showComments">
-            <p><b>Comments</b></p>
+          <div id="demo1" ng-show="blogDetails.showComments">
             <div class="col-md-12">
               <div class="row"> 
                 <!-- Cooment Ecah Section -->
-                <div class="media" ng-repeat="comment in commentsList">
-                  <div class="media-left"> <img src="{{comment.commenterImage}}" class="media-object" style="width:60px"> </div>
+                <div class="media" ng-repeat="comment in blogDetails.comments">
+                  <div class="media-left"> <img ng-src="{{comment.commenterImage == null ? 'images/noimage.jpg' : comment.commenterImage}}" class="media-object" style="width:60px"> </div>
                   <div class="media-body">
-                    <h4 class="media-heading">{{comment.commentedBy}} <small><i>Posted on {{comment.datetime}}</i></small></h4>
+                    <h4 class="media-heading">{{comment.commentedBy}} <small><i>Posted on {{comment.date}}</i></small></h4>
                     <p>{{comment.comment}}</p>
+					<a data-toggle="collapse" ng-click="addReply(comment)"> <i class="fa fa-comments"></i> Reply</a>
+                    <textarea ng-show="comment.reply"  ng-model="commentReply" name="" id="input" class="form-control" rows="2" cols="1" required="required" placeholder="Enter your Comments" ></textarea>
                   </div>
                 </div>
               </div>
@@ -259,12 +248,10 @@ BLOG SECTION
             <div class="col-md-6">
               <div class="row">
                 <p><b>Enter Your comments</b></p>
-                <form action="" method="POST" role="form">
                   <div class="form-group">
-                    <textarea name="" id="input" class="form-control" rows="3" required="required" placeholder="Enter your Comments"></textarea>
+                    <textarea ng-model="blogComment" name="" id="input" class="form-control" rows="3" required="required" placeholder="Enter your Comments" ></textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                  <button type="submit" class="btn btn-primary" ng-click="insertBlogComment(blogComment,blogDetails)">Submit</button>
               </div>
             </div>
           </div>

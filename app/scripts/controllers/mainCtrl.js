@@ -11,7 +11,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 
 	$scope.blogs = [];
 	$scope.addCommentReply = false;
-		
+	
 	$scope.updateData = function(prop) {
 		var qArray=[];
 		var catObjects = _.filter($scope.exploreDetails.webCategories, function(wC) {return wC.webCategory.displayName==prop;});
@@ -132,6 +132,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 				var i;
 				for(i = 0; i < $scope.blogList.length; i++){
 					$scope.blogList[i].showComments = false;
+					$scope.blogList[i].isLiked = false;
 					$scope.getBlogComments($scope.blogList[i].id);
 					$scope.getBlogLikes($scope.blogList[i].id);
 				}
@@ -215,13 +216,15 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		})
 	}
 
-	$scope.likeBlog = function(blogId){
+	$scope.likeBlog = function(blogDetails){
 		var blogLike = {};
-		blogLike.blog = blogId;
+		blogLike.blog = blogDetails.id;
 		var likeBlog = blogService.insertBlogLike(blogLike);
 		likeBlog.then(function(msg){
 			if(msg.status == 200){
-				$scope.getBlogLikes(blogId);
+				$scope.blogLiked = msg.data;
+				$scope.getBlogLikes(blogDetails.id);
+				blogDetails.isLiked = true;
 			}else{
 				toastr.error("Error Liking the post");
 			}
@@ -230,6 +233,20 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 
 	$scope.addReply = function(comment){
 		comment.reply = !comment.reply;	
+	}
+
+	$scope.insertCommentReply = function(reply, commentDetails){
+		var commentReply = {};
+		commentReply.comment = reply;
+		commentReply.commentId = commentDetails.id;
+		var insertCommentReply = blogService.insertCommentReply(commentReply);
+		insertCommentReply.then(function(msg){
+			if(msg.status == 200){
+				$scope.getCommentReplies(commentDetails.id);
+			}else{
+				toastr.error("Error Fetching ");
+			}
+		})
 	}
 	
 	$scope.init = function() {

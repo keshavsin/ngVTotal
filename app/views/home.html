@@ -207,14 +207,15 @@ BLOG SECTION
           <p class="pt-10"><b>{{blogDetails.author}}</b><br>
             <i class="fa fa-clock-o"></i>{{blogDetails.date}}</p>
         </div>
-        <div class="col-md-12 img-bg"> <img src="{{blogDetails.image}}" class="img-responsive" alt="Image">
+        <div class="col-md-12 img-bg" style="width:650px;"> <img src="{{blogDetails.image}}" class="img-responsive" alt="Image">
           <h5>{{blogDetails.content}}</h5>
         </div>
         <div class="col-md-12 clearfix">
           <div class="comments">
             <div class="col-md-7">
               <ul class="list-inline">
-                <li > <a href="" ng-click="likeBlog(blogDetails.id)"><i class="fa fa-thumbs-up"></i> Like ({{blogDetails.likes.length}}) </a></li>
+                <li > <a href="" ng-show="!blogDetails.isLiked" ng-click="likeBlog(blogDetails)"><i class="fa fa-thumbs-up"></i> Like ({{blogDetails.likes.length}}) </a></li>
+                <li > <a href="" ng-show="blogDetails.isLiked" ><i class="fa fa-thumbs-up"></i> Liked ({{blogDetails.likes.length}}) </a></li>
                 <li> <a data-toggle="collapse" ng-click="showComments(blogDetails)"> <i class="fa fa-comments"></i> Comments ({{blogDetails.comments.length}}) </a></li>
               </ul>
             </div>
@@ -237,10 +238,19 @@ BLOG SECTION
                 <div class="media" ng-repeat="comment in blogDetails.comments">
                   <div class="media-left"> <img ng-src="{{comment.commenterImage == null ? 'images/noimage.jpg' : comment.commenterImage}}" class="media-object" style="width:60px"> </div>
                   <div class="media-body">
-                    <h4 class="media-heading">{{comment.commentedBy}} <small><i>Posted on {{comment.date}}</i></small></h4>
+                    <h4 class="media-heading">{{comment.commentedBy}} <small><i>Commented on {{comment.date}}</i></small></h4>
                     <p>{{comment.comment}}</p>
 					<a data-toggle="collapse" ng-click="addReply(comment)"> <i class="fa fa-comments"></i> Reply</a>
-                    <textarea ng-show="comment.reply"  ng-model="commentReply" name="" id="input" class="form-control" rows="2" cols="1" required="required" placeholder="Enter your Comments" ></textarea>
+					<div ng-repeat="reply in comment.replies" ng-show="comment.reply">
+					  <div class="media-left"> <img ng-src="{{reply.replierImage == null ? 'images/noimage.jpg' : reply.replierImage}}" class="media-object" style="width:60px"> </div>
+						<div class="media-body">                    
+							<h4 class="media-heading">{{reply.repliedBy}} <small><i>Replied on {{reply.date}}</i></small></h4>
+							<p>{{reply.comment}}</p>
+						</div>					
+					</div>
+                    <textarea ng-show="comment.reply"  ng-model="commentReply" name="" id="input" class="form-control" rows="2" cols="1" required="required" placeholder="Enter your Comments" ></textarea>                  
+					<button ng-show="comment.reply" type="submit" class="btn btn-primary" ng-click="insertCommentReply(commentReply,comment)">Submit</button>
+
                   </div>
                 </div>
               </div>

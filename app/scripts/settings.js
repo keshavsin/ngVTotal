@@ -121,6 +121,10 @@
 				"insertBlogLike": {
                     "url": "/api/bloglike/create",
                     "method": "POST"
+                },
+				"insertCommentReply": {
+                    "url": "/api/commentreply/create",
+                    "method": "POST"
                 }
 
             }

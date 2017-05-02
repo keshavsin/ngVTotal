@@ -1,0 +1,100 @@
+<div class="container-fluid" ng-controller="LookupController"
+	ng-init="initLookup();">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3 class="page-header">
+				<span>Lookup</span>
+			</h3>
+		</div>
+	</div>
+	<div class="section-border background-color-light col-sm-7">
+		<div class="form-group">
+			<br /> <label class=" col-sm-3 control-label">Select Lookup
+				Type <span class="text-danger">*</span>
+			</label>
+			<div class="col-sm-6">
+				<div class="dropdown">
+					<select class="form-control input-sm" name="customer"
+						ng-model="lookupType"
+						ng-options="lookupType as lookupType for lookupType in lookupTypesList"
+						ng-change='getAllLookups()'>
+						<ng-option value="-1" ng-selected="selected">Please
+						select</ng-option>
+					</select> <br />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="lookupsList.length > 0">
+		<div class="col-sm-12">
+			<div>
+				<h4>Lookup</h4>
+				<br />
+			</div>
+			<table class="table table-striped table-hover table-bordered">
+				<thead>
+					<tr class="active">
+						<th>Code</th>
+						<th>Name</th>
+						<th>Display Name</th>
+						<th>Type</th>
+						<th>Status</th>
+						<th>Updated Date</th>
+						<th>Updated By</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.code" placeholder="Enter Code"></input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.name" placeholder="Enter Name"></input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.displayName" placeholder="Enter Display name">
+							</input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.type" ng-disabled="true"></input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.status" placeholder="Active or Inactive">
+							</input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.updatedDate" placeholder="System date"
+							ng-disabled="true"> </input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookup.updatedBy" placeholder="Logged-in User"
+							ng-disabled="true"></input></td>
+						<td>
+							<button class="btn btn-primary btn-sm" ng-show="true"
+								ng-click="addLookup(lookup);">
+								<span> Add</span>
+							</button>
+						</td>
+					</tr>
+
+					<tr ng-repeat="lookupType in lookupsList">
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookupType.code"></input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookupType.name"></input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookupType.displayName"></input></td>
+						<td><input type="text" class="form-control input-sm"
+							ng-model="lookupType.type" ng-disabled="true"></input></td>
+						<td><input type="text" ng-model="lookupType.status"
+							class="form-control input-sm"></input></td>
+						<td><input type="text" ng-model="lookupType.updatedDate"
+							class="form-control input-sm" ng-disabled="true"> </input></td>
+						<td><input type="text" ng-model="lookupType.updatedBy"
+							class="form-control input-sm" ng-disabled="true"></input></td>
+
+						<td><a ng-click="updateLookup(lookupType)"><md-tooltip
+									md-direction="right">Update</md-tooltip> <span
+								class="glyphicon glyphicon-open"></span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

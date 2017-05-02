@@ -69,11 +69,11 @@ LATEST EXPLORATION SECTION
         <li role="presentation" ng-class="(selectedTab==property) ? 'active':''" ng-repeat="property in properties"> <a aria-controls="Benefits" role="tab" aria-expanded="true" ng-click="updateData(property)">{{property}}</a> </li>
       </ul>
       </div>
-      <!-- Tab panes -->
+      <!-- Tab p	anes -->
      <div class="white-box">
         <div class="col-md-4  border-rght animated fadeInLeft"> <img ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}"  class="img-responsive center-block">
           <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-          <h4 class="txt1"><span ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.name}}({{native.nativeName}}) </span></h4>
+          <h4 class="txt1"><span ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.name}}({{native.nativeName}})</span></h4>
           <p class="border-btm text-center"><span ng-repeat="tAction in exploreDetails.therapeuticActions">{{tAction.name}} </span></p>
           <p class="text-center"> <span class="txt-colour" ng-repeat="tType in exploreDetails.therapeuticTypes"> {{tType.name}}&nbsp;&nbsp;</span></p>
           <p class="text-justify">            
@@ -82,8 +82,11 @@ LATEST EXPLORATION SECTION
             </ul></p>
         </div>
         <div class="col-md-8 animated fadeInRight bg-light-gray border-lft">
-          <div class="col-md-7">
-						<p class="border-btm"><span>{{exploreDetails.didYouKnow[0]}}</span></p>
+          <div class="col-md-7"><h4 class="txt1 ">Did You Know?</h4>
+					<ul class="pl-10" ng-repeat="dyk in exploreDetails.didYouKnow">
+                      <li ng-show="dyk != null">{{dyk}}</li>
+                    </ul>
+						<p class="border-btm"></p>
 						<div class="row font-12 ul-Indications index-ul-Indications">
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="Benefits">

@@ -1,0 +1,130 @@
+<div class="container-fluid" ng-controller="BlogController"
+	ng-init=initBlog();>
+	<div class="col-sm-12">
+		<h3 class="page-header">
+			<span>Blog</span>
+			<button class="btn btn-primary btn-sm pull-right"
+				ng-click="addBlog();" ng-show="!isAddBlogEnabled">Add</button>
+			<button class="btn btn-default btn-sm pull-right"
+				ng-click="backToList();" ng-show="isAddBlogEnabled">Back</button>
+			<button class="btn btn-success btn-sm pull-right"
+				ng-show="!blog.id.length > 0 && isAddBlogEnabled"
+				ng-click="createBlog(blog);">Save</button>
+			<button class="btn btn-warning btn-sm pull-right"
+				ng-show="blog.id.length > 0 && isAddBlogEnabled"
+				ng-click="updateBlog(blog);">Update</button>
+			</span>
+		</h3>
+	</div>
+	<div ng-show="!isAddBlogEnabled">
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1" ng-show="blogList.length > 0">
+					<table datatable="ng" dt-options="dtOptions"
+						class="table table-responsive table-hover table-bordered">
+						<tr class="active">
+							<th>Blog Title</th>
+							<th>Author</th>
+							<th>Actions</th>
+						</tr>
+						<tr ng-repeat="blog in blogList">
+							<td>{{blog.title}}</td>
+							<td>{{blog.author}}</td>
+							<td>
+								<!-- <a><md-tooltip
+								md-direction="left">Delete Blog</md-tooltip><span
+									class="glyphicon glyphicon-trash text-danger"></span></a>&nbsp  -->
+								<a ng-click="getBlog(blog.id);"><md-tooltip
+										md-direction="right">Edit Blog</md-tooltip><span
+									class="glyphicon glyphicon-edit"></span></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="row col-sm-4 col-sm-offset-4"
+					ng-show="!blogList.length > 0">
+					<br /> <br /> <span class="text-danger">No records found</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div ng-show="isAddBlogEnabled">
+		<form name="blogform" novalidate>
+			<div class="container-fluid">
+				<div class="row col-sm-10">
+					<input type="hidden" ng-model="blog.id">
+
+					<div class="form-group">
+						<label class=" col-sm-2 control-label">Title </label>
+						<div class="col-sm-9">
+							<input type="text" name="blogName" typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								placeholder=" Title"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								ng-model="blog.title" typeahead-editable='false'
+								ng-maxlength="150" />
+						</div>
+					</div>
+					<!-- End of Title  -->
+
+
+					<div class="form-group">
+						<label class=" col-sm-2 control-label">Author</label>
+						<div class="col-sm-9">
+							<input type="text" name="blogName" typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								placeholder=" Author"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								ng-model="blog.author" typeahead-editable='false'
+								ng-maxlength="150" />
+						</div>
+					</div>
+					<!-- End of Author  -->
+
+					<div>
+						<label class=" col-sm-2 control-label">Blog Image<span
+							class="text-danger">*</span></label>
+						<div class="col-sm-9">
+							<input type="file" class=" form-control btn btn-default"
+								id="file1" name="file" ng-files="getTheFiles($files)">
+						</div>
+					</div>
+					<!-- End of Image -->
+
+					<!-- System -->
+					<div class="form-group"
+						ng-class="{ 'has-error' : formulationform.customer.$invalid && !formulationform.customer.$pristine }">
+						<label class=" col-sm-2 control-label">System<span
+							class="text-danger">*</span></label>
+						<div class="col-sm-9">
+							<div class="dropdown">
+								<select class="form-control input-sm" name="customer"
+									ng-model="blog.system" required=""
+									ng-options="system.id as system.name for system in system">
+								</select>
+							</div>
+						</div>
+					</div>
+					<br /> <br />
+					<!-- End Of Form Group -->
+
+
+					<div>
+						<label class=" col-sm-2 control-label">Content<span
+							class="text-danger">*</span></label>
+						<div class="col-sm-9">
+							<textarea rows="10" cols="30" type="text" name="description"
+								typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								placeholder="Description" required ng-model="blog.content"
+								typeahead-editable='false' ng-maxlength="1000" />
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

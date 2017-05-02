@@ -50,6 +50,7 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
 		myExploration.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.exploreDetails = JSON.parse(msg.data.json);
+				$scope.exploreDetails.image = msg.data.image;
 				$scope.initializeExploreData();
 			} else {
 				toastr.error("Error fetching Exploration Details ... ");

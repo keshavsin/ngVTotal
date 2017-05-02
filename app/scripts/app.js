@@ -20,7 +20,8 @@ var vtApp = angular
 		'ngResource',
 		'ngSanitize',
 		'ngFileUpload',
-		'ngTouch'		
+		'ngTouch',
+		'am.multiselect'
     ]);
 
 var APPLOGIN = true;

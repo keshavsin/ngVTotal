@@ -1,0 +1,199 @@
+<div class="container-fluid" ng-controller="FormulationController"
+	ng-init="initFormulation();">
+	<div class="col-sm-12">
+		<h3 class="page-header">
+			<span>Formulation</span>
+			<button class="btn btn-default btn-sm pull-right"
+				ng-click="backToList();" ng-show="isAddFormulationEnabled">Back</button>
+			<button class="btn btn-primary btn-sm pull-right"
+				ng-click="addFormulation();" ng-show="!isAddFormulationEnabled">Add</button>
+			<button class="btn btn-success btn-sm pull-right"
+				ng-click="createFormulation(formulation);"
+				ng-show="!formulation.hasOwnProperty('id') && isAddFormulationEnabled"
+				ng-disabled="formulationform.$invalid">Save</button>
+			<button class="btn btn-warning btn-sm pull-right"
+				ng-click="updateFormulation(formulation);"
+				ng-show="formulation.id.length > 0 && isAddFormulationEnabled">Update</button>
+		</h3>
+	</div>
+
+	<div ng-show="!isAddFormulationEnabled">
+		<div class="col-sm-10 col-sm-offset-1"
+			ng-show="formulationsList.length > 0">
+			<table datatable="ng" dt-options="dtOptions"
+				class="table table-responsive table-hover table-bformulationed">
+				<thead>
+					<tr class="active">
+						<th>Formulation Name</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="formulation in formulationsList">
+					<td>{{formulation.name}}</td>
+					<td><a ng-click="getFormulation(formulation.id);"><md-tooltip
+								md-direction="right">Edit Sales Formulation</md-tooltip><span
+							class="glyphicon glyphicon-edit"></span></a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="row col-sm-4 col-sm-offset-4"
+			ng-show="!formulationsList.length > 0">
+			<br /> <br /> <span class="text-danger">No records found</span>
+		</div>
+	</div>
+
+	<div ng-show="isAddFormulationEnabled">
+		<div class="container">
+			<form name="formulationform" novalidate>
+				<div
+					class="col-sm-11 section-bformulation section-bformulation background-color-light">
+					<div class="row col-sm-6">
+						<div class="form-group">
+							<div class="input-group input-group-sm col-sm-12">
+								<br /> <label class="control-label col-sm-5">
+									Formulation Name</label>
+								<div class="col-sm-6">
+									<input type="text" data-container="body" data-toggle="popover"
+										data-placement="right"
+										data-content="Please enter Formulation No."
+										class="form-control input-sm" ng-model="formulation.name"
+										placeholder="New"></input>
+								</div>
+							</div>
+						</div>
+						<!-- end of form group -->
+
+						<div class="form-group"
+							ng-class="{ 'has-error' : formulationform.formulationDate.$invalid && !formulationform.formulationDate.$pristine }">
+							<div class="input-group input-group-sm col-sm-12">
+								<label class="control-label col-sm-5"> Type<span
+									class="text-danger">*</span></label>
+								<div class="col-sm-6">
+									<div class="dropdown">
+										<select class="form-control input-sm" name="customer"
+											ng-model="formulation.type" required=""
+											ng-options="formulationType.id as formulationType.name for formulationType in formulationTypes">
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end of form group -->
+
+						<!-- System -->
+						<div class="form-group"
+							ng-class="{ 'has-error' : formulationform.customer.$invalid && !formulationform.customer.$pristine }">
+							<label class=" col-sm-5 control-label">System<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-6">
+								<div class="dropdown">
+									<select class="form-control input-sm" name="customer"
+										ng-model="formulation.system" required=""
+										ng-options="system.id as system.name for system in system">
+									</select>
+								</div>
+							</div>
+						</div>
+						<br /> <br />
+						<!-- End Of Form Group -->
+
+						<div class="form-group">
+							<div class="input-group input-group-sm col-sm-12">
+								<label class="control-label col-sm-5">Reference</label>
+								<div class="col-sm-6">
+									<div class="dropdown">
+										<select class="form-control input-sm" name="customer"
+											ng-model="formulation.reference" required=""
+											ng-options="reference.id as reference.name for reference in references">
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- end of form group -->
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<!-- End Container -->
+
+		<div class="col-sm-12">
+			<div>
+				<h4>Formulation Items</h4>
+				<br />
+			</div>
+			<table class="table table-striped table-hover table-bformulationed">
+				<thead>
+					<tr class="active">
+						<th width="350px">Herb Reference</th>
+						<th>Herb</th>
+						<th>Quantity</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><div class="form-group">
+								<div class="col-sm-12">
+									<div class="dropdown">
+										<select class="form-control input-sm" name="status"
+											ng-model="addFormulationItem.herbReference" required=""
+											ng-options="herb.id as herb.name for  herb in herbs">
+										</select>
+									</div>
+								</div>
+							</div></td>
+						<td><input type="text" data-container="body"
+							data-toggle="popover" data-placement="right" ng-maxlength="10"
+							ng-model="addFormulationItem.herb" class="form-control input-sm"
+							id="Quantity" placeholder="Herb"> </input></td>
+						<td><input type="text" data-container="body"
+							data-toggle="popover" data-placement="right" ng-maxlength="10"
+							ng-model="addFormulationItem.quantity"
+							class="form-control input-sm text-right" id="Quantity"
+							placeholder="0"> </input></td>
+						<td>
+							<button class="btn btn-primary btn-sm" ng-show="true"
+								ng-click="addFormulations(addFormulationItem)">
+								<span> Add</span>
+							</button>
+						</td>
+					</tr>
+
+					<tr ng-repeat="formulationItem in formulation.formulationItems">
+						<td><div class="form-group">
+								<div class="col-sm-12">
+									<div class="dropdown">
+										<select class="form-control input-sm" name="status"
+											ng-model="formulationItem.herbReference" required=""
+											ng-options="herb.id as herb.name for herb in herbs">
+										</select>
+									</div>
+								</div>
+							</div></td>
+						<td><input type="text" data-container="body"
+							data-toggle="popover" data-placement="right"
+							ng-model="formulationItem.herb" class="form-control input-sm"
+							id="Quantity" placeholder="Drawing No"> </input></td>
+						<td><input type="text" data-container="body"
+							data-toggle="popover" data-placement="right"
+							ng-model="formulationItem.quantity"
+							class="form-control input-sm text-right" id="Quantity"
+							placeholder="0"> </input></td>
+						<td><a ng-click="removeItem(formulationItem,$index)"><md-tooltip
+									md-direction="left">Remove Item</md-tooltip><span
+								class="glyphicon glyphicon-trash text-danger"></span></a>&nbsp;&nbsp;
+							<a ng-click="updateItem(formulationItem,$index)"><md-tooltip
+									md-direction="right">Update Item</md-tooltip><span
+								class="glyphicon glyphicon-open"
+								ng-show="!formulationItem.isEditDisabled"></span></a> <a
+							ng-click="editItem($index);"><md-tooltip md-direction="right">Edit
+								Item</md-tooltip><span class="glyphicon glyphicon-pencil "
+								ng-show="formulationItem.isEditDisabled"></span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

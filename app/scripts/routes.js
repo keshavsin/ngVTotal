@@ -61,6 +61,26 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ExploreCtrl',
 		controllerAs: 'ExploreCtrl'
 	})
+	.when('/secured/herbs/', {
+		templateUrl: 'views/herb.html',
+		controller: 'HerbController',
+		controllerAs: 'HerbController'
+	})
+	.when('/secured/lookup/', {
+		templateUrl: 'views/lookup.html',
+		controller: 'LookupController',
+		controllerAs: 'LookupController'
+	})
+	.when('/secured/blog/', {
+		templateUrl: 'views/blog.html',
+		controller: 'BlogController',
+		controllerAs: 'BlogController'
+	})
+	.when('/secured/formulation/', {
+		templateUrl: 'views/formulation.html',
+		controller: 'FormulationController',
+		controllerAs: 'FormulationController'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

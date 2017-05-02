@@ -102,6 +102,14 @@
                     "url": "/api/blog/getall",
                     "method": "GET"
                 },
+				"create": {
+                    "url": "/api/blog/create",
+                    "method": "POST"
+                },
+				"update": {
+                    "url": "/api/blog/update",
+                    "method": "PUT"
+                },
 				"getBlogComments": {
                     "url": "/api/blogcomment/getall",
                     "method": "GET"
@@ -126,9 +134,65 @@
                     "url": "/api/commentreply/create",
                     "method": "POST"
                 }
-
+            },
+			"lookup": {
+                "getAllActiveLookups": {
+                    "url": "/api/lookup/getactivelookups",
+                    "method": "GET"
+                },
+				"getAllLookups": {
+                    "url": "/api/lookup/getalllookups",
+                    "method": "GET"
+                },
+				"getAllLookupTypes": {
+                    "url": "/api/lookup/getalllookuptypes",
+                    "method": "GET"
+                },
+				"createLookup": {
+                    "url": "/api/lookup/createlookup",
+                    "method": "POST"
+                },
+				"getLookup": {
+                    "url": "/api/lookup/getlookup",
+                    "method": "GET"
+                },
+				"updateLookup": {
+                    "url": "/api/lookup/updatelookup",
+                    "method": "PUT"
+                },
+				"deleteLookup": {
+                    "url": "/api/lookup/deletelookup",
+                    "method": "DELETE"
+                },
+				"getLookupWithReference": {
+                    "url": "/api/lookup/getlookupwithreference",
+                    "method": "GET"
+                }
+            },
+			"herb": {
+                "create": {
+                    "url": "/api/herb/create",
+                    "method": "POST"
+                },
+				"get": {
+                    "url": "/api/herb/get",
+                    "method": "GET"
+                },
+				"getAll": {
+                    "url": "/api/herb/getall",
+                    "method": "GET"
+                },
+				"update": {
+                    "url": "/api/herb/update",
+                    "method": "PUT"
+                },
+				"deleteHerb": {
+                    "url": "/api/herb/delete",
+                    "method": "DELETE"
+                }
             }
         },
+
         "dateFormat": 'dd/MMM/yyyy hh:mm:ss a'
     });
 }());

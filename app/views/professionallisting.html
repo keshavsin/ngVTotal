@@ -101,8 +101,8 @@ LIST  SECTION
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="professional in professionalList">
       <div class="box-list"> <a href="#/professionaldetails/{{professional.id}}"> <img ng-src="{{professional.image == null ? 'images/noimage.jpg' : professional.image}}"  class="img-responsive center-block">
         <div class="product-content">
-          <h3>{{doctor.name}}</h3>
-          <p>{{doctor.details}} </p>
+          <h3>{{professional.name}}</h3>
+          <p>{{professional.details}} </p>
         </div>
       </div>
     </div>

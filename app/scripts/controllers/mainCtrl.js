@@ -33,10 +33,11 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 	}
 	
 	$scope.getExploreDetails = function() {
-		var myExploreDetails = exploreService.getExploreDetails('78d3e109-b892-491e-a851-b8f669c8ee5d');
+		var myExploreDetails = exploreService.getExploreDetails('7114630e-f19c-4c7d-a5b5-d518d240993c');
 		myExploreDetails.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.exploreDetails = JSON.parse(msg.data.json);
+				$scope.exploreDetails.image = msg.data.image;
 				$scope.initializeExploreData();
 			} else {
 				toastr.error("Error fetching Exploration Details ... ");

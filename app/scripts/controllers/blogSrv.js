@@ -18,7 +18,22 @@ vtApp.service('BlogService',['appSettings', 'apiServices', function (appSettings
 		console.log("Inside Service for Blog " );
 		return apiServices.doAPIRequest(appSettings.appAPI.blog.getAllBlogs, null, null, "sessionStorage");
 	};
-	
+
+	this.create = function(blog) {
+		console.log("Inside Service for Blog " );
+		return apiServices.doAPIRequest(appSettings.appAPI.blog.create, blog, null, "sessionStorage");
+	};
+
+	this.update = function(blog) {
+		console.log("Inside Service for Blog " );
+		return apiServices.doAPIRequest(appSettings.appAPI.blog.update, blog, null, "sessionStorage");
+	};
+
+	this.deleteBlog = function(blogId) {
+		console.log("Inside Service for Blog " );
+		return apiServices.doAPIRequest(appSettings.appAPI.blog.deleteBlog, null, blogId, "sessionStorage");
+	};
+
 	this.getBlogComments = function(blogId) {
 		console.log("Inside Service for Blog " + blogId);
 		return apiServices.doAPIRequest(appSettings.appAPI.blog.getBlogComments, null, blogId, "sessionStorage");

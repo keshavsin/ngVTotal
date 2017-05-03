@@ -1,35 +1,41 @@
 'use strict';
-vtApp.factory('FormulationService', function($http){
-	return{
-		
-		create : function(formulation){
-			var jsonData = {};
-			jsonData.json = formulation;
-			var $promise = $http.post("api/formulation/create",jsonData);
-			return $promise;
-		},
-		
-		get : function(formulationId){
-			var $promise = $http.get("api/formulation/get/"+formulationId+"?"+new Date().getTime());
-			return $promise;
-		},
-		
-		getAll : function(){
-			var $promise = $http.get("api/formulation/getall/"+"?"+new Date().getTime());
-			return $promise;
-		},
-		
-		update : function(formulation){
-			var jsonData = {};
-			jsonData.json = formulation;
-			var $promise = $http.put("api/formulation/update",jsonData);
-			return $promise;
-		},
-		
-		delete : function(formulationId){
-			var $promise = $http.delete("api/formualtion/delete/"+formulationId);
-			return $promise;
-		}
 
-	}
-})
+/**
+ * @ngdoc function
+ * @name vtApp.service:ProductSrv
+ * @description
+ * # ProductSrv
+ * Product service of the vtApp
+ */
+vtApp.service('FormulationService',['appSettings', 'apiServices', function (appSettings, apiServices) {
+
+	this.create = function(formulation) {
+		var jsonData = {};
+		jsonData.json = formulation;
+		console.log("Inside Service for Formulation" );
+		return apiServices.doAPIRequest(appSettings.appAPI.formulation.create, jsonData, null, "sessionStorage");
+	};	
+
+	this.get = function(formulationId) {
+		console.log("Inside Service for Formulation" +formulationId);
+		return apiServices.doAPIRequest(appSettings.appAPI.formulation.get, null, formulationId, "sessionStorage");
+	};
+	
+	this.getAll = function() {
+		console.log("Inside Service for Formulation");
+		return apiServices.doAPIRequest(appSettings.appAPI.formulation.getAll, null, null, "sessionStorage");
+	};
+
+	this.update = function(formulation) {
+		var jsonData = {};
+		jsonData.json = formulation;
+		console.log("Inside Service for Formulation");
+		return apiServices.doAPIRequest(appSettings.appAPI.formulation.update, jsonData, null, "sessionStorage");
+	};
+
+	this.deleteFormulation = function(formulationId) {
+		console.log("Inside Service for Formulation" + formulationId);
+		return apiServices.doAPIRequest(appSettings.appAPI.formulation.deleteHerb, null, formulationId, "sessionStorage");
+	};
+
+}]);

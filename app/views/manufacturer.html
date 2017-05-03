@@ -1,0 +1,657 @@
+<div class="container-fluid" ng-init=init();>
+
+	<div>
+		<ul class="nav nav-tabs">
+			<li
+				ng-class="manufacturerTab.selectedTab == 'MANUFACTURER_TAB' ? 'active' : ''"><a
+				href ng-click='manufacturersTab();'>Manufacturer</a></li>
+			<li
+				ng-class="manufacturerTab.selectedTab == 'PRODUCTS_TAB' ? 'active' : ''"><a
+				href ng-click="productsTab();">Products</a></li>
+		</ul>
+
+		<div ng-show="manufacturerTab.selectedTab == 'MANUFACTURER_TAB'">
+			<form name="Manufacturerform" novalidate>
+				<div class="container-fluid">
+					<div class="row">
+						<button class="btn btn-primary btn-sm pull-right"
+							ng-click="addManufacturer();" ng-show="!isAddManufacturerEnabled">Add</button>
+						<button class="btn btn-default btn-sm pull-right"
+							ng-click="backToManufacturersList();"
+							ng-show="isAddManufacturerEnabled">Back</button>
+						<button class="btn btn-success btn-sm pull-right"
+							ng-show="!manufacturer.id.length > 0 && isAddManufacturerEnabled"
+							ng-click="createManufacturer(manufacturer);">Save</button>
+						<button class="btn btn-warning btn-sm pull-right"
+							ng-show="manufacturer.id.length > 0 && isAddManufacturerEnabled"
+							ng-click="updateManufacturer(manufacturer);">Update</button>
+					</div>
+					<br />
+					<div>
+						<div ng-show="!isAddManufacturerEnabled">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-10 col-sm-offset-1"
+										ng-show="manufacturersList.length > 0">
+										<table datatable="ng" dt-options="dtOptions"
+											class="table table-responsive table-hover table-bordered">
+											<tr class="active">
+												<th>Manufacturer</th>
+												<th>Code</th>
+												<th>Health Systems</th>
+												<th>Portfolio</th>
+												<th>Website</th>
+												<th>Actions</th>
+											</tr>
+											<tr ng-repeat="manufacturer in manufacturersList">
+												<td>{{manufacturer.name}}</td>
+												<td>{{manufacturer.code}}</td>
+												<td>{{manufacturer.healthSystems}}</td>
+												<td>{{manufacturer.portfolio}}</td>
+												<td>{{manufacturer.url}}</td>
+												<td>
+													<!-- <a><md-tooltip
+								md-direction="left">Delete Manufacturer</md-tooltip><span
+									class="glyphicon glyphicon-trash text-danger"></span></a>&nbsp  -->
+													<a ng-click="getManufacturer(manufacturer.id);"><md-tooltip
+															md-direction="right">Edit Manufacturer</md-tooltip><span
+														class="glyphicon glyphicon-edit"></span></a>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div class="row col-sm-4 col-sm-offset-4"
+										ng-show="!manufacturersList.length > 0">
+										<br /> <br /> <span class="text-danger">No records
+											found</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row" ng-show="isAddManufacturerEnabled">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Name</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Manufacturer Name"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.name" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Title  -->
+
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Code</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Code "
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.code" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Health Systems </label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Health Systems"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.healthSystems"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Portfolio</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Portfolio"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.portfolio" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Description</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Description"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.description"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">URL</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" URL"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.url" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Since</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Since"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.year" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div>
+									<label class=" col-sm-4 control-label">Image<span
+										class="text-danger">*</span></label>
+									<div class="col-sm-8">
+										<input type="file" class=" form-control btn btn-default"
+											id="file1" name="file" ng-files="getTheFiles($files)">
+									</div>
+								</div>
+								<!-- End of Image -->
+
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class=" col-sm-4 control-label"> Divisions</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Divisions"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.divisions" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Operating
+										Regions</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Operating Regions"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.operatingRegions"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Certifications</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Certifications"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.certifications"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Export</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Export"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.export" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Sales Type</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Sales Type"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.salesType" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Clinical Trials</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Clinical Trials"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.clinicalTrials"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Type</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Type"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.type" typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+							</div>
+						</div>
+						<h3>Manufacturer Address</h3>
+						<hr />
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Address Line 1</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Address Line 1"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.addressLine1"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Address Line 2</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Address Line 2"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.addressLine2"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">City</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" City"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.city"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">State</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" State"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.state"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Country</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Country"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.country"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+							</div>
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Pincode</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Pincode"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.pincode"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Phone Number</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Phone Number"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.phoneNo"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Mobile Number</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Mobile Number"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.mobileNo"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+
+								<div class="form-group">
+									<label class=" col-sm-4 control-label">Email</label>
+									<div class="col-sm-8">
+										<input type="text" name="ManufacturerName"
+											typeahead-min-length="1"
+											typeahead-on-select="onSelect($item, $model, $label)"
+											placeholder=" Email"
+											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+											ng-model="manufacturer.address.email"
+											typeahead-editable='false' />
+									</div>
+								</div>
+								<!-- End of Author  -->
+							</div>
+						</div>
+					</div>
+					<br />
+				</div>
+			</form>
+
+		</div>
+
+		<div ng-show="manufacturerTab.selectedTab == 'PRODUCTS_TAB'">
+			<form name="productform" novalidate>
+				<div class="container-fluid">
+					<div class="row">
+						<button class="btn btn-primary btn-sm pull-right"
+							ng-click="addProduct();" ng-show="!isAddProductEnabled">Add</button>
+						<button class="btn btn-default btn-sm pull-right"
+							ng-click="backToProductsList();" ng-show="isAddProductEnabled">Back</button>
+						<button class="btn btn-success btn-sm pull-right"
+							ng-show="!product.id.length > 0 && isAddProductEnabled"
+							ng-click="createproduct(product);">Save</button>
+						<button class="btn btn-warning btn-sm pull-right"
+							ng-show="product.id.length > 0 && isAddProductEnabled"
+							ng-click="updateproduct(product);">Update</button>
+					</div>
+					<br />
+					<div ng-show="!isAddProductEnabled">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-10 col-sm-offset-1"
+									ng-show="productsList.length > 0">
+									<table datatable="ng" dt-options="dtOptions"
+										class="table table-responsive table-hover table-bordered">
+										<tr class="active">
+											<th>Product</th>
+											<th>Manufacturer</th>
+											<th>Actions</th>
+										</tr>
+										<tr ng-repeat="product in productsList">
+											<td>{{product.name}}</td>
+											<td>{{product.manufacturer}}</td>
+											<td>
+												<!-- <a><md-tooltip
+								md-direction="left">Delete Manufacturer</md-tooltip><span
+									class="glyphicon glyphicon-trash text-danger"></span></a>&nbsp  -->
+												<a ng-click="getProduct(product.id);"><md-tooltip
+														md-direction="right">Edit Product</md-tooltip><span
+													class="glyphicon glyphicon-edit"></span></a>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="row col-sm-4 col-sm-offset-4"
+									ng-show="productsList.length > 0">
+									<br /> <br /> <span class="text-danger">No records
+										found</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row col-sm-10" ng-show="isAddProductEnabled">
+						<input type="hidden" ng-model="product.id">
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Name</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Product Name"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.name" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Title  -->
+
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Manufacturer</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Manufacturer"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.manufacturer" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Key Ingredients</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Key Ingredients"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.keyIngredients" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">All Ingredients</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" All Ingredients"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.allIngredients" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Indications</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Indications"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.indications" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Type</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Type"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.type" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Dosage</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Dosage"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.dosage" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">System</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" System"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.system" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Clinical Artifacts</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Clinical Artifacts"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.clinicalArtifacts" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Classical
+								Reference</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Classical Artifacts"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.classicalArtifacts"
+									typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Formulation</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Formulation"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.form" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Special Contents</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Special Contents"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.specialContents" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Export Details</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Export Details"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.exportDetails" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div class="form-group">
+							<label class=" col-sm-2 control-label">Side Effects</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Side Effects"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.sideEffects" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Author  -->
+
+						<div>
+							<label class=" col-sm-2 control-label">Image<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-9">
+								<input type="file" class=" form-control btn btn-default"
+									id="file1" name="file" ng-files="getTheFiles($files)">
+							</div>
+						</div>
+						<!-- End of Image -->
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>

@@ -63,7 +63,12 @@
 				"getRelatedProducts": {
                     "url": "/api/product/related",
                     "method": "GET"
+                },
+				"getProducts": {
+                    "url": "/api/product/getall",
+                    "method": "GET"
                 }
+
             },
 			"manufacturer": {
                 "getManufacturer": {
@@ -77,6 +82,22 @@
 				"getFeaturedManufacturers": {
                     "url": "/api/manufacturer/featured",
                     "method": "GET"
+                },
+				"getManufacturers": {
+                    "url": "/api/manufacturer/getall",
+                    "method": "GET"
+                },
+				"getManufacturer": {
+                    "url": "/api/manufacturer/get",
+                    "method": "GET"
+                },
+				"updateManufacturer": {
+                    "url": "/api/manufacturer/update",
+                    "method": "PUT"
+                },
+				"createManufacturer": {
+                    "url": "/api/manufacturer/create",
+                    "method": "POST"
                 }
             },
 			"professional": {
@@ -190,7 +211,30 @@
                     "url": "/api/herb/delete",
                     "method": "DELETE"
                 }
+            },
+			"formulation": {
+                "create": {
+                    "url": "/api/formulation/create",
+                    "method": "POST"
+                },
+				"get": {
+                    "url": "/api/formulation/get",
+                    "method": "GET"
+                },
+				"getAll": {
+                    "url": "/api/formulation/getall",
+                    "method": "GET"
+                },
+				"update": {
+                    "url": "/api/formulation/update",
+                    "method": "PUT"
+                },
+				"deleteHerb": {
+                    "url": "/api/formulation/delete",
+                    "method": "DELETE"
+                }
             }
+
         },
 
         "dateFormat": 'dd/MMM/yyyy hh:mm:ss a'

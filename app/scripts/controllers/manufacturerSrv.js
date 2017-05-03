@@ -24,4 +24,25 @@ vtApp.service('ManufactureService',['appSettings', 'apiServices', function (appS
 		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.getManufacturer, null, manufacturerId, "sessionStorage");
 	};
 
+	this.getManufacturers = function() {
+		console.log("Isnide Service for Manufacturer ");
+		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.getManufacturers, null, null, "sessionStorage");
+	};
+
+	this.getManufacturer = function(manufacturerId) {
+		console.log("Isnide Service for Manufacturer " + manufacturerId);
+		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.getManufacturer, null, manufacturerId, "sessionStorage");
+	};
+
+	this.updateManufacturer = function(manufacturer) {
+		console.log("Isnide Service for Manufacturer ");
+		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.updateManufacturer, manufacturer, null, "sessionStorage");
+	};
+
+	this.createManufacturer = function(manufacturer) {
+		console.log("Isnide Service for Manufacturer ");
+		return apiServices.doAPIRequest(appSettings.appAPI.manufacturer.createManufacturer, manufacturer, null, "sessionStorage");
+	};
+
+
 }]);

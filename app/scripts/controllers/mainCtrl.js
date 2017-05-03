@@ -116,7 +116,11 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		qArray.push(obj);
 		});
 		$scope.contentObject = qArray;
-		$scope.contentObject.defaultText = $scope.contentObject[0].text;
+		for(i = 0; i < $scope.contentObject.length; i++){
+			if($scope.contentObject[i].name == "Default Text"){
+				$scope.contentObject.defaultText = $scope.contentObject[0].text;
+			}
+		}
 		$scope.displaySecondary($scope.contentObject[0].text);
 	}
 	

@@ -81,6 +81,21 @@ vtApp.config(function ($routeProvider) {
 		controller: 'FormulationController',
 		controllerAs: 'FormulationController'
 	})
+	.when('/secured/product/', {
+		templateUrl: 'views/product.html',
+		controller: 'productCtrl',
+		controllerAs: 'productCtrl'
+	})
+	.when('/secured/manufacturer/', {
+		templateUrl: 'views/manufacturer.html',
+		controller: 'ManufacturerCtrl',
+		controllerAs: 'ManufacturerCtrl'
+	})
+	.when('/secured/professional/', {
+		templateUrl: 'views/professional.html',
+		controller: 'productCtrl',
+		controllerAs: 'productCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

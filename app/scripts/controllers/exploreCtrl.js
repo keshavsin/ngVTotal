@@ -71,8 +71,12 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
 		qArray.push(obj);
 		});
 		$scope.contentObject = qArray;
-		$scope.contentObject.defaultText = $scope.contentObject[0].text;
-		$scope.displaySecondary($scope.contentObject[0].text);
+		for(var i = 0; i < $scope.contentObject.length; i++){
+			if($scope.contentObject[i].name == "Top 5 Actions"){
+				$scope.contentObject.defaultText = $scope.contentObject[i].text;
+					$scope.displaySecondary($scope.contentObject[i].text);
+			}
+		}
 	}
 
 	$scope.init = function() {

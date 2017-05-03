@@ -18,7 +18,7 @@ vtApp.service('HerbService',['appSettings', 'apiServices', function (appSettings
 	};	
 
 	this.get = function(herbId) {
-		console.log("Inside Service for Herb" );
+		console.log("Inside Service for Herb" +herbId);
 		return apiServices.doAPIRequest(appSettings.appAPI.herb.get, null, herbId, "sessionStorage");
 	};
 	

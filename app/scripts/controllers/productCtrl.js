@@ -16,7 +16,6 @@ vtApp.controller('ProductCtrl',['$scope', '$route', '$routeParams', '$log', '$lo
 	$scope.recipeTypeFilter = ["Veg","Non-Veg"];
 	
 	$scope.healthSystemFilter = ["Ayurveda","Unnani"];	
-
 	
 	$scope.otherProductList = [{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},
 								{"name":"Product Name","url":"","image":"images/products/1.jpg","details":"this product is for so and so"},

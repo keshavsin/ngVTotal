@@ -130,11 +130,11 @@ LIST  SECTION
       </div>
     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide"> 
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="product in productList">
-				<div class="box-list"> 
-				<a href="#/productdetails/{{product.id}}"> <img ng-src="{{product.image == null ? 'images/noimage.jpg' : product.image}}"  class="img-responsive center-block"" alt="Image">
-				<div class="product-content">
-					<h3>{{product.name}}</h3>
-					<p>{{product.description}}</p>
+				<div class="box-list box-white"> 
+				<a href="#/productdetails/{{product.id}}"> <img ng-src="{{product.image == null ? 'images/noimage.jpg' : product.image}}"  class="img-responsive center-block" alt="Image">
+				<div class="product-content " >
+					<h3 >{{product.name}}</h3>
+					<p  class="limit-blog-image">{{product.description.substr(0,115)}}</p>
 				</div>
 				</div>
 			</div>

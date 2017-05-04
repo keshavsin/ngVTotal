@@ -7,7 +7,7 @@
  * # ManufacturerdetailsCtrl
  * Manufacturer Details Controller of the vtApp
  */
-vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routeParams', '$log', 'ManufactureService', 'ProductService', 'LookupService', function ($scope, $route, $location, $routeParams, $log, manufactureService, productService, lookupService) {
+vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routeParams', '$log', 'ManufactureService', 'ProductService', 'LookupService', 'fileUploadService', function ($scope, $route, $location, $routeParams, $log, manufactureService, productService, lookupService, fileUploadService) {
 
 	$scope.manufacturerTab = {};
 	$scope.manufacturerTab.selectedTab = "MANUFACTURER_TAB";
@@ -117,6 +117,7 @@ vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routePara
 
 	$scope.clearCache = function(){
 		$scope.manufacturer = {};
+		$scope.product = {};
 	}
 	
 	$scope.createManufacturer = function(manufacturer){
@@ -124,6 +125,9 @@ vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routePara
 		createManufacturer.then(function(msg){
 			if(msg.status == 200){
 				$scope.manufacturerId = msg.data;
+				if($scope.file.length > 0){
+					$scope.uploadFiles($scope.manufacturerId,"MANUFACTURER");
+				}
 				$scope.isAddManufacturerEnabled = false;
 				$scope.init();
 				$scope.clearCache();
@@ -150,11 +154,95 @@ vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routePara
 		updateManufacturer.then(function(msg){
 			if(msg.status == 200){
 				$scope.isAddManufacturerEnabled = false;
+				if($scope.file.length > 0){
+					$scope.uploadFiles(manufacturer.id,"MANUFACTURER");
+				}
 				$scope.clearCache();
 			}else{
 				toastr.error("Error Updating Manufacturer");
 			}
 		})
 	}
+
+	$scope.createProduct = function(product){
+		var createproduct = productService.createProduct(product);		
+		createproduct.then(function(msg){
+			if(msg.status == 200){
+				$scope.productId = msg.data;
+				if($scope.file.length > 0){
+					$scope.uploadFiles($scope.productId,"PRODUCT");
+				}
+				$scope.isAddProductEnabled = false;
+				$scope.init();
+				$scope.clearCache();
+			}else{
+				toastr.error("Error Creating Product");
+			}
+		})
+	}
+
+	$scope.getProduct = function(productId){
+		var getProduct = productService.getProduct(productId);
+		getProduct.then(function(msg){
+			if(msg.status == 200){
+				$scope.product = msg.data;
+				$scope.isAddProductEnabled = true;
+			}else{
+				toastr.error("Error Fetching Product");			
+			}
+		})	
+	}
+	
+	$scope.updateProduct = function(product){
+		var updateProduct = productService.updateProduct(product);
+		updateProduct.then(function(msg){
+			if(msg.status == 200){
+				$scope.isAddProductEnabled = false;
+				if($scope.file.length > 0){
+					$scope.uploadFiles(product.id,"PRODUCT");
+				}
+				$scope.clearCache();
+			}else{
+				toastr.error("Error Updating Product");
+			}
+		})
+	}
 		
+	// File Upload
+	$scope.clearFiles = function () {
+	    angular.element("input[type='file']").val(null);
+		formdata.delete("file");
+		formdata.delete("type");
+		formdata.delete("id");
+		formdata.delete("docInfo");
+	};
+	
+	$scope.getTheFiles = function ($files) {
+		$scope.file = $files;
+	    angular.forEach($files, function (value, key) {
+	        formdata.append("file", value);
+	    });
+	    $scope.isFileSelected = true;
+	};
+
+	$scope.uploadFiles = function (id, docInfo) {
+		formdata.append("type", "IMAGE");
+		formdata.append("id", id);
+		formdata.append("docInfo",	docInfo);
+		var fileupload = fileUploadService.upload(formdata);
+		fileupload.then(function(msg){
+			var jsonResult = msg.data.data;
+			if(msg.data.status == 200) {
+				if(jsonResult.length == 0) {
+					toastr.success('uploaded Successfully.');
+				} else {
+					$scope.errors = jsonResult;
+				}
+			} else {
+				toastr.error('Error while uploading.');
+			}
+			$scope.clearFiles();
+		}, function(msg){if(msg.status = 401) $location.path('/login');})
+	};
+
 }]);

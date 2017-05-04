@@ -3,17 +3,14 @@ modal for  register
 ==================== -->
 	<div class="modal-content">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<button type="button" class="close" ng-click="close();" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h4 class="modal-title">
-				<ul class="nav nav-tabs nav-tabs-custom nav-modal">
-					<li class="active"><a href="#login" data-toggle="tab"> <i class="fa fa-sign-in"></i> Login</a></li>
-					<li><a href="#create" data-toggle="tab"> <i class="fa fa-edit"></i> Create Account</a></li>
-				</ul>
+			Create Account
 			</h4>
 		</div>
 		<div class="modal-body">
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade" id="create">
+				<div class="tab-pane active in" id="create">
 					<form id="tab">
 						<div class="form-group">
 							<label>Name</label>
@@ -38,7 +35,7 @@ modal for  register
 						<div class="form-group"> <a  data-toggle="modal" data-target="#termsModal">
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" ng-model="registerDetails.login.tncAgreed"> I Agree with the terms and conditions </label>
+									<input type="checkbox" ng-model="registerDetails.login.tncAgreed" /> I Agree with the terms and conditions </label>
 							</div>
 							</a> </div>
 						<div>

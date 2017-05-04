@@ -8,7 +8,7 @@
  * Header Controller of the vtApp
  */
 vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService', 'SessionService' ,'$location', '$document','$log', '$modal', 'appSettings', function ($rootScope, $scope, $route, headerService, sessionService, $location, $document, $log, $modal, appSettings) {
-	
+
 	$scope.init = function() {
 		console.log(" Inside init of header Controller");
 	}
@@ -85,40 +85,39 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService'
 ////MODAL CONTROLLER OF LOGIN
 vtApp.controller('LoginCtrl',['$route', '$scope', '$modalInstance', '$location', 'infoToLoginControllerFromParent','HeaderService', function($route, $scope, $modalInstance, $location, infoToLoginControllerFromParent, headerService) {
 
-//    $scope.loginDetails = {role:"Customer"};
-//    $scope.isLoginError = false;
-//    $scope.loginErrorMessage = "";
-//    
-//    $scope.toggleRole = function() {
-//    	$scope.loginDetails.role = ($scope.loginDetails.role === 'Customer')?'Guide':'Customer';
-//    }
-//
-//    $scope.ok = function() {
-//    	var details =  headerService.login($scope.loginDetails);
-//    	details.then(function(msg) {
-//			var jsonResult = null;
-//			if (msg.status == 200) {
-//				jsonResult = msg.data;
-//				$modalInstance.close(jsonResult);
-//			} else if (msg.status == 401) {
-//				if ($scope.loginDetails.role=='Customer') {
-//					$scope.loginErrorMessage = "Invalid username or password, Please retry";
-//				} else {
-//					$scope.loginErrorMessage = "Invalid username or password, Check your mail box for the verification email";
-//				}
-//				$scope.isLoginError = true;
-//			} else {
-//				$scope.loginErrorMessage = "Error while processing your request";
-//				$scope.isLoginError = true;
-//			}
-//		},function errorCallback(response) {
-//			$location.path('/login');
-//		});
-//        
-//    };
-//    $scope.cancel = function() {
-//		$modalInstance.dismiss('cancel');
-//    };
+   $scope.isLoginError = false;
+   $scope.loginErrorMessage = "";
+   
+   $scope.toggleRole = function() {
+   	$scope.loginDetails.role = ($scope.loginDetails.role === 'Customer')?'Guide':'Customer';
+   }
+
+   $scope.ok = function() {
+   	var details =  headerService.login($scope.loginDetails);
+   	details.then(function(msg) {
+			var jsonResult = null;
+			if (msg.status == 200) {
+				jsonResult = msg.data;
+				$modalInstance.close(jsonResult);
+			} else if (msg.status == 401) {
+				if ($scope.loginDetails.role=='GENERAL') {
+					$scope.loginErrorMessage = "Invalid username or password, Please retry";
+				} else {
+					$scope.loginErrorMessage = "Invalid username or password, Check your mail box for the verification email";
+				}
+				$scope.isLoginError = true;
+			} else {
+				$scope.loginErrorMessage = "Error while processing your request";
+				$scope.isLoginError = true;
+			}
+		},function errorCallback(response) {
+			$location.path('/login');
+		});
+       
+   };
+   $scope.cancel = function() {
+		$modalInstance.dismiss('cancel');
+   };
     
     $scope.close = function() {
 		$modalInstance.dismiss('cancel');
@@ -130,7 +129,7 @@ vtApp.controller('LoginCtrl',['$route', '$scope', '$modalInstance', '$location',
 vtApp.controller('RegisterCtrl', ['$scope', '$modalInstance', '$location', 'infoToRegisterControllerFromParent','HeaderService', 'SessionService', function($scope, $modalInstance, $location, infoToRegisterControllerFromParent, headerService, sessionService) {
 
     $scope.registerDetails = {name:"Rama", role:"OTHERS"};
-	$scope.registerDetails.login={email:"some@some.com", password:"pass1234", cnfpasswrd:"pass1234", mobile:1829189211, tncAgreed:false};
+	$scope.registerDetails.login={email:"tss.suresh@gmail.com", password:"pass1234", cnfpasswrd:"pass1234", mobile:1829189211, tncAgreed:true};
 	$scope.isRegisterError = false;
 
     $scope.save = function(registerDetails) {

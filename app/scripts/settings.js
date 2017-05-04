@@ -18,7 +18,7 @@
                 },
                 "login": {
                     "url": "/api/login",
-                    "method": "GET"
+                    "method": "POST"
                 },
                 "logout": {
                     "url": "/api/logout",
@@ -67,8 +67,15 @@
 				"getProducts": {
                     "url": "/api/product/getall",
                     "method": "GET"
+                },
+				"create": {
+                    "url": "/api/product/create",
+                    "method": "POST"
+                },
+				"update": {
+                    "url": "/api/product/update",
+                    "method": "PUT"
                 }
-
             },
 			"manufacturer": {
                 "getManufacturer": {
@@ -112,6 +119,14 @@
 				"getFeaturedProfessionals": {
                     "url": "/api/professional/featured",
                     "method": "GET"
+                },
+				"create": {
+                    "url": "/api/professional/create",
+                    "method": "POST"
+                },
+				"update": {
+                    "url": "/api/professional/update",
+                    "method": "PUT"
                 }
             },
 			"blog": {

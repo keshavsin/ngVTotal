@@ -4,7 +4,7 @@ modal of login
 
 	<div class="modal-content">
 		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<button type="button" class="close" ng-click="cancel();" data-dismiss="modal" aria-hidden="true">&times;</button>
 			<h4 class="modal-title">
 				<ul class="nav nav-tabs nav-tabs-custom nav-modal">
 					<li class="active"><a href="#login" data-toggle="tab"> <i class="fa fa-sign-in"></i> Login</a></li>
@@ -18,13 +18,13 @@ modal of login
 					<form>
 						<div class="form-group">
 							<label>User Name</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="User Name">
+							<input type="text" ng-model="loginDetails.email" class="form-control" id="exampleInputEmail1" placeholder="User Name">
 						</div>
 						<div class="form-group">
 							<label>Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+							<input type="password" ng-model="loginDetails.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 						</div>
-						<button type="button" class="btn btn-primary" ng-click="ok(registerDetails)">Login</button>
+						<button type="button" class="btn btn-primary" ng-click="ok()">Login</button>
 						<div class="login-help"> <a href="#create" data-toggle="tab">Register</a> - <a href="#">Forgot Password</a> </div>
 					</form>
 				</div>

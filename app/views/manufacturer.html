@@ -424,10 +424,10 @@
 							ng-click="backToProductsList();" ng-show="isAddProductEnabled">Back</button>
 						<button class="btn btn-success btn-sm pull-right"
 							ng-show="!product.id.length > 0 && isAddProductEnabled"
-							ng-click="createproduct(product);">Save</button>
+							ng-click="createProduct(product);">Save</button>
 						<button class="btn btn-warning btn-sm pull-right"
 							ng-show="product.id.length > 0 && isAddProductEnabled"
-							ng-click="updateproduct(product);">Update</button>
+							ng-click="updateProduct(product);">Update</button>
 					</div>
 					<br />
 					<div ng-show="!isAddProductEnabled">
@@ -469,7 +469,7 @@
 						<input type="hidden" ng-model="product.id">
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Name</label>
+							<label class=" col-sm-3 control-label">Name</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -480,9 +480,20 @@
 						</div>
 						<!-- End of Title  -->
 
+						<div class="form-group">
+							<label class=" col-sm-3 control-label">Description</label>
+							<div class="col-sm-9">
+								<input type="text" name="productName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Description"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="product.description" typeahead-editable='false' />
+							</div>
+						</div>
+						<!-- End of Title  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Manufacturer</label>
+							<label class=" col-sm-3 control-label">Manufacturer</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -494,7 +505,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Key Ingredients</label>
+							<label class=" col-sm-3 control-label">Key Ingredients</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -506,7 +517,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">All Ingredients</label>
+							<label class=" col-sm-3 control-label">All Ingredients</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -518,7 +529,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Indications</label>
+							<label class=" col-sm-3 control-label">Indications</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -530,7 +541,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Type</label>
+							<label class=" col-sm-3 control-label">Type</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -542,7 +553,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Dosage</label>
+							<label class=" col-sm-3 control-label">Dosage</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -554,7 +565,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">System</label>
+							<label class=" col-sm-3 control-label">System</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -566,7 +577,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Clinical Artifacts</label>
+							<label class=" col-sm-3 control-label">Clinical Artifacts</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -578,21 +589,21 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Classical
+							<label class=" col-sm-3 control-label">Classical
 								Reference</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
 									placeholder=" Classical Artifacts"
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-									ng-model="product.classicalArtifacts"
+									ng-model="product.classicalReference"
 									typeahead-editable='false' />
 							</div>
 						</div>
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Formulation</label>
+							<label class=" col-sm-3 control-label">Formulation</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -604,7 +615,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Special Contents</label>
+							<label class=" col-sm-3 control-label">Special Contents</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -616,7 +627,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Export Details</label>
+							<label class=" col-sm-3 control-label">Export Details</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -628,7 +639,7 @@
 						<!-- End of Author  -->
 
 						<div class="form-group">
-							<label class=" col-sm-2 control-label">Side Effects</label>
+							<label class=" col-sm-3 control-label">Side Effects</label>
 							<div class="col-sm-9">
 								<input type="text" name="productName" typeahead-min-length="1"
 									typeahead-on-select="onSelect($item, $model, $label)"
@@ -640,7 +651,7 @@
 						<!-- End of Author  -->
 
 						<div>
-							<label class=" col-sm-2 control-label">Image<span
+							<label class=" col-sm-3 control-label">Image<span
 								class="text-danger">*</span></label>
 							<div class="col-sm-9">
 								<input type="file" class=" form-control btn btn-default"

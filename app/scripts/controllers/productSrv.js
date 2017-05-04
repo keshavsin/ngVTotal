@@ -29,4 +29,19 @@ vtApp.service('ProductService',['appSettings', 'apiServices', function (appSetti
 		return apiServices.doAPIRequest(appSettings.appAPI.product.getProducts, null, null, "sessionStorage");
 	};
 
+	this.createProduct = function(product) {
+		console.log("Inside Service for Product  ");
+		return apiServices.doAPIRequest(appSettings.appAPI.product.create, product, null, "sessionStorage");
+	};
+
+	this.getProduct = function(productId) {
+		console.log("Inside Service for Product  "+ productId);
+		return apiServices.doAPIRequest(appSettings.appAPI.product.getProduct, null, productId, "sessionStorage");
+	};
+
+	this.updateProduct = function(product) {
+		console.log("Inside Service for Product  ");
+		return apiServices.doAPIRequest(appSettings.appAPI.product.update, product, null, "sessionStorage");
+	};
+
 }]);

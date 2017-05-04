@@ -129,17 +129,12 @@ vtApp.controller('LoginCtrl',['$route', '$scope', '$modalInstance', '$location',
 // MODAL CONTROLLER For Register 
 vtApp.controller('RegisterCtrl', ['$scope', '$modalInstance', '$location', 'infoToRegisterControllerFromParent','HeaderService', 'SessionService', function($scope, $modalInstance, $location, infoToRegisterControllerFromParent, headerService, sessionService) {
 
-    //$scope.registerDetails = {firstname:"Rama", lastname:"Kokella", email:"some@some.com", password:"pass1234", something:"pass1234", userType:true};
-	$scope.registerDetails={};
-	$scope.registerDetails.role="Customer";
+    $scope.registerDetails = {name:"Rama", role:"OTHERS"};
+	$scope.registerDetails.login={email:"some@some.com", password:"pass1234", cnfpasswrd:"pass1234", mobile:1829189211, tncAgreed:false};
 	$scope.isRegisterError = false;
 
-	$scope.toggleRole = function() {
-		$scope.registerDetails.role = ($scope.registerDetails.role === 'Customer')?'Guide':'Customer';
-	}
-
     $scope.save = function(registerDetails) {
-    	delete $scope.registerDetails.cnfpasswrd;
+    	delete $scope.registerDetails.login.cnfpasswrd;
     	console.log($scope.registerDetails)
     	var details =  headerService.save(registerDetails);
     	details.then(function(msg) {

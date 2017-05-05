@@ -91,6 +91,11 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ProfessionalCtrl',
 		controllerAs: 'ProfessionalCtrl'
 	})
+	.when('/validateEmail/:encryptedEmail', {
+		templateUrl: 'views/home.html',
+		controller: 'HeaderCtrl',
+		controllerAs: 'headerCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

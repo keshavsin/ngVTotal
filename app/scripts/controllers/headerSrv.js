@@ -19,5 +19,8 @@ vtApp.service('HeaderService',['appSettings', 'apiServices', function (appSettin
 		return apiServices.doAPIRequest(appSettings.appAPI.common.register, registerDetails, null, "sessionStorage");
 	};	
 
-	
+	this.validateEmail = function(encryptedEmail) {
+		console.log("Isnide Service for validate Email ");
+		return apiServices.doAPIRequest(appSettings.appAPI.common.validateEmail, null, encryptedEmail, "sessionStorage");
+	};
 }]);

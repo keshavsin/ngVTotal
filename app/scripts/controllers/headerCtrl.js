@@ -10,10 +10,32 @@
 vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService', 'SessionService' ,'$location', '$document','$log', '$modal', 'appSettings', function ($rootScope, $scope, $route, headerService, sessionService, $location, $document, $log, $modal, appSettings) {
 
 	$scope.init = function() {
-		console.log(" Inside init of header Controller");
-	}
+
+		if($location.$$path.startsWith('/validateEmail')) {
+			$scope.$route = $route;
+			var encryptedEmail = $scope.$route.current.params.encryptedEmail;
+			console.log("Encrypted Mail sAAAA " + encryptedEmail);
+			var details =  headerService.validateEmail(encryptedEmail);
+	    	details.then(function(msg) {
+	    		$location.path('/');
+				if (msg.status == 200) {
+					if (msg.data.role === 'PROFESSIONAL') {
+						$location.path('/secured/professional/');
+					} else if (msg.data.role === 'MANUFACTURER') {
+						$location.path('/secured/manufacturer/');
+					} else if (msg.data.role === 'OTHERS') {
+						$location.path('/secured/user');
+					}
+					toastr.error("Your email has been verified, Please update your profile");
+				} else {
+					toastr.error("Error while processing your request, Please click the link once again");
+				}
+			},function errorCallback(response) {
+				$location.path('/login');
+			});
+		} 
+	}	
 	
-	$scope.init();
 	
 
 		//MODAL WINDOW OF LOGIN
@@ -77,6 +99,7 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService'
 		});
 	};
 	
+	$scope.init();
 }]);
 
 

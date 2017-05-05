@@ -20,7 +20,7 @@ var vtApp = angular
 		'ngResource',
 		'ngSanitize',
 		'ngFileUpload',
-		'ngTouch',
+		'toastr',
 		'am.multiselect',
 		'ngMaterial'
     ]);

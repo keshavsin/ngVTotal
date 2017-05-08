@@ -7,7 +7,7 @@
  * # ManufacturerdetailsCtrl
  * Manufacturer Details Controller of the vtApp
  */
-vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routeParams', '$log', 'ManufactureService', 'ProductService', 'LookupService', 'fileUploadService', function ($scope, $route, $location, $routeParams, $log, manufactureService, productService, lookupService, fileUploadService) {
+vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location', '$routeParams', '$log', 'ManufactureService', 'ProductService', 'LookupService', 'fileUploadService', function ($scope, $rootScope, $route, $location, $routeParams, $log, manufactureService, productService, lookupService, fileUploadService) {
 
 	$scope.manufacturerTab = {};
 	$scope.manufacturerTab.selectedTab = "MANUFACTURER_TAB";
@@ -83,6 +83,44 @@ vtApp.controller('ManufacturerCtrl',['$scope', '$route','$location', '$routePara
 		if($location.$$path.startsWith('/manufacturerdetails')){
 			$scope.getManufacturer($routeParams.id);
 		}else if($location.$$path.startsWith('/secured/manufacturer')){
+		var getSystems = lookupService.getAllActiveLookups('System');
+		getSystems.then(function(msg){
+			if(msg.status ==  200){
+				$scope.systems = msg.data;
+			}else{
+				toastr.error("Error Fetching Systems");
+			}
+		})
+		var getPortfolios = lookupService.getAllActiveLookups('ManufacturerPortfolio');
+		getPortfolios.then(function(msg){
+			if(msg.status ==  200){
+				$scope.portfolios = msg.data;
+			}else{
+				toastr.error("Error Fetching Portfolios");
+			}
+		})
+		var getSalesTypes = lookupService.getAllActiveLookups('SalesType');
+		getSalesTypes.then(function(msg){
+			if(msg.status ==  200){
+				$scope.salesTypes = msg.data;
+			}else{
+				toastr.error("Error Fetching Sales Types");
+			}
+		})
+		var getManufacturerTypes = lookupService.getAllActiveLookups('ManufacturerType');
+		getManufacturerTypes.then(function(msg){
+			if(msg.status ==  200){
+				$scope.types = msg.data;
+			}else{
+				toastr.error("Error Fetching Sales Manufacturer Types");
+			}
+		})
+
+			if($rootScope.sessionProfile != null){				
+				if($rootScope.sessionProfile.role != 'ADMIN'){
+					$scope.addManufacturer();
+				}
+			}
 			var getSystem = lookupService.getAllActiveLookups('System');
 			getSystem.then(function(msg){
 				if(msg.data.status == 200){

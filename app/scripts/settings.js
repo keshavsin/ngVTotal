@@ -39,6 +39,10 @@
                 "validateEmail": {
                     "url": "/api/validateEmail",
                     "method": "GET"
+                },
+                "logout": {
+                    "url": "/api/logout",
+                    "method": "GET"
                 }
             },
 			"explore": {

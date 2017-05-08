@@ -6,12 +6,12 @@
 				<div class="container-fluid">
 					<div class="row">
 				<h3 class="page-header">
-			<span>Blog</span>
+			<span>Professional</span>
 						<button class="btn btn-primary btn-sm pull-right"
 							ng-click="addProfessional();" ng-show="!isAddProfessionalEnabled">Add</button>
 						<button class="btn btn-default btn-sm pull-right"
 							ng-click="backToProfessionalsList();"
-							ng-show="isAddProfessionalEnabled">Back</button>
+							ng-show="isAddProfessionalEnabled && sessionProfile.role == 'ADMIN'">Back</button>
 						<button class="btn btn-success btn-sm pull-right"
 							ng-show="!professional.id.length > 0 && isAddProfessionalEnabled"
 							ng-click="createProfessional(professional);">Save</button>
@@ -22,7 +22,7 @@
 							</div>
 					</div>
 					<div>
-						<div ng-show="!isAddProfessionalEnabled">
+						<div ng-show="!isAddProfessionalEnabled && sessionProfile.role == 'ADMIN'">
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-10 col-sm-offset-1"
@@ -83,12 +83,12 @@
 								<div class="form-group">
 									<label class=" col-sm-4 control-label">Education</label>
 									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Education "
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.education" typeahead-editable='false' />
+									<div class="dropdown">
+										<select class="form-control input-sm" name="Role"
+											ng-model="professional.education" required=""
+											ng-options="education.id as education.name for education in education">
+							</select>
+						</div>
 									</div>
 								</div>
 								<!-- End of Author  -->
@@ -188,13 +188,12 @@
 								<div class="form-group">
 									<label class=" col-sm-4 control-label">System</label>
 									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" System"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.system"
-											typeahead-editable='false' />
+									<div class="dropdown">
+										<select class="form-control input-sm" name="Role"
+											ng-model="professional.system" required=""
+											ng-options="system.id as system.name for system in systems">
+							</select>
+						</div>
 									</div>
 								</div>
 								<!-- End of Author  -->

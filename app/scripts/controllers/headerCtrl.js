@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 /**
  * @ngdoc function
@@ -7,38 +7,39 @@
  * # HeaderCtrl
  * Header Controller of the vtApp
  */
-vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService', 'SessionService' ,'$location', '$document','$log', '$modal', 'appSettings', function ($rootScope, $scope, $route, headerService, sessionService, $location, $document, $log, $modal, appSettings) {
+vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', '$routeParams', 'HeaderService', 'SessionService' ,'$location', '$document','$log', '$modal', 'appSettings', function ($rootScope, $scope, $route, $routeParams, headerService, sessionService, $location, $document, $log, $modal, appSettings) {
 
 	$scope.init = function() {
-
-		if($location.$$path.startsWith('/validateEmail')) {
-			$scope.$route = $route;
-			var encryptedEmail = $scope.$route.current.params.encryptedEmail;
-			console.log("Encrypted Mail sAAAA " + encryptedEmail);
-			var details =  headerService.validateEmail(encryptedEmail);
-	    	details.then(function(msg) {
-	    		$location.path('/');
-				if (msg.status == 200) {
-					if (msg.data.role === 'PROFESSIONAL') {
-						$location.path('/secured/professional/');
-					} else if (msg.data.role === 'MANUFACTURER') {
-						$location.path('/secured/manufacturer/');
-					} else if (msg.data.role === 'OTHERS') {
-						$location.path('/secured/user');
-					}
-					toastr.error("Your email has been verified, Please update your profile");
-				} else {
-					toastr.error("Error while processing your request, Please click the link once again");
+		if($location.$$path.startsWith('/validateEmail')){
+			var validateEmail = headerService.validateEmail($routeParams.encryptedEmail);
+			validateEmail.then(function(msg){
+				if(msg.status == 200){
+					$scope.isVerified = true;
+				}else{
+					$scope.isVerified = false;
 				}
-			},function errorCallback(response) {
-				$location.path('/login');
-			});
-		} 
-	}	
+			})
+		}
+		console.log(" Inside init of header Controller");
+	}
 	
-	
+	$scope.init();
 
-		//MODAL WINDOW OF LOGIN
+	$scope.logout = function(){
+		var logout = headerService.logout();
+		logout.then(function(msg){
+			if(msg.status != 200){
+				$scope.error = msg.data;	
+			}else{
+				$rootScope.sessionProfile = null;
+				sessionService.removeSession();
+				$rootScope.authenticated = false;
+				$location.path("/");
+			}
+		})
+	}
+
+	//MODAL WINDOW OF LOGIN
 	$rootScope.openLogin = function() {
 		var modalInstance = $modal.open({
 			animation: $scope.animationsEnabled,
@@ -57,6 +58,11 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService'
 				$rootScope.authenticated = false;
 			} else {
 				$rootScope.sessionProfile = selectedObj;
+				if($rootScope.sessionProfile.role == 'MANUFACTURER'){
+					$location.path("/secured/manufacturer");
+				}else if($rootScope.sessionProfile.role == 'PROFESSIONAL'){
+					$location.path("/secured/professional");
+				}
 				$rootScope.authenticated = true;
 				sessionService.saveSession($rootScope.sessionProfile);
 				$scope.updateMenu();
@@ -99,7 +105,6 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', 'HeaderService'
 		});
 	};
 	
-	$scope.init();
 }]);
 
 
@@ -151,8 +156,7 @@ vtApp.controller('LoginCtrl',['$route', '$scope', '$modalInstance', '$location',
 // MODAL CONTROLLER For Register 
 vtApp.controller('RegisterCtrl', ['$scope', '$modalInstance', '$location', 'infoToRegisterControllerFromParent','HeaderService', 'SessionService', function($scope, $modalInstance, $location, infoToRegisterControllerFromParent, headerService, sessionService) {
 
-    $scope.registerDetails = {name:"Rama", role:"OTHERS"};
-	$scope.registerDetails.login={email:"tss.suresh@gmail.com", password:"pass1234", cnfpasswrd:"pass1234", mobile:1829189211, tncAgreed:true};
+	$scope.roles = [{"id" : "MANUFACTURER","name" : "Manufacturer"}, {"id" : "PROFESSIONAL","name" : "Professional"}, {"id" : "VENDOR","name" : "Service Provider"}, {"id" : "OTHERS","name" : "Others"}]
 	$scope.isRegisterError = false;
 
     $scope.save = function(registerDetails) {

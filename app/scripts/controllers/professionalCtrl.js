@@ -7,7 +7,7 @@
  * # ProfessionalCtrl
  * Professional Controller of the vtApp
  */
-vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$location', '$routeParams', '$log','ProfessionalService', 'fileUploadService', function ($scope, $route, $location, $routeParams, $log, professionalService, fileUploadService) {
+vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$location', '$routeParams', '$log','ProfessionalService', 'fileUploadService', 'toastr', 'LookupService', function ($scope, $rootScope, $route, $location, $routeParams, $log, professionalService, fileUploadService, toastr, lookupService) {
 
 	$scope.professional = {};
 	var formdata = new FormData();
@@ -16,7 +16,16 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$location', '$routePar
 	$scope.clearCache = function(){
 		$scope.professional = {};
 	}
-	
+
+	$scope.addProfessional = function(){
+		$scope.isAddProfessionalEnabled = true;
+	}
+
+	$scope.backToProfessionalsList = function(){
+		$scope.isAddProfessionalEnabled = false;
+		$scope.clearCache();
+	}
+
 	$scope.healthSystemFilter=["Ayurveda","system1","system2","system3"];
 	$scope.locationFilter=["location1","location2","location3","location4","location5","location6"];
 	$scope.specializationFilter = ["specialization1","specialization2","specialization3","specialization4","specialization5","specialization6"];
@@ -63,6 +72,27 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$location', '$routePar
 		if ($location.$$path.startsWith('/professionaldetails')) {
 			$scope.getProfessionalDetails($routeParams.id);
 		}else if($location.$$path.startsWith('/secured/professional')){
+			var getEducation = lookupService.getAllActiveLookups('Education');
+			getEducation.then(function(msg){
+				if(msg.status ==  200){
+					$scope.education = msg.data;
+				}else{
+					toastr.error("Error Fetching Education");
+				}
+			})
+			var getSystems = lookupService.getAllActiveLookups('System');
+			getSystems.then(function(msg){
+				if(msg.status ==  200){
+					$scope.systems = msg.data;
+				}else{
+					toastr.error("Error Fetching Systems");
+				}
+			})
+			if($rootScope.sessionProfile != null){				
+				if($rootScope.sessionProfile.role != 'ADMIN'){
+					$scope.addProfessional();
+				}
+			}
 			$scope.getActiveProfessionals();
 		}else {
 			$scope.getActiveProfessionals();
@@ -71,15 +101,6 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$location', '$routePar
 	
 	$scope.init();
 	
-	$scope.addProfessional = function(){
-		$scope.isAddProfessionalEnabled = true;
-	}
-
-	$scope.backToProfessionalsList = function(){
-		$scope.isAddProfessionalEnabled = false;
-		$scope.clearCache();
-	}
-
 	$scope.createProfessional = function(professional){
 		var createProfessional = professionalService.createProfessional(professional);
 		createProfessional.then(function(msg){
@@ -112,6 +133,7 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$route', '$location', '$routePar
 		var updateProfessional = professionalService.updateProfessional(professional);
 		updateProfessional.then(function(msg){
 			if(msg.status == 200){
+				toastr.success("Professional Updated Successfully");
 				$scope.isAddProfessionalEnabled = false;
 				if($scope.file.length > 0){
 					$scope.uploadFiles(professional.id,"PROFESSIONAL");

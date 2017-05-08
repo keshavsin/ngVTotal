@@ -18,7 +18,7 @@
 							ng-click="addManufacturer();" ng-show="!isAddManufacturerEnabled">Add</button>
 						<button class="btn btn-default btn-sm pull-right"
 							ng-click="backToManufacturersList();"
-							ng-show="isAddManufacturerEnabled">Back</button>
+							ng-show="isAddManufacturerEnabled && sessionProfile.role == 'ADMIN'">Back</button>
 						<button class="btn btn-success btn-sm pull-right"
 							ng-show="!manufacturer.id.length > 0 && isAddManufacturerEnabled"
 							ng-click="createManufacturer(manufacturer);">Save</button>
@@ -28,7 +28,7 @@
 					</div>
 					<br />
 					<div>
-						<div ng-show="!isAddManufacturerEnabled">
+						<div ng-show="!isAddManufacturerEnabled && sessionProfile.role == 'ADMIN'">
 							<div class="form-group">
 								<div class="row">
 									<div class="col-sm-10 col-sm-offset-1"
@@ -102,13 +102,13 @@
 								<div class="form-group">
 									<label class=" col-sm-4 control-label">Health Systems </label>
 									<div class="col-sm-8">
-										<input type="text" name="ManufacturerName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Health Systems"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="manufacturer.healthSystems"
-											typeahead-editable='false' />
+									<div class=" dropdown">
+										<am-multiselect class="input-sm" multiple="true"
+											ms-selected="{{system.id}}" ng-model="manufacturer.healthSystems"
+											ms-header="Health Systems"
+											options="system.id as system.name for system in systems">
+										</am-multiselect>
+									</div>
 									</div>
 								</div>
 								<!-- End of Author  -->
@@ -116,12 +116,13 @@
 								<div class="form-group">
 									<label class=" col-sm-4 control-label">Portfolio</label>
 									<div class="col-sm-8">
-										<input type="text" name="ManufacturerName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Portfolio"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="manufacturer.portfolio" typeahead-editable='false' />
+									<div class=" dropdown">
+										<am-multiselect class="input-sm" multiple="true"
+											ms-selected="{{portfolio.id}}" ng-model="manufacturer.portfolio"
+											ms-header="Portfolio"
+											options="portfolio.id as portfolio.name for portfolio in portfolios">
+										</am-multiselect>
+									</div>
 									</div>
 								</div>
 								<!-- End of Author  -->
@@ -236,12 +237,13 @@
 								<div class="form-group">
 									<label class=" col-sm-4 control-label">Sales Type</label>
 									<div class="col-sm-8">
-										<input type="text" name="ManufacturerName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Sales Type"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="manufacturer.salesType" typeahead-editable='false' />
+									<div class=" dropdown">
+										<am-multiselect class="input-sm" multiple="true"
+											ms-selected="{{salesType.id}}" ng-model="manufacturer.salesType"
+											ms-header="Sales Type"
+											options="salesType.id as salesType.name for salesType in salesTypes">
+										</am-multiselect>
+									</div>
 									</div>
 								</div>
 								<!-- End of Author  -->
@@ -263,12 +265,13 @@
 								<div class="form-group">
 									<label class=" col-sm-4 control-label">Type</label>
 									<div class="col-sm-8">
-										<input type="text" name="ManufacturerName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Type"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="manufacturer.type" typeahead-editable='false' />
+									<div class=" dropdown">
+										<am-multiselect class="input-sm" multiple="true"
+											ms-selected="{{type.id}}" ng-model="manufacturer.type"
+											ms-header="Type"
+											options="type.id as type.name for type in types">
+										</am-multiselect>
+									</div>
 									</div>
 								</div>
 								<!-- End of Author  -->
@@ -457,7 +460,7 @@
 									</table>
 								</div>
 								<div class="row col-sm-4 col-sm-offset-4"
-									ng-show="productsList.length > 0">
+									ng-show="!productsList.length > 0">
 									<br /> <br /> <span class="text-danger">No records
 										found</span>
 								</div>
@@ -567,11 +570,13 @@
 						<div class="form-group">
 							<label class=" col-sm-3 control-label">System</label>
 							<div class="col-sm-9">
-								<input type="text" name="productName" typeahead-min-length="1"
-									typeahead-on-select="onSelect($item, $model, $label)"
-									placeholder=" System"
-									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-									ng-model="product.system" typeahead-editable='false' />
+									<div class=" dropdown">
+										<am-multiselect class="input-sm" multiple="true"
+											ms-selected="{{system.id}}" ng-model="product.systems"
+											ms-header=" System "
+											options="system.id as system.name for system in systems">
+										</am-multiselect>
+									</div>
 							</div>
 						</div>
 						<!-- End of Author  -->

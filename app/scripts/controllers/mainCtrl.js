@@ -46,7 +46,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 	}
 	
 	$scope.getRelatedProducts = function() {
-		var myRelatedProducts = productService.getRelatedProducts('dummyHerb');
+		var myRelatedProducts = productService.getRelatedProducts();
 		myRelatedProducts.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.relatedProducts = msg.data;
@@ -257,10 +257,10 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 	$scope.init = function() {
 		console.log("Init Called -- Main Controller");
 		$scope.getExploreDetails();
-//		$scope.getRelatedProducts();
-//		$scope.getFeaturedProfessionals();
-		$scope.getActiveProducts();
-		$scope.getActiveProfessionals();
+		$scope.getRelatedProducts();
+		$scope.getFeaturedProfessionals();
+		// $scope.getActiveProducts();
+		// $scope.getActiveProfessionals();
 		$scope.getAllBlogs();
 		//Default Text comes from Benefit since onload this will be shown first
 		//$scope.contentText = $scope.exploreDetails.properties[0].defaultText;

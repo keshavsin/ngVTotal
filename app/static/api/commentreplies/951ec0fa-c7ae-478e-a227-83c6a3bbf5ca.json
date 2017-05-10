@@ -1,0 +1,66 @@
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "bdf2adad-8380-4fb9-ae47-42ac4bfa8ade",
+      "commentId": "951ec0fa-c7ae-478e-a227-83c6a3bbf5ca",
+      "comment": "Reply 1",
+      "date": "2017-04-28 12:51:10.0",
+      "userId": "1234",
+      "user": null
+    },
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "d076b2a5-f3a4-40ed-a1ac-3eda82bcc744",
+      "commentId": "951ec0fa-c7ae-478e-a227-83c6a3bbf5ca",
+      "comment": "Reply 2",
+      "date": "2017-04-28 14:00:18.0",
+      "userId": "1234",
+      "user": null
+    },
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "b6c2350a-0d2d-42e0-9e1e-481c49b0f416",
+      "commentId": "951ec0fa-c7ae-478e-a227-83c6a3bbf5ca",
+      "comment": "Reply 3",
+      "date": "2017-05-02 15:17:33.0",
+      "userId": "1234",
+      "user": null
+    },
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "c2499c8b-67fd-4a5e-a4d0-ae6a001e864b",
+      "commentId": "951ec0fa-c7ae-478e-a227-83c6a3bbf5ca",
+      "comment": "Reply 4",
+      "date": "2017-05-02 15:52:19.0",
+      "userId": "1234",
+      "user": null
+    },
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "43edb9cc-ab8c-40cf-8582-542e769442e4",
+      "commentId": "951ec0fa-c7ae-478e-a227-83c6a3bbf5ca",
+      "comment": "Reply for Comment 1",
+      "date": "2017-05-02 15:56:36.0",
+      "userId": "1234",
+      "user": null
+    }
+  ]
+}

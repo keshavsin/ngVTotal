@@ -1,0 +1,42 @@
+{
+  "status": 200,
+  "message": "Success",
+  "data": [
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "471086c9-e5e4-4a3a-9471-06e7ae21a3a0",
+      "commentId": "ddb86e93-8fed-4f66-b525-1c092a12272a",
+      "comment": "Comment 2 Reply",
+      "date": "2017-05-02 15:50:29.0",
+      "userId": "1234",
+      "user": null
+    },
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "913436c7-2a04-40dd-bc95-2ae4c1ece4af",
+      "commentId": "ddb86e93-8fed-4f66-b525-1c092a12272a",
+      "comment": "hjgfjhfdg",
+      "date": "2017-05-09 17:33:55.0",
+      "userId": "1234",
+      "user": null
+    },
+    {
+      "createdDate": null,
+      "updatedDate": null,
+      "createdBy": null,
+      "updateBy": null,
+      "id": "13d8a31f-a7c2-4c72-96d7-f9176d039625",
+      "commentId": "ddb86e93-8fed-4f66-b525-1c092a12272a",
+      "comment": "hjgfjhfdgsdfdsdfsdf",
+      "date": "2017-05-09 17:33:58.0",
+      "userId": "1234",
+      "user": null
+    }
+  ]
+}

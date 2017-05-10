@@ -58,11 +58,6 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', '$routeParams',
 				$rootScope.authenticated = false;
 			} else {
 				$rootScope.sessionProfile = selectedObj;
-				if($rootScope.sessionProfile.role == 'MANUFACTURER'){
-					$location.path("/secured/manufacturer");
-				}else if($rootScope.sessionProfile.role == 'PROFESSIONAL'){
-					$location.path("/secured/professional");
-				}
 				$rootScope.authenticated = true;
 				sessionService.saveSession($rootScope.sessionProfile);
 				$scope.updateMenu();
@@ -106,8 +101,6 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', '$routeParams',
 	};
 	
 }]);
-
-
 
 
 ////MODAL CONTROLLER OF LOGIN

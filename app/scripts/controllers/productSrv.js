@@ -14,8 +14,8 @@ vtApp.service('ProductService',['appSettings', 'apiServices', function (appSetti
 		return apiServices.doAPIRequest(appSettings.appAPI.product.getProduct, null, productId, "sessionStorage");
 	};	
 
-	this.getRelatedProducts = function(herb) {
-		console.log("Isnide Service for Product  " + herb);
+	this.getRelatedProducts = function() {
+		console.log("Isnide Service for Product  ");
 		return apiServices.doAPIRequest(appSettings.appAPI.product.getRelatedProducts, null, null, "sessionStorage");
 	};
 	

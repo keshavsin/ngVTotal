@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     vtApp.constant('appSettings', {
-        "dataType": "production",
+        "dataType": "local",
         "local": {
             "baseURL": "http://localhost:9000/static"
         },
@@ -51,7 +51,7 @@
                     "method": "GET"
                 },
 				"getActiveExplorations": {
-                    "url": "/api/herb/getall",
+                    "url": "/api/herb/related",
                     "method": "GET"
                 }
             },
@@ -151,15 +151,15 @@
                     "method": "PUT"
                 },
 				"getBlogComments": {
-                    "url": "/api/blogcomment/getall",
+                    "url": "/api/blogcomments",
                     "method": "GET"
                 },
 				"getCommentReplies": {
-                    "url": "/api/commentreply/getall",
+                    "url": "/api/commentreplies",
                     "method": "GET"
                 },
 				"getBlogLikes": {
-                    "url": "/api/bloglike/getall",
+                    "url": "/api/bloglikes",
                     "method": "GET"
                 },
 				"insertBlogComment": {

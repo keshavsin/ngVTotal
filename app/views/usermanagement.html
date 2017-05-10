@@ -1,0 +1,36 @@
+<div class="container-fluid" ng-controller="AdminCtrl">
+<h3>User Management</h3><hr>
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1"
+					ng-show="usersList.length > 0">
+					<table datatable="ng" dt-options="dtOptions"
+						class="table table-responsive table-hover table-bordered">
+						<tr class="active">
+							<th>Enable User</th>
+							<th>User</th>
+							<th>Role</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+						<tr ng-repeat="user in usersList">
+							<td><input type="checkbox" ng-model="user.active" ng-click="enableUser(user, $index);"/></td>
+							<td>{{user.name}}</td>
+							<td>{{user.role}}</td>
+							<td>{{user.active == true? 'ACTIVE' : 'INACTIVE'}}</td>
+							<td>
+								<a ng-click="getHerb(herb.id);"><md-tooltip
+										md-direction="right">Edit Herb</md-tooltip><span
+									class="glyphicon glyphicon-edit"></span></a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="row col-sm-4 col-sm-offset-4"
+					ng-show="!usersList.length > 0">
+					<br /> <br /> <span class="text-danger">No records found</span>
+				</div>
+			</div>
+		</div>
+
+</div>

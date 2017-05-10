@@ -2,7 +2,7 @@
 (function() {
     'use strict';
     vtApp.constant('appSettings', {
-        "dataType": "local",
+        "dataType": "production",
         "local": {
             "baseURL": "http://localhost:9000/static"
         },
@@ -252,8 +252,17 @@
                     "url": "/api/formulation/delete",
                     "method": "DELETE"
                 }
+            },
+            "admin": {
+                "getUsers": {
+                    "url": "/api/user/getall",
+                    "method": "GET"
+                },
+                "enableUser": {
+                    "url": "/api/user/enable",
+                    "method": "PUT"
+                }                
             }
-
         },
 
         "dateFormat": 'dd/MMM/yyyy hh:mm:ss a'

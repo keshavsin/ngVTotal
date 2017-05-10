@@ -96,6 +96,11 @@ vtApp.config(function ($routeProvider) {
 		controller: 'HeaderCtrl',
 		controllerAs: 'HeaderCtrl'
 	})
+	.when('/secured/adminpanel', {
+		templateUrl: 'views/adminpanel.html'	,
+		controller: 'AdminCtrl',
+		controllerAs: 'AdminCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

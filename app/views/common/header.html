@@ -50,10 +50,11 @@ FIRST HEADER SECTION
           aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, {{sessionProfile.name}}<span
             class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#/secured/professional" class="btn btn-brdr sign_inbtn">Profile</a></li>
-            <li><a href="" class="btn btn-brdr sign_inbtn">Settings</a></li>
+            <li><a ng-show="sessionProfile.role != 'ADMIN'" href="{{sessionProfile.role == 'PROFESSIONAL'? '#/secured/professional' : '#/secured/manufacturer'}}" class="btn btn-brdr sign_inbtn">Profile</a></li>
+            <li><a href="#/secured/adminpanel" class="btn btn-brdr sign_inbtn" ng-show="sessionProfile.role == 'ADMIN'">Settings</a></li>
             <li><a ng-click="logout();" class="btn btn-brdr sign_inbtn">Logout</a></li>
-          </ul></li>
+          </ul>
+          </li>
       </ul>
   </div>
 </div>

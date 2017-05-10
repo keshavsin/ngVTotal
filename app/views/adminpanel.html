@@ -1,0 +1,29 @@
+<div class="row" ng-init="init();">
+  <div class="col-sm-2">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button"  class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Sidebar menu</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="isShowUserManagement == true? 'active' : ''"><a ng-click="enableUserManagement()">User Management</a></li>
+            <li ng-class="isShowHerbManagement == true? 'active' : ''"><a ng-click="enableHerbManagement()">Herb Management</a></li>
+            <li ng-class="isShowBlogManagement == true? 'active' : ''"><a ng-click="enableBlogManagement()">Blog Management</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-10">
+  <div ng-show="isShowBlogManagement" ng-include="'views/blog.html'"></div>
+  <div ng-show="isShowHerbManagement" ng-include="'views/herb.html'"></div>
+  <div ng-show="isShowUserManagement" ng-include="'views/usermanagement.html'"></div>
+  </div>
+</div>

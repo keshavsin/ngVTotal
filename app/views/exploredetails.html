@@ -3,8 +3,8 @@ BREADCRUMBS  SECTION
 ================ -->
 <div class="container">
   <ol class="breadcrumb breadcrumb-custom">
-    <li> <a href="index.html">Home</a> </li>
-    <li> <a href="#/explorelist">Explore List</a> </li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#/explorelist">Explore List</a></li>
     <li class="active">{{exploreDetails.name}}</li>
   </ol>
 </div>
@@ -12,39 +12,58 @@ BREADCRUMBS  SECTION
 =========================
 PRODUCT DETAILS SECTION
 =========================
- --> 
+ -->
 <!-- =================================
 LATEST EXPLORATION SECTION
 ================================= -->
 <section class="Latest_Exploration container mb-40">
   <div class="col-md-12 pb-45 white-box">
     <div role="tabpanel" class="row white-box">
-     <div class="tab-bottom col-md-12 clearfix">
-          <h1 class="new-heading  pull-left">{{exploreDetails.name}}</h1>
-            <!-- Nav tabs -->
-            <ul class="nav nav-pills nav-tabs-custom" role="tablist">
-        <li role="presentation" ng-class="(selectedTab==property) ? 'active':''" ng-repeat="property in properties"> <a aria-controls="Benefits" role="tab" aria-expanded="true" ng-click="updateData(property)">{{property}}</a> </li>
-            </ul>
-          </div>
+      <div class="tab-bottom col-md-12 clearfix">
+        <h1 class="new-heading  pull-left">{{exploreDetails.name}}</h1>
+        <!-- Nav tabs -->
+        <ul class="nav nav-pills nav-tabs-custom" role="tablist">
+          <li role="presentation"
+            ng-class="(selectedTab==property) ? 'active':''"
+            ng-repeat="property in properties"><a
+            aria-controls="Benefits" role="tab" aria-expanded="true"
+            ng-click="updateData(property)">{{property}}</a></li>
+        </ul>
+      </div>
       <!-- Tab panes -->
       <div class="white-box">
-        <div class="col-md-4  border-rght"> <img ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}" class="img-responsive center-block" alt="Image"> 
+        <div class="col-md-4  border-rght">
+          <img
+            ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}"
+            class="img-responsive center-block" alt="Image">
           <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-          <a href="#nativenames"><h4 class="txt1"><span>Native Names</span></h4></a>
-          <p class="border-btm text-center"><span class="txt-colour" ng-repeat="tType in exploreDetails.therapeuticActions"> {{tType.name}}&nbsp;&nbsp;</span>
-</p>
-<p class="text-center"><span class="txt-colour" ng-repeat="tType in exploreDetails.therapeuticTypes"> {{tType.name}}&nbsp;&nbsp;</span></p>
-          <h4 class="new-heading pull-left text-center">Super Bio Rejuvenator Herb</h4>
+          <a href="#nativenames"><h4 class="txt1">
+              <span>Native Names</span>
+            </h4></a>
+          <p class="border-btm text-center">
+            <span class="txt-colour"
+              ng-repeat="tType in exploreDetails.therapeuticActions">
+              {{tType.name}}&nbsp;&nbsp;</span>
+          </p>
+          <p class="text-center">
+            <span class="txt-colour"
+              ng-repeat="tType in exploreDetails.therapeuticTypes">
+              {{tType.name}}&nbsp;&nbsp;</span>
+          </p>
+          <h4 class="new-heading pull-left text-center">Super Bio
+            Rejuvenator Herb</h4>
         </div>
         <div class="col-md-8  bg-light-gray border-lft">
-          <div class="col-md-7"><h4 class="txt1 ">Did You Know?</h4>
-					<ul class="pl-10" ng-repeat="dyk in exploreDetails.didYouKnow">
-                      <li ng-show="dyk != null">{{dyk}}</li>
-                    </ul>
-<p class="border-btm">            <div class="row font-12 ul-Indications">
+          <div class="col-md-7">
+            <h4 class="txt1 ">Did You Know?</h4>
+            <ul class="pl-10" ng-repeat="dyk in exploreDetails.didYouKnow">
+              <li ng-show="dyk != null">{{dyk}}</li>
+            </ul>
+            <p class="border-btm">
+            <div class="row font-12 ul-Indications">
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="Benefits">
-                  <div >
+                  <div>
                     <h4 class="txt1 ">Indications</h4>
                     <ul class="pl-10">
                       <li>{{contentObject.defaultText}}</li>
@@ -55,18 +74,24 @@ LATEST EXPLORATION SECTION
             </div>
           </div>
           <div class="col-md-5 mb-50">
-              <h5>Let's Explore! More About</h5><h4><b>{{exploreDetails.name}}</b> </h4>
+            <h5>Let's Explore! More About</h5>
+            <h4>
+              <b>{{exploreDetails.name}}</b>
+            </h4>
             <div class="bg-gray pt-20 pb-20">
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="Benefits_else">
                   <ul class="pl-10">
-                    <li ng-repeat="primary in contentObject"  ng-click="displaySecondary(primary.text)">{{primary.name}}</li>
+                    <li ng-repeat="primary in contentObject"
+                      ng-click="displaySecondary(primary.text)">{{primary.name}}</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <a href=""><h6>Ask a question on <b>{{exploreDetails.name}}</b></h6></a> 
+          <a href=""><h6>
+              Ask a question on <b>{{exploreDetails.name}}</b>
+            </h6></a>
         </div>
       </div>
     </div>
@@ -75,24 +100,52 @@ LATEST EXPLORATION SECTION
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-12 heading-list">
-              <h3 >Recently Explored</h3>
+              <h3 class="">Recently Explored</h3>
             </div>
-            <div class="col-md-4" ng-repeat="product in productslist">
-              <div class="box-white"> <a href={{product.url}}>
-                <div class="imghvr-zoom-in">
-                  <figure>
-                    <div class="no-bg"> <img src={{product.image}} class="img-responsive" alt="Vedic Total">
-                      <h3>{{product.name}}</h3>
-                      <h5>{{product.details}}</h5>
-                    </div>
-                  </figure>
-                </div>
-                </a> </div>
+            <div class="col-md-4" ng-repeat="explored in exploreList">
+              <div class="box-white">
+                <a href="#/exploredetails/{{explored.id}}">
+                  <div class="imghvr-zoom-in">
+                    <figure>
+                      <div class="no-bg">
+                        <img
+                          ng-src="{{explored.image == null ? 'images/noimage.jpg' : explored.image}}"
+                          class="img-responsive center-block">
+                        <h5>{{explored.name}}</h5>
+                      </div>
+                    </figure>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12 heading-list">
+              <h3 class="">Featured Products</h3>
+            </div>
+            <div class="col-md-4" ng-repeat="product in relatedProducts">
+              <div class="box-white">
+                <a href="#/productdetails/{{product.id}}">
+                  <div class="imghvr-zoom-in">
+                    <figure>
+                      <div class="no-bg">
+                        <img
+                          ng-src="{{product.image == null ? 'images/noimage.jpg' : product.image}}"
+                          class="img-responsive center-block">
+                        <h5>{{product.name}}</h5>
+                      </div>
+                    </figure>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </div>
-  </div>
 </section>
 <div ng-include="'views/common/testimonial.html'"></div>

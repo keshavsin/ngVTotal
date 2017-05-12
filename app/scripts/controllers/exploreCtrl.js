@@ -7,12 +7,19 @@
  * # ExploreCtrl
  * explore Controller of the vtApp
  */
-vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', function ($scope, $route, $location, $routeParams, $log, exploreService) {
+vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', 'ProductService', function ($scope, $route, $location, $routeParams, $log, exploreService, productService) {
 	
-	$scope.productslist=[{"url":"","name":"ProductName","image":"images/products/1.jpg","details":"description"},
-							{"url":"","name":"ProductName","image":"images/products/1.jpg","details":"description"},
-							{"url":"","name":"ProductName","image":"images/products/1.jpg","details":"description"}];
-
+	$scope.getRelatedProducts = function() {
+		var myRelatedProducts = productService.getRelatedProducts();
+		myRelatedProducts.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.relatedProducts = msg.data;
+				//$scope.initializeExploreData();
+			} else {
+				toastr.error("Error fetching Exploration Details ... ");
+			}
+		});
+	}
 
 	$scope.updateData = function(prop) {
 		var qArray=[];
@@ -83,6 +90,8 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
 		console.log(" Inside init of product Controller");
 		if($location.$$path.startsWith('/exploredetails')){
 			$scope.getExploration($routeParams.id);
+			$scope.getRelatedProducts();
+			$scope.getActiveExplorations();
 		}else{
 			$scope.getActiveExplorations();
 		}

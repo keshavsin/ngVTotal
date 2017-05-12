@@ -18,24 +18,34 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 	}
 
 	$scope.initBlog = function(){
-		var getBlogs = blogService.getAllBlogs();
-		getBlogs.then(function(msg){
-			if(msg.status == 200){
-				$scope.blogList = msg.data;
-			}else{
-				toastr.error("Error Fetching Blogs");
-			}
-		})
-		var getSystem = lookupService.getAllActiveLookups('System');
-		getSystem.then(function(msg){
-			if(msg.status == 200){
-				$scope.system = msg.data;
-			}else{
-				toastr.error("Error Fetching System");
-			}
-		})
+		// Checking the session 
+		if($rootScope.sessionProfile != null){
+			// If user Logged in loading init methods
+			// Load All Blogs
+			var getBlogs = blogService.getAllBlogs();
+			getBlogs.then(function(msg){
+				if(msg.status == 200){
+					$scope.blogList = msg.data;
+				}else{
+					toastr.error("Error Fetching Blogs");
+				}
+			})
+			// Get Systems from lookup			
+			var getSystem = lookupService.getAllActiveLookups('System');
+			getSystem.then(function(msg){
+				if(msg.status == 200){
+					$scope.system = msg.data;
+				}else{
+					toastr.error("Error Fetching System");
+				}
+			})
+		}else{
+			// If User not logged in route to home page			
+			$location.path('/');
+		}
 	}
 
+	// Creating Blog
 	$scope.createBlog = function(blog){
 		if($scope.file.length > 0){
 			var createBlog = blogService.create(blog);
@@ -56,6 +66,7 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 		}
 	}
 
+	// Get the blog Details
 	$scope.getBlog = function(blogId){
 		var getBlog = blogService.getBlogDetails(blogId);
 		getBlog.then(function(msg){
@@ -68,6 +79,7 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 		})
 	}
 
+	// Update Blog 
 	$scope.updateBlog = function(blog){
 		var updateBlog = blogService.update(blog);
 		updateBlog.then(function(msg){

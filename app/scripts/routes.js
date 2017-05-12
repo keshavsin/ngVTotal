@@ -101,6 +101,11 @@ vtApp.config(function ($routeProvider) {
 		controller: 'AdminCtrl',
 		controllerAs: 'AdminCtrl'
 	})
+	.when('/forgotpassword', {
+		templateUrl: 'views/forgotpassword.html'	,
+		controller: 'PasswordCtrl',
+		controllerAs: 'PasswordCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

@@ -7,7 +7,7 @@
  * # ManufacturerdetailsCtrl
  * Manufacturer Details Controller of the vtApp
  */
-vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location', '$routeParams', '$log', 'ManufactureService', 'ProductService', 'LookupService', 'fileUploadService', function ($scope, $rootScope, $route, $location, $routeParams, $log, manufactureService, productService, lookupService, fileUploadService) {
+vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location', '$routeParams', '$log', 'ManufactureService', 'ProductService', 'LookupService', 'fileUploadService','HeaderService', 'toastr', function ($scope, $rootScope, $route, $location, $routeParams, $log, manufactureService, productService, lookupService, fileUploadService, headerService, toastr) {
 
 	$scope.manufacturerTab = {};
 	$scope.manufacturerTab.selectedTab = "MANUFACTURER_TAB";
@@ -21,6 +21,10 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 
 	$scope.productsTab = function(){
 		$scope.manufacturerTab.selectedTab = "PRODUCTS_TAB";
+	}
+
+	$scope.changePasswordTab = function(){
+		$scope.manufacturerTab.selectedTab = "CHANGE_PASSWORD_TAB";
 	}
 
 	$scope.addManufacturer = function(){
@@ -83,69 +87,77 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 		if($location.$$path.startsWith('/manufacturerdetails')){
 			$scope.getManufacturer($routeParams.id);
 		}else if($location.$$path.startsWith('/secured/manufacturer')){
-		var getSystems = lookupService.getAllActiveLookups('System');
-		getSystems.then(function(msg){
-			if(msg.status ==  200){
-				$scope.systems = msg.data;
-			}else{
-				toastr.error("Error Fetching Systems");
-			}
-		})
-		var getPortfolios = lookupService.getAllActiveLookups('ManufacturerPortfolio');
-		getPortfolios.then(function(msg){
-			if(msg.status ==  200){
-				$scope.portfolios = msg.data;
-			}else{
-				toastr.error("Error Fetching Portfolios");
-			}
-		})
-		var getSalesTypes = lookupService.getAllActiveLookups('SalesType');
-		getSalesTypes.then(function(msg){
-			if(msg.status ==  200){
-				$scope.salesTypes = msg.data;
-			}else{
-				toastr.error("Error Fetching Sales Types");
-			}
-		})
-		var getManufacturerTypes = lookupService.getAllActiveLookups('ManufacturerType');
-		getManufacturerTypes.then(function(msg){
-			if(msg.status ==  200){
-				$scope.types = msg.data;
-			}else{
-				toastr.error("Error Fetching Sales Manufacturer Types");
-			}
-		})
-
-			if($rootScope.sessionProfile != null){				
+			if($rootScope.sessionProfile != null){
 				if($rootScope.sessionProfile.role != 'ADMIN'){
 					$scope.addManufacturer();
 				}
+				var getSystems = lookupService.getAllActiveLookups('System');
+				getSystems.then(function(msg){
+					if(msg.status ==  200){
+						$scope.systems = msg.data;
+					}else{
+						toastr.error("Error Fetching Systems");
+					}
+				})
+				var getPortfolios = lookupService.getAllActiveLookups('ManufacturerPortfolio');
+				getPortfolios.then(function(msg){
+					if(msg.status ==  200){
+						$scope.portfolios = msg.data;
+					}else{
+						toastr.error("Error Fetching Portfolios");
+					}
+				})
+				var getSalesTypes = lookupService.getAllActiveLookups('SalesType');
+				getSalesTypes.then(function(msg){
+					if(msg.status ==  200){
+						$scope.salesTypes = msg.data;
+					}else{
+						toastr.error("Error Fetching Sales Types");
+					}
+				})
+				var getManufacturerTypes = lookupService.getAllActiveLookups('ManufacturerType');
+				getManufacturerTypes.then(function(msg){
+					if(msg.status ==  200){
+						$scope.types = msg.data;
+					}else{
+						toastr.error("Error Fetching Sales Manufacturer Types");
+					}
+				})
+				var getCountries = lookupService.getAllActiveLookups('Country');
+				getCountries.then(function(msg){
+					if(msg.status ==  200){
+						$scope.countries = msg.data;
+					}else{
+						toastr.error("Error Fetching Countries");
+					}
+				})
+				var getSystem = lookupService.getAllActiveLookups('System');
+				getSystem.then(function(msg){
+					if(msg.data.status == 200){
+						$scope.system = msg.data.data;
+					}else{
+						toastr.error("Error Fetching System");
+					}
+				})
+				var getManufacturers = manufactureService.getManufacturers();
+				getManufacturers.then(function(msg){
+					if(msg.status == 200){
+						$scope.manufacturersList = msg.data;
+					}else{
+						toastr.error("Error Fetching Manufacturers");
+					}
+				})
+				var getProducts = productService.getProducts();
+				getProducts.then(function(msg){
+					if(msg.status == 200){
+						$scope.productsList = msg.data;
+					}else{
+						toastr.error("Error Fetching Manufacturers");
+					}
+				})
+			}else{
+				$location.path('/');
 			}
-			var getSystem = lookupService.getAllActiveLookups('System');
-			getSystem.then(function(msg){
-				if(msg.data.status == 200){
-					$scope.system = msg.data.data;
-				}else{
-					toastr.error("Error Fetching System");
-				}
-			})
-			var getManufacturers = manufactureService.getManufacturers();
-			getManufacturers.then(function(msg){
-				if(msg.status == 200){
-					$scope.manufacturersList = msg.data;
-				}else{
-					toastr.error("Error Fetching Manufacturers");
-				}
-			})
-			var getProducts = productService.getProducts();
-			getProducts.then(function(msg){
-				if(msg.status == 200){
-					$scope.productsList = msg.data;
-				}else{
-					toastr.error("Error Fetching Manufacturers");
-				}
-			})
-
 		}else{
 			$scope.getActiveManufacturers();
 		}
@@ -159,6 +171,16 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 	}
 	
 	$scope.createManufacturer = function(manufacturer){
+		if(manufacturer.healthSystems != null){
+			manufacturer.healthSystems = manufacturer.healthSystems.join(); 
+		}if(manufacturer.portfolio != null){
+			manufacturer.portfolio = manufacturer.portfolio.join(); 
+		}if(manufacturer.salesType != null){
+			manufacturer.salesType = manufacturer.salesType.join();
+		}
+		var jsonData = {}; 
+		jsonData = manufacturer;
+		jsonData.json = JSON.stringify(manufacturer);
 		var createManufacturer = manufactureService.createManufacturer(manufacturer);		
 		createManufacturer.then(function(msg){
 			if(msg.status == 200){
@@ -179,7 +201,11 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 		var getManufacturer = manufactureService.getManufacturer(manufacturerId);
 		getManufacturer.then(function(msg){
 			if(msg.status == 200){
-				$scope.manufacturer = msg.data;
+				$scope.manufacturer = JSON.parse(msg.data.json);
+				$scope.manufacturer.healthSystems = $scope.manufacturer.healthSystems.split(','); 
+				$scope.manufacturer.portfolio = $scope.manufacturer.portfolio.split(','); 
+				$scope.manufacturer.salesType = $scope.manufacturer.salesType.split(','); 
+				$scope.manufacturer.id = msg.data.id;
 				$scope.isAddManufacturerEnabled = true;
 			}else{
 				toastr.error("Error Fetching Manufacturer");
@@ -188,7 +214,17 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 	}
 
 	$scope.updateManufacturer = function(manufacturer){
-		var updateManufacturer = manufactureService.updateManufacturer(manufacturer);
+		if(manufacturer.healthSystems != null){
+			manufacturer.healthSystems = manufacturer.healthSystems.join(); 
+		}if(manufacturer.portfolio != null){
+			manufacturer.portfolio = manufacturer.portfolio.join(); 
+		}if(manufacturer.salesType != null){
+			manufacturer.salesType = manufacturer.salesType.join();
+		}
+		var jsonData = {}; 
+		jsonData = manufacturer;
+		jsonData.json = JSON.stringify(manufacturer);
+		var updateManufacturer = manufactureService.updateManufacturer(jsonData);
 		updateManufacturer.then(function(msg){
 			if(msg.status == 200){
 				$scope.isAddManufacturerEnabled = false;
@@ -282,5 +318,43 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 			$scope.clearFiles();
 		}, function(msg){if(msg.status = 401) $location.path('/login');})
 	};
+
+	$scope.getStates = function(countryId){
+		var getStates = lookupService.getLookupWithReference(countryId);
+		getStates.then(function(msg){
+			if(msg.status == 200){
+				$scope.states = msg.data;
+			}else{
+				toastr.error("Error Fetching States");
+			}
+		})	
+	}
+
+	$scope.getCities = function(stateId){
+		var getCities = lookupService.getLookupWithReference(stateId);
+		getCities.then(function(msg){
+			if(msg.status == 200){
+				$scope.cities = msg.data;
+			}else{
+				toastr.error("Error Fetching Cities");
+			}
+		})	
+	}
+
+	$scope.changePassword = function(password){
+		var login = $rootScope.sessionProfile.login;
+		login.oldPassword = password.previous;
+		login.password = password.new;
+		var changePassword = headerService.changePassword(login);
+		changePassword.then(function(msg){
+			if(msg.status == 200){
+				$scope.password = {};
+				toastr.success("Password Changed Successfully");
+			}else{
+				$scope.errorMessage = msg.data;
+				toastr.error("Error Updating Password, Please try again later");
+			}
+		})
+	}	
 
 }]);

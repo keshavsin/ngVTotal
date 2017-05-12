@@ -9,7 +9,7 @@
  */
 vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$location', '$routeParams', '$log','ProfessionalService', 'fileUploadService', 'toastr', 'LookupService', function ($scope, $rootScope, $route, $location, $routeParams, $log, professionalService, fileUploadService, toastr, lookupService) {
 
-	$scope.professional = {};
+	$scope.professionalTab = {};
 	var formdata = new FormData();
 	$scope.file = [];
 
@@ -24,6 +24,14 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 	$scope.backToProfessionalsList = function(){
 		$scope.isAddProfessionalEnabled = false;
 		$scope.clearCache();
+	}
+
+	$scope.professionalTab = function(){
+		$scope.professionalTab.selectedTab = "PROFESSIONAL_TAB";
+	}
+
+	$scope.changePasswordTab = function(){
+		$scope.professionalTab.selectedTab = "CHANGE_PASSWORD_TAB";
 	}
 
 	$scope.healthSystemFilter=["Ayurveda","system1","system2","system3"];
@@ -72,28 +80,38 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 		if ($location.$$path.startsWith('/professionaldetails')) {
 			$scope.getProfessionalDetails($routeParams.id);
 		}else if($location.$$path.startsWith('/secured/professional')){
-			var getEducation = lookupService.getAllActiveLookups('Education');
-			getEducation.then(function(msg){
-				if(msg.status ==  200){
-					$scope.education = msg.data;
-				}else{
-					toastr.error("Error Fetching Education");
-				}
-			})
-			var getSystems = lookupService.getAllActiveLookups('System');
-			getSystems.then(function(msg){
-				if(msg.status ==  200){
-					$scope.systems = msg.data;
-				}else{
-					toastr.error("Error Fetching Systems");
-				}
-			})
-			if($rootScope.sessionProfile != null){				
+			// Checking whether User logged in or not
+			if($rootScope.sessionProfile != null){
+				$scope.professionalTab.selectedTab = 'PROFESSIONAL_TAB';
+				// If User logged in load init methods 
+				// Hide Overview for non-admin 
 				if($rootScope.sessionProfile.role != 'ADMIN'){
 					$scope.addProfessional();
 				}
+				// Get Educations from Lookup 
+				var getEducation = lookupService.getAllActiveLookups('Education');
+				getEducation.then(function(msg){
+					if(msg.status ==  200){
+						$scope.education = msg.data;
+					}else{
+						toastr.error("Error Fetching Education");
+					}
+				})
+				// Get Systems from Lookup 
+				var getSystems = lookupService.getAllActiveLookups('System');
+				getSystems.then(function(msg){
+					if(msg.status ==  200){
+						$scope.systems = msg.data;
+					}else{
+						toastr.error("Error Fetching Systems");
+					}
+				})
+				// Get Active Professionals 
+				$scope.getActiveProfessionals();
+			}else{
+			// If user not logged in routing to home page
+				$location.path('/');
 			}
-			$scope.getActiveProfessionals();
 		}else {
 			$scope.getActiveProfessionals();
 		}
@@ -101,6 +119,7 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 	
 	$scope.init();
 	
+	// Create Professional
 	$scope.createProfessional = function(professional){
 		var createProfessional = professionalService.createProfessional(professional);
 		createProfessional.then(function(msg){
@@ -117,6 +136,7 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 		})
 	}
 
+	// Get Professional Details
 	$scope.getProfessional = function(professionalId){
 		var getProfessionalDetails = professionalService.getProfessionalDetails(professionalId);
 		getProfessionalDetails.then(function(msg) {
@@ -129,6 +149,7 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 		});
 	}
 
+	// Update Professional
 	$scope.updateProfessional = function(professional){
 		var updateProfessional = professionalService.updateProfessional(professional);
 		updateProfessional.then(function(msg){
@@ -144,6 +165,23 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 			}
 		})
 	}
+
+	// Change Password
+	$scope.changePassword = function(password){
+		var login = $rootScope.sessionProfile.login;
+		login.oldPassword = password.previous;
+		login.password = password.new;
+		var changePassword = headerService.changePassword(login);
+		changePassword.then(function(msg){
+			if(msg.status == 200){
+				$scope.password = {};
+				toastr.success("Password Changed Successfully");
+			}else{
+				$scope.errorMessage = msg.data;
+				toastr.error("Error Updating Password, Please try again later");
+			}
+		})
+	}	
 
 	// File Upload
 	$scope.clearFiles = function () {

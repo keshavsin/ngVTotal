@@ -1,12 +1,19 @@
 <div class="container-fluid" ng-init=init();>
+<h4>Professional</h4>
+	<ul class="nav nav-tabs">
+		<li
+			ng-class="professionalTab.selectedTab == 'PROFESSIONAL_TAB' ? 'active' : ''"><a
+			href ng-click='professionalTab();'>Professional</a></li>
+		<li
+			ng-class="professionalTab.selectedTab == 'CHANGE_PASSWORD_TAB' ? 'active' : ''"><a
+			href ng-click="changePasswordTab();">Change Password</a></li>
+	</ul>
 
-	<div>
-		<div >
+	<div ng-show="professionalTab.selectedTab == 'PROFESSIONAL_TAB'">
+		<div>
 			<form name="Professionalform" novalidate>
 				<div class="container-fluid">
 					<div class="row">
-				<h3 class="page-header">
-			<span>Professional</span>
 						<button class="btn btn-primary btn-sm pull-right"
 							ng-click="addProfessional();" ng-show="!isAddProfessionalEnabled">Add</button>
 						<button class="btn btn-default btn-sm pull-right"
@@ -18,392 +25,452 @@
 						<button class="btn btn-warning btn-sm pull-right"
 							ng-show="professional.id.length > 0 && isAddProfessionalEnabled"
 							ng-click="updateProfessional(professional);">Update</button>
-							</h3>
-							</div>
 					</div>
-					<div>
-						<div ng-show="!isAddProfessionalEnabled && sessionProfile.role == 'ADMIN'">
-							<div class="form-group">
-								<div class="row">
-									<div class="col-sm-10 col-sm-offset-1"
-										ng-show="professionalList.length > 0">
-										<table datatable="ng" dt-options="dtOptions"
-											class="table table-responsive table-hover table-bordered">
-											<tr class="active">
-												<th>Professional</th>
-												<th>Education</th>
-												<th>College</th>
-												<th>Specialization</th>
-												<th>Website</th>
-												<th>Actions</th>
-											</tr>
-											<tr ng-repeat="professional in professionalList">
-												<td>{{professional.name}}</td>
-												<td>{{professional.education}}</td>
-												<td>{{professional.college}}</td>
-												<td>{{professional.specialization}}</td>
-												<td>{{professional.website}}</td>
-												<td>
-													<!-- <a><md-tooltip
+				</div>
+				<div>
+					<div
+						ng-show="!isAddProfessionalEnabled && sessionProfile.role == 'ADMIN'">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-10 col-sm-offset-1"
+									ng-show="professionalList.length > 0">
+									<table datatable="ng" dt-options="dtOptions"
+										class="table table-responsive table-hover table-bordered">
+										<tr class="active">
+											<th>Professional</th>
+											<th>Education</th>
+											<th>College</th>
+											<th>Specialization</th>
+											<th>Website</th>
+											<th>Actions</th>
+										</tr>
+										<tr ng-repeat="professional in professionalList">
+											<td>{{professional.name}}</td>
+											<td>{{professional.education}}</td>
+											<td>{{professional.college}}</td>
+											<td>{{professional.specialization}}</td>
+											<td>{{professional.website}}</td>
+											<td>
+												<!-- <a><md-tooltip
 								md-direction="left">Delete Professional</md-tooltip><span
 									class="glyphicon glyphicon-trash text-danger"></span></a>&nbsp  -->
-													<a ng-click="getProfessional(professional.id);"><md-tooltip
-															md-direction="right">Edit Professional</md-tooltip><span
-														class="glyphicon glyphicon-edit"></span></a>
-												</td>
-											</tr>
-										</table>
-									</div>
-									<div class="row col-sm-4 col-sm-offset-4"
-										ng-show="!professionalList.length > 0">
-										<br /> <br /> <span class="text-danger">No records
-											found</span>
-									</div>
+												<a ng-click="getProfessional(professional.id);"><md-tooltip
+														md-direction="right">Edit Professional</md-tooltip><span
+													class="glyphicon glyphicon-edit"></span></a>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="row col-sm-4 col-sm-offset-4"
+									ng-show="!professionalList.length > 0">
+									<br /> <br /> <span class="text-danger">No records
+										found</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row" ng-show="isAddProfessionalEnabled">
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Name</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Professional Name"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.name" typeahead-editable='false' />
-									</div>
+				</div>
+				<div class="row" ng-show="isAddProfessionalEnabled">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Name</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Professional Name"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.name" typeahead-editable='false' />
 								</div>
-								<!-- End of Title  -->
+							</div>
+							<!-- End of Title  -->
 
 
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Education</label>
-									<div class="col-sm-8">
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Education</label>
+								<div class="col-sm-8">
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="professional.education" required=""
 											ng-options="education.id as education.name for education in education">
-							</select>
-						</div>
+										</select>
 									</div>
 								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Certifications</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Certifications"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.certifications"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">College</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" College "
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.college" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Registration Number</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Registration Number"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.registrationNo"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Practicing Since</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Practicing Since"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.practicingFrom" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Specialization</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Specialization"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.specialization" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div>
-									<label class=" col-sm-4 control-label">Image<span
-										class="text-danger">*</span></label>
-									<div class="col-sm-8">
-										<input type="file" class=" form-control btn btn-default"
-											id="file1" name="file" ng-files="getTheFiles($files)">
-									</div>
-								</div>
-								<!-- End of Image -->
-
 							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">About</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" About"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.about" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
+							<!-- End of Author  -->
 
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">System</label>
-									<div class="col-sm-8">
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Certifications</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Certifications"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.certifications"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">College</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" College "
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.college" typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Registration
+									Number</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Registration Number"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.registrationNo"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Practicing Since</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Practicing Since"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.practicingFrom"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Specialization</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Specialization"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.specialization"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div>
+								<label class=" col-sm-4 control-label">Image<span
+									class="text-danger">*</span></label>
+								<div class="col-sm-8">
+									<input type="file" class=" form-control btn btn-default"
+										id="file1" name="file" ng-files="getTheFiles($files)">
+								</div>
+							</div>
+							<!-- End of Image -->
+
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">About</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" About"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.about" typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">System</label>
+								<div class="col-sm-8">
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="professional.system" required=""
 											ng-options="system.id as system.name for system in systems">
-							</select>
-						</div>
+										</select>
 									</div>
 								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Organisation</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Organization "
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.organization"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Website</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Website "
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.website" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Content Publishing</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Content Publishing "
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.contentPublishing" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Profile Verified</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" profile Verified"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.profileVerified"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Show Profile</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Show Profile "
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.showProfile" typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
 							</div>
-						</div>
-						<h3>Professional Address</h3>
-						<hr />
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Address Line 1</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Address Line 1"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.addressLine1"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
+							<!-- End of Author  -->
 
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Address Line 2</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Address Line 2"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.addressLine2"
-											typeahead-editable='false' />
-									</div>
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Organisation</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Organization "
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.organization"
+										typeahead-editable='false' />
 								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">City</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" City"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.city"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">State</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" State"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.state"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Country</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Country"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.country"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
 							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Pincode</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Pincode"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.pincode"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
+							<!-- End of Author  -->
 
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Phone Number</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Phone Number"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.phoneNo"
-											typeahead-editable='false' />
-									</div>
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Website</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Website "
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.website" typeahead-editable='false' />
 								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Mobile Number</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Mobile Number"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.mobileNo"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
-
-								<div class="form-group">
-									<label class=" col-sm-4 control-label">Email</label>
-									<div class="col-sm-8">
-										<input type="text" name="ProfessionalName"
-											typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											placeholder=" Email"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											ng-model="professional.address.email"
-											typeahead-editable='false' />
-									</div>
-								</div>
-								<!-- End of Author  -->
 							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Content
+									Publishing</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Content Publishing "
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.contentPublishing"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Profile Verified</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" profile Verified"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.profileVerified"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Show Profile</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Show Profile "
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.showProfile" typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
 						</div>
 					</div>
-					<br />
-				</div>
-			</form>
-		</div>
+					<h3>Professional Address</h3>
+					<hr />
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Address Line 1</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Address Line 1"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.addressLine1"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
 
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Address Line 2</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Address Line 2"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.addressLine2"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">City</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" City"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.city"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">State</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" State"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.state"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Country</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Country"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.country"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Pincode</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Pincode"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.pincode"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Phone Number</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Phone Number"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.phoneNo"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Mobile Number</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Mobile Number"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.mobileNo"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+
+							<div class="form-group">
+								<label class=" col-sm-4 control-label">Email</label>
+								<div class="col-sm-8">
+									<input type="text" name="ProfessionalName"
+										typeahead-min-length="1"
+										typeahead-on-select="onSelect($item, $model, $label)"
+										placeholder=" Email"
+										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+										ng-model="professional.address.email"
+										typeahead-editable='false' />
+								</div>
+							</div>
+							<!-- End of Author  -->
+						</div>
+					</div>
+				</div>
+				<br />
+		</div>
+		</form>
 	</div>
+
+	<div ng-show="professionalTab.selectedTab == 'CHANGE_PASSWORD_TAB'">
+		<form name="productform" novalidate>
+			<div class="container-fluid">
+				<div class="row col-sm-6">
+					<br /> <input type="hidden" ng-model="product.id">
+					<div class="form-group">
+						<label class=" col-sm-4 control-label">Previous Password</label>
+						<div class="col-sm-8">
+							<input type="Password" name="productName"
+								typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								placeholder=" Previous Password"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								ng-model="password.previous" typeahead-editable='false' />
+						</div>
+					</div>
+					<!-- End of Title  -->
+
+					<div class="form-group">
+						<label class=" col-sm-4 control-label">New Password</label>
+						<div class="col-sm-8">
+							<input type="password" name="productName"
+								typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								placeholder=" New Password"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								ng-model="password.new" typeahead-editable='false' />
+						</div>
+					</div>
+					<!-- End of Title  -->
+
+					<div class="form-group">
+						<label class=" col-sm-4 control-label">Confirm Password</label>
+						<div class="col-sm-8">
+							<input type="password" name="productName"
+								typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								placeholder=" Confirm Password"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								ng-model="password.confirm" typeahead-editable='false' />
+						</div>
+					</div>
+					<!-- End of Title  -->
+					<button class="btn btn-primary btn-sm pull-right"
+						ng-disabled="password.confirm != password.new"
+						ng-click="changePassword(password)">Submit</button>
+					<span ng-show="password.confirm != password.new"
+						style="color: red;">confirm password must be same as new
+						password</span>
+
+				</div>
+			</div>
+		</form>
+	</div>
+
+</div>
 </div>

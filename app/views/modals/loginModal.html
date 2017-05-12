@@ -13,6 +13,7 @@ modal of login
 			<div id="myTabContent" class="tab-content">
 				<div class="tab-pane active in" id="login">
 					<form>
+					<span style="color:red;">{{loginErrorMessage}}</span>
 						<div class="form-group">
 							<label>User Name</label>
 							<input type="text" ng-model="loginDetails.email" class="form-control" id="exampleInputEmail1" placeholder="User Name">
@@ -22,7 +23,7 @@ modal of login
 							<input type="password" ng-model="loginDetails.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 						</div>
 						<button type="button" class="btn btn-primary" ng-click="ok()">Login</button>
-						<div class="login-help"> <a href="#create" data-toggle="tab">Register</a> - <a href="#">Forgot Password</a> </div>
+						<div class="login-help"> <a href="#create" data-toggle="tab">Register</a> - <a ng-click="forgotPassword();">Forgot Password</a> </div>
 					</form>
 				</div>
 			</div>

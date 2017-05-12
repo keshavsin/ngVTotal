@@ -17,46 +17,57 @@ vtApp.controller('FormulationController', ['$scope','$rootScope','$location','Fo
 	}
 
 	$scope.initFormulation = function(){
-		var getAllFormulations = formulationService.getAll();
-		getAllFormulations.then(function(msg){
-			if(msg.status == 200){
-				$scope.formulationsList = msg.data;
-			}else{
-				toastr.error("Error Fetching Formulations");
-			}
-		})
-		var getAllHerbs = herbService.getAll();
-		getAllHerbs.then(function(msg){
-			if(msg.status == 200){
-				$scope.herbs = msg.data;
-			}else{
-				toastr.error("Error Fetching Herbs");
-			}
-		})
-		var getReferences = lookupService.getAllActiveLookups('References');
-		getReferences.then(function(msg){
-			if(msg.status == 200){
-				$scope.references = msg.data;
-			}else{
-				toastr.error("Error Fetching References");
-			}
-		})
-		var getSystem = lookupService.getAllActiveLookups('System');
-		getSystem.then(function(msg){
-			if(msg.status == 200){
-				$scope.system = msg.data;
-			}else{
-				toastr.error("Error Fetching System");
-			}
-		})
-		var getFormulationTypes = lookupService.getAllActiveLookups('FormulationType');
-		getFormulationTypes.then(function(msg){
-			if(msg.status == 200){
-				$scope.formulationTypes = msg.data;
-			}else{
-				toastr.error("Error Fetching Formulation Types");
-			}
-		})
+		// Check the Session
+		if($rootScope.sessionProfile != null){
+			// User logged in and loading initial things
+			// Load all Formualtions
+			var getAllFormulations = formulationService.getAll();
+			getAllFormulations.then(function(msg){
+				if(msg.status == 200){
+					$scope.formulationsList = msg.data;
+				}else{
+					toastr.error("Error Fetching Formulations");
+				}
+			})
+			// Load all herbs for references 
+			var getAllHerbs = herbService.getAll();
+			getAllHerbs.then(function(msg){
+				if(msg.status == 200){
+					$scope.herbs = msg.data;
+				}else{
+					toastr.error("Error Fetching Herbs");
+				}
+			})
+			// Get References from lookup  
+			var getReferences = lookupService.getAllActiveLookups('References');
+			getReferences.then(function(msg){
+				if(msg.status == 200){
+					$scope.references = msg.data;
+				}else{
+					toastr.error("Error Fetching References");
+				}
+			})
+			// Get System from lookup  
+			var getSystem = lookupService.getAllActiveLookups('System');
+			getSystem.then(function(msg){
+				if(msg.status == 200){
+					$scope.system = msg.data;
+				}else{
+					toastr.error("Error Fetching System");
+				}
+			})
+			// Get formulation types from lookup  
+			var getFormulationTypes = lookupService.getAllActiveLookups('FormulationType');
+			getFormulationTypes.then(function(msg){
+				if(msg.status == 200){
+					$scope.formulationTypes = msg.data;
+				}else{
+					toastr.error("Error Fetching Formulation Types");
+				}
+			})
+		}else{
+			$location.path('/');
+		}
 	}
 	
 	$scope.addFormulations = function(addFormulationItem){

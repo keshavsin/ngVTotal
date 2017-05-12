@@ -29,4 +29,14 @@ vtApp.service('HeaderService',['appSettings', 'apiServices', function (appSettin
 		return apiServices.doAPIRequest(appSettings.appAPI.common.logout, null, null, "sessionStorage");
 	};
 
+	this.forgotPassword = function(login) {
+		console.log("Isnide Service for Login ");
+		return apiServices.doAPIRequest(appSettings.appAPI.common.forgotPassword, login, null, "sessionStorage");
+	};
+
+	this.changePassword = function(login) {
+		console.log("Isnide Service for Change Password ");
+		return apiServices.doAPIRequest(appSettings.appAPI.common.changePassword, login, null, "sessionStorage");
+	};
+
 }]);

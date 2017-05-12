@@ -9,7 +9,7 @@ vtApp.controller('LookupController', ['$scope','$rootScope','$location','LookupS
 //			$location.path('/login');
 //			toastr.info("Session Expired Please Login!");
 //		}
-		var getAllLookups = lookupService.getAllLookupTypes();
+	var getAllLookups = lookupService.getAllLookupTypes();
 		getAllLookups.then(function(msg){
 			if(msg.status == 200){
 				$scope.lookupTypesList = msg.data;

@@ -143,6 +143,7 @@ vtApp.controller('LoginCtrl',['$route', '$scope', '$modalInstance', '$location',
     $scope.close = function() {
 		$modalInstance.dismiss('cancel');
     };
+
 }]);
 
 
@@ -180,35 +181,22 @@ vtApp.controller('RegisterCtrl', ['$scope', '$modalInstance', '$location', 'info
 
 
 ////MODAL CONTROLLER For Forgot Password
-vtApp.controller('PasswordCtrl', ['$scope', '$modalInstance', '$location', 'infoToRegisterControllerFromParent','HeaderService',function($scope, $modalInstance, $location, infoToRegisterControllerFromParent,headerService) {
+vtApp.controller('PasswordCtrl', ['$scope', '$location', 'HeaderService',function($scope, $location, headerService) {
 
 	$scope.registerDetails={};
     
-	$scope.ok = function() {
-        // Make a web service call to back end to create the user if any errors show message on modal or on parent.
-    };
-
-	$scope.save = function(registerDetails) {
-    	
-    	//To send data perent Ctrl
-    	//$modalInstance.close(registerDetails);
-    	var details =  headerService.save(registerDetails);
-    	details.then(function(msg) {
-			console.log(" Data CTRL " + JSON.stringify(msg));
-			var jsonResult = msg.data;
-			//$scope.guideList = jsonResult;
-		},function errorCallback(response) {
-			if(response.status = 401) {
-				$location.path('/login');
+	$scope.forgotPassword = function(login) {
+		var forgotPassword = headerService.forgotPassword(login);
+		forgotPassword.then(function(msg){
+			if(msg.status == 200){
+				$scope.isShowMessage = true;
+				$scope.login = {};
+			}else{
+				$scope.isShowErrorMessage = true;
+				$scope.errorMessage = msg.data;
+				$scope.login = {};
 			}
-		});
-    }
+		})
+    };
 
-    $scope.cancel = function() {
-		$modalInstance.dismiss('cancel');
-    };
-    
-	$scope.close = function() {
-		$modalInstance.dismiss('cancel');
-    };
 }]);

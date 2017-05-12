@@ -9,94 +9,98 @@ vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbServi
 	var formdata = new FormData();
 	
 	$scope.initHerb = function(){
-		var getTherepeuticActions = lookupService.getAllActiveLookups('TherepeuticAction');
-		getTherepeuticActions.then(function(msg){
-			if(msg.status ==  200){
-				$scope.therapeuticActions = msg.data;
-			}else{
-				toastr.error("Error Fetching Therepeutic Actions");
-			}
-		})
-		var getHerbIndications = lookupService.getAllActiveLookups('HerbIndication');
-		getHerbIndications.then(function(msg){
-			if(msg.status ==  200){
-				$scope.herbIndications = msg.data;
-			}else{
-				toastr.error("Error Fetching Herb Indications");
-			}
-		})
-		var getLanguages = lookupService.getAllActiveLookups('HerbLanguage');
-		getLanguages.then(function(msg){
-			if(msg.status ==  200){
-				$scope.languages = msg.data;
-			}else{
-				toastr.error("Error Fetching Languages");
-			}
-		})
-		var getTherapeuticTypes = lookupService.getAllActiveLookups('TherapeuticType');
-		getTherapeuticTypes.then(function(msg){
-			if(msg.status ==  200){
-				$scope.therapeuticTypes = msg.data;
-			}else{
-				toastr.error("Error Fetching Therapeutic Types");
-			}
-		})
-		var getFormOfConsumption = lookupService.getAllActiveLookups('FormOfFormulation');
-		getFormOfConsumption.then(function(msg){
-			if(msg.status ==  200){
-				$scope.formOfConsumptions = msg.data;
-			}else{
-				toastr.error("Error Fetching Form Of Consumption");
-			}
-		})
-		var getPurification = lookupService.getAllActiveLookups('Purification');
-		getPurification.then(function(msg){
-			if(msg.status ==  200){
-				$scope.purifications = msg.data;
-			}else{
-				toastr.error("Error Fetching Purifications");
-			}
-		})
-		var getHerbTaste = lookupService.getAllActiveLookups('HerbTaste');
-		getHerbTaste.then(function(msg){
-			if(msg.status ==  200){
-				$scope.herbTaste = msg.data;
-			}else{
-				toastr.error("Error Fetching Herb Taste");
-			}
-		})
-		var getChemicalCompounds = lookupService.getAllActiveLookups('ChemicalCompounds');
-		getChemicalCompounds.then(function(msg){
-			if(msg.status ==  200){
-				$scope.chemicalCompounds = msg.data;
-			}else{
-				toastr.error("Error Fetching Chemical Compounds");
-			}
-		})
-		var getReferences = lookupService.getAllActiveLookups('References');
-		getReferences.then(function(msg){
-			if(msg.status ==  200){
-				$scope.references = msg.data;
-			}else{
-				toastr.error("Error Fetching References");
-			}
-		})
-		var getWebCategories = lookupService.getAllActiveLookups('WebCategory');
-		getWebCategories.then(function(msg){
-			if(msg.status ==  200){
-				$scope.webCategories = msg.data;
-			}else{
-				toastr.error("Error Fetching Web Categories");
-			}
-		})
-		var getAllHerbs = herbService.getAll();
-		getAllHerbs.then(function(msg){
-			if(msg.status ==  200){
-				$scope.herbsList = msg.data;
-			}else{
-				toastr.error("Error Fetching Herbs");
-			}
-		})
+		if($rootScope.sessionProfile != null){
+			var getTherepeuticActions = lookupService.getAllActiveLookups('TherepeuticAction');
+			getTherepeuticActions.then(function(msg){
+				if(msg.status ==  200){
+					$scope.therapeuticActions = msg.data;
+				}else{
+					toastr.error("Error Fetching Therepeutic Actions");
+				}
+			})
+			var getHerbIndications = lookupService.getAllActiveLookups('HerbIndication');
+			getHerbIndications.then(function(msg){
+				if(msg.status ==  200){
+					$scope.herbIndications = msg.data;
+				}else{
+					toastr.error("Error Fetching Herb Indications");
+				}
+			})
+			var getLanguages = lookupService.getAllActiveLookups('HerbLanguage');
+			getLanguages.then(function(msg){
+				if(msg.status ==  200){
+					$scope.languages = msg.data;
+				}else{
+					toastr.error("Error Fetching Languages");
+				}
+			})
+			var getTherapeuticTypes = lookupService.getAllActiveLookups('TherapeuticType');
+			getTherapeuticTypes.then(function(msg){
+				if(msg.status ==  200){
+					$scope.therapeuticTypes = msg.data;
+				}else{
+					toastr.error("Error Fetching Therapeutic Types");
+				}
+			})
+			var getFormOfConsumption = lookupService.getAllActiveLookups('FormOfFormulation');
+			getFormOfConsumption.then(function(msg){
+				if(msg.status ==  200){
+					$scope.formOfConsumptions = msg.data;
+				}else{
+					toastr.error("Error Fetching Form Of Consumption");
+				}
+			})
+			var getPurification = lookupService.getAllActiveLookups('Purification');
+			getPurification.then(function(msg){
+				if(msg.status ==  200){
+					$scope.purifications = msg.data;
+				}else{
+					toastr.error("Error Fetching Purifications");
+				}
+			})
+			var getHerbTaste = lookupService.getAllActiveLookups('HerbTaste');
+			getHerbTaste.then(function(msg){
+				if(msg.status ==  200){
+					$scope.herbTaste = msg.data;
+				}else{
+					toastr.error("Error Fetching Herb Taste");
+				}
+			})
+			var getChemicalCompounds = lookupService.getAllActiveLookups('ChemicalCompounds');
+			getChemicalCompounds.then(function(msg){
+				if(msg.status ==  200){
+					$scope.chemicalCompounds = msg.data;
+				}else{
+					toastr.error("Error Fetching Chemical Compounds");
+				}
+			})
+			var getReferences = lookupService.getAllActiveLookups('References');
+			getReferences.then(function(msg){
+				if(msg.status ==  200){
+					$scope.references = msg.data;
+				}else{
+					toastr.error("Error Fetching References");
+				}
+			})
+			var getWebCategories = lookupService.getAllActiveLookups('WebCategory');
+			getWebCategories.then(function(msg){
+				if(msg.status ==  200){
+					$scope.webCategories = msg.data;
+				}else{
+					toastr.error("Error Fetching Web Categories");
+				}
+			})
+			var getAllHerbs = herbService.getAll();
+			getAllHerbs.then(function(msg){
+				if(msg.status ==  200){
+					$scope.herbsList = msg.data;
+				}else{
+					toastr.error("Error Fetching Herbs");
+				}
+			})
+		}else{
+			$location.path('/');
+		}
 	}
 
 	$scope.createHerb = function(herb){

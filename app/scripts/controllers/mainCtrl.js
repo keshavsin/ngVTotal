@@ -129,6 +129,18 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		return _.uniq(_.pluck(_.pluck($scope.exploreDetails.webCategories, 'webCategory'), 'displayName'));
 	}
 
+	// Get recently explored herbs 
+	$scope.getRecentlyExplored = function(){
+		var myActiveExplorations = exploreService.getActiveExplorations();
+		myActiveExplorations.then(function(msg) {
+			if(msg.status == 200) {
+				$scope.recentlyExplored = msg.data;
+			} else {
+				toastr.error("Error Fetching Recently Explored Herbs  ... ");
+			}
+		});
+	}
+
 	$scope.getAllBlogs = function(){
 		var getAllBlogs = blogService.getAllBlogs();
 		getAllBlogs.then(function(msg){
@@ -259,6 +271,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		$scope.getExploreDetails();
 		$scope.getRelatedProducts();
 		$scope.getFeaturedProfessionals();
+		$scope.getRecentlyExplored();
 		// $scope.getActiveProducts();
 		// $scope.getActiveProfessionals();
 		$scope.getAllBlogs();

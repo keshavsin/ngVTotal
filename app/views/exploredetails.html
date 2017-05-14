@@ -102,7 +102,9 @@ LATEST EXPLORATION SECTION
             <div class="col-md-12 heading-list">
               <h3 class="">Recently Explored</h3>
             </div>
-            <div class="col-md-4" ng-repeat="explored in exploreList">
+            <carousel>
+            <slide ng-repeat="explored in exploreList">
+            <div class="col-md-4" >
               <div class="box-white">
                 <a href="#/exploredetails/{{explored.id}}">
                   <div class="imghvr-zoom-in">
@@ -117,7 +119,7 @@ LATEST EXPLORATION SECTION
                   </div>
                 </a>
               </div>
-            </div>
+            </div></slide></carousel>
           </div>
         </div>
         <div class="col-md-6">
@@ -125,6 +127,8 @@ LATEST EXPLORATION SECTION
             <div class="col-md-12 heading-list">
               <h3 class="">Featured Products</h3>
             </div>
+            <carousel>
+            <slide ng-repeat="product in relatedProducts">
             <div class="col-md-4" ng-repeat="product in relatedProducts">
               <div class="box-white">
                 <a href="#/productdetails/{{product.id}}">
@@ -141,6 +145,8 @@ LATEST EXPLORATION SECTION
                 </a>
               </div>
             </div>
+            </slide>
+            </carousel>
           </div>
         </div>
 
@@ -148,4 +154,4 @@ LATEST EXPLORATION SECTION
 
     </div>
 </section>
-<div ng-include="'views/common/testimonial.html'"></div>
+<!-- <div ng-include="'views/common/testimonial.html'"></div> -->

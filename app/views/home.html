@@ -202,7 +202,10 @@ PRODUCTS SLIDER SECTION
               <div class="col-md-12 heading-list">
                 <h3 class="">Recently Explored</h3>
               </div>
-              <div class="col-md-4" ng-repeat="explored in recentlyExplored">
+              <div >
+              <carousel interval="3000">
+              <slide ng-repeat="explored in recentlyExplored" active="slide.active">
+              <div class="col-md-4" >
                 <div class="box-white">
                   <a href="#/exploredetails/{{explored.id}}">
                     <div class="imghvr-zoom-in">
@@ -210,7 +213,7 @@ PRODUCTS SLIDER SECTION
                         <div class="no-bg">
                           <img
                             ng-src="{{explored.image == null ? 'images/noimage.jpg' : explored.image}}"
-                            class="img-responsive center-block">
+                            class="img-responsive center-block" >
                           <h5>{{explored.name}}</h5>
                         </div>
                       </figure>
@@ -218,6 +221,8 @@ PRODUCTS SLIDER SECTION
                   </a>
                 </div>
               </div>
+              </slide>
+              </carousel></div>
             </div>
           </div>
 
@@ -226,7 +231,9 @@ PRODUCTS SLIDER SECTION
               <div class="col-md-12 heading-list">
                 <h3 class="">Featured Products</h3>
               </div>
-              <div class="col-md-4" ng-repeat="product in relatedProducts">
+              <carousel interval="3000">
+              <slide ng-repeat="product in relatedProducts" active="slide.active">
+              <div class="col-md-4" >
                 <div class="box-white">
                   <a href="#/productdetails/{{product.id}}">
                     <div class="imghvr-zoom-in">
@@ -241,7 +248,8 @@ PRODUCTS SLIDER SECTION
                     </div>
                   </a>
                 </div>
-              </div>
+              </div></slide>
+              </carousel>
             </div>
           </div>
         </div>
@@ -250,48 +258,6 @@ PRODUCTS SLIDER SECTION
     </div>
 </section>
 <!-- ================
-DOCTORS SLIDER SECTION 
-================ -->
-<section
-  class="pt-50 pb-70 bg-gray animatedParent animateOnce doctors_slide">
-  <div class="container">
-    <h2 class="first_heading animated fadeInLeft go">Professionals
-      Joined With US</h2>
-    <div class="animated fadeInRight go">
-      <div class="lSSlideOuter ">
-        <div class="lSSlideWrapper usingCss">
-          <ul id="doctors_slide" class="lightSlider lsGrab lSSlide"
-            style="width: 3737.5px; transform: translate3d(-1150px, 0px, 0px); height: 360px; padding-bottom: 0%;">
-            <li class="clone left" style="width: 277.5px; margin-right: 10px;"
-              ng-repeat="professional in featuredProfessionals">
-              <div class="box-white">
-                <a href="#/professionaldetails/{{professional.id}}">
-                  <div class="imghvr-zoom-in">
-                    <figure>
-                      <div class="no-bg">
-                        <img
-                          ng-src="{{professional.image == null ? 'images/noimage.jpg' : professional.image}}"
-                          class="img-responsive center-block">
-                        <h3>{{professional.name}}</h3>
-                        <h5>{{professional.education}}</h5>
-                        <h6>{{professional.specialization}}</h6>
-                      </div>
-                    </figure>
-                  </div>
-                </a>
-              </div>
-            </li>
-          </ul>
-          <div class="lSAction">
-            <a class="lSPrev"></a><a class="lSNext"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- 
-=========================
 BLOG SECTION
 =========================
  -->
@@ -520,4 +486,4 @@ BLOG SECTION
     </div>
   </div>
 </section>
-<div ng-include="'views/common/testimonial.html'"></div>
+<!-- <div ng-include="'views/common/testimonial.html'"></div> -->

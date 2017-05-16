@@ -248,6 +248,11 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		})
 	}
 
+$scope.getNow = function(blogDate) {
+	return moment(blogDate).fromNow();	
+}
+
+
 	$scope.addReply = function(comment){
 		comment.reply = !comment.reply;	
 	}

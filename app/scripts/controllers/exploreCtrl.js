@@ -9,6 +9,14 @@
  */
 vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', 'ProductService', function ($scope, $route, $location, $routeParams, $log, exploreService, productService) {
 	
+	$scope.healthCategoryFilter=["Health Category 1","Health Category 2","Health Category 3","Health Category 4","Health Category 5"];
+	
+	$scope.manufactureFilter = ["Manufacture1","Manufacture2","Manufacture3","Manufacture4","Manufacture5","Manufacture6"];
+	
+	$scope.recipeTypeFilter = ["Veg","Non-Veg"];
+	
+	$scope.healthSystemFilter = ["Ayurveda","Unnani"];
+
 	$scope.getRelatedProducts = function() {
 		var myRelatedProducts = productService.getRelatedProducts();
 		myRelatedProducts.then(function(msg) {

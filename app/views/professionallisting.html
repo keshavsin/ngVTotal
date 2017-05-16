@@ -36,35 +36,33 @@ LIST  SECTION
 <div class="filter-outer-wrap">
   <div class="container padg20">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 filtersWidth hidden-xs hidden-sm">
+      <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 filtersWidth hidden-xs hidden-sm">
         <form action="javascript:void(0);" method="post" id="" name="filter">
           <div class="filterheading hidden-xs hidden-sm">
-            <h4>Professional  Name <span>10 Results</span></h4>
             <h3>Filters</h3>
           </div>
           <div class="filterheading hidden-lg hidden-md"> <span class="close-fltr" onclick="hideFilters()"> X </span> FILTERS </div>
           <ul class="filterUlBlock1">
-             <li>
-              <div class="pricediv">HEALTH SYSTEMS <i class="fa fa-angle-down pull-right"></i> </div>
+            <li>
+              <div class="pricediv">HEALTH SYSTEMS</div>
               <ul class="filterUlBlock">
                 <li>
-                  <div id="prod_brand" class="panel-body inner">
-                    <div class="checkbox" ng-repeat="system in healthSystemFilter">
+                  <div id="prod_brand" class="">
+                    <div class="checkbox"  ng-repeat="healthSystem in healthSystemFilter">
                       <label>
-                        <input type="checkbox" name="prod_brand[]" value="AYURVEDA">
-                        <span>{{system}}</span> </label>
+                        <input type="checkbox" name="" value="AYURVEDA">
+                        <span>{{healthSystem}}</span> </label>
                     </div>
-                    
                   </div>
                 </li>
               </ul>
             </li>
             <div class="brderBottm"></div>
             <li>
-              <div class="pricediv">LOCATION <i class="fa fa-angle-down pull-right"></i> </div>
+              <div class="pricediv">LOCATION</div>
               <ul class="filterUlBlock">
                 <li>
-                  <div id="prod_brand" class="panel-body inner">
+                  <div id="prod_brand" class="">
                     <div class="checkbox" ng-repeat="location in locationFilter">
                       <label>
                         <input type="checkbox" name="prod_brand[]" value="BANGALORE">
@@ -76,10 +74,10 @@ LIST  SECTION
             </li>
             <div class="brderBottm"></div>
             <li>
-              <div class="pricediv">SPECIALISATION  TYPE <i class="fa fa-angle-down pull-right"></i> </div>
+              <div class="pricediv">SPECIALISATION</div>
               <ul class="filterUlBlock">
                 <li>
-                  <div id="prod_brand" class="panel-body inner">
+                  <div id="prod_brand" class="">
                     <div class="checkbox" ng-repeat="specialization in specializationFilter">
                       <label>
                         <input type="checkbox" onclick="getSearchResults()" value="lg" name="SPECIALISATION TYPE 1">
@@ -89,7 +87,7 @@ LIST  SECTION
                 </li>
               </ul>
             </li>
-            <div class="brderBottm"></div>
+            <div class="brderBottm"></div>            
           </ul>
           <div class="col-xs-12 filterfooter">
             <button type="button" class="btn btn-block btn-sm clr-fltr-btn pull-left hidden-lg hidden-md">CLEAR ALL</button>
@@ -98,6 +96,7 @@ LIST  SECTION
         </form>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 filt-hide mb-45"> 
+       <h4>Professionals <span> {{professionalList.length}} Results</span></h4>
     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="professional in professionalList">
       <div class="box-list box-white"> <a href="#/professionaldetails/{{professional.id}}"> <img ng-src="{{professional.image == null ? 'images/noimage.jpg' : professional.image}}"  class="img-responsive center-block">
         <div class="product-content">

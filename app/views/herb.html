@@ -399,6 +399,12 @@
 									typeahead-on-select="onSelect($item, $model, $label)"
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 									placeholder="Did You Know" typeahead-editable='false' />
+																	<div>
+									<a ng-click="removeDidYouKnow($index);"><md-tooltip
+											md-direction="right">Remove Did You Know</md-tooltip><span
+										class="glyphicon glyphicon-remove"></span></a>
+							</div>
+
 							</div>
 						</div>
 					</div>
@@ -426,7 +432,7 @@
 										typeahead-min-length="1"
 										typeahead-on-select="onSelect($item, $model, $label)"
 										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Content" typeahead-editable='false' />
+										placeholder="Content" typeahead-editable='false'></textarea>
 								</div>
 								<div>
 									<a ng-click="addWebCategory();"><md-tooltip
@@ -455,9 +461,13 @@
 										typeahead-min-length="1"
 										typeahead-on-select="onSelect($item, $model, $label)"
 										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Content" typeahead-editable='false' />
+										placeholder="Content" typeahead-editable='false' ></textarea>
 								</div>
-							</div>
+								<div>
+									<a ng-click="removeWebCategory($index);"><md-tooltip
+											md-direction="right">Remove Web Category</md-tooltip><span
+										class="glyphicon glyphicon-remove"></span></a>
+							</div></div>
 						</div>
 					</div>
 
@@ -465,4 +475,5 @@
 			</div>
 		</form>
 	</div>
-</div>
+	</div>
+</div>	</div>

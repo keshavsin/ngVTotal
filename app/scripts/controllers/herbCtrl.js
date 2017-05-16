@@ -211,6 +211,14 @@ vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbServi
 		$scope.content = "";
 	}
 
+	$scope.removeWebCategory = function(index){
+		$scope.herb.webCategories.splice(index, 1);
+	}
+
+	$scope.removeDidYouKnow = function(index){
+		$scope.herb.didYouKnow.splice(index, 1);
+	}
+
 	// File Upload
 	$scope.clearFiles = function () {
 	    angular.element("input[type='file']").val(null);

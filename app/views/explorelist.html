@@ -58,7 +58,7 @@ LIST  SECTION
           <div class="filterheading hidden-lg hidden-md"> <span class="close-fltr" onclick="hideFilters()"> X </span> FILTERS </div>
           <ul class="filterUlBlock1">
             <li>
-              <div class="pricediv">HEALTH CATEGORY</div>
+              <div class="pricediv">CATEGORIES</div>
               <ul class="filterUlBlock">
                 <li>
                   <div id="prod_brand" class="">
@@ -66,52 +66,6 @@ LIST  SECTION
                       <label>
                         <input type="checkbox" name="prod_brand" value="HEALTH CATEGORY 1 ">
                         <span>{{healthFilter}}</span> </label>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <div class="brderBottm"></div>
-            <li>
-              <div class="pricediv">MANUFACTURES</div>
-              <ul class="filterUlBlock">
-                <li>
-                  <div id="prod_brand" class="">
-                    <div class="checkbox" ng-repeat="manufacture in manufactureFilter">
-                      <label>
-                        <input type="checkbox" name="prod_brand[]" value="MANUFACTURES 1 ">
-                        <span>{{manufacture}} </span> </label>
-                    </div>
-                    
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <div class="brderBottm"></div>
-            <li>
-              <div class="pricediv">VEG/NON-VEG</div>
-              <ul class="filterUlBlock">
-                <li>
-                  <div id="prod_brand" class="">
-                    <div class="checkbox" ng-repeat="recipe in recipeTypeFilter">
-                      <label>
-                        <input type="checkbox" value="lg" name="NON VEG">
-                        <span>{{recipe}}</span> </label>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </li>
-            <div class="brderBottm"></div>
-            <li>
-              <div class="pricediv">HEALTH SYSTEMS</div>
-              <ul class="filterUlBlock">
-                <li>
-                  <div id="prod_brand" class="">
-                    <div class="checkbox"  ng-repeat="healthSystem in healthSystemFilter">
-                      <label>
-                        <input type="checkbox" name="" value="AYURVEDA">
-                        <span>{{healthSystem}}</span> </label>
                     </div>
                   </div>
                 </li>

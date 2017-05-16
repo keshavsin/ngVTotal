@@ -54,11 +54,11 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 								{"url":"","image":"images/products/1.jpg","name":"Product1","details":"product details"},
 								{"url":"","image":"images/products/1.jpg","name":"Product1","details":"product details"},];	
 
-	$scope.healthCategoryFilter=["Health Category 1","Health Category 2","Health Category 3","Health Category 4","Health Category 5"];
+	$scope.healthCategoryFilter=["Digestive","Rejuvenative","Respiratory","Skin"];
 	
 	$scope.healthSystemFilter=["Ayurveda","Unnani"];
 	
-	$scope.enterpriseTypeFilter=["Type1","Type2","Type3","Type4","Type5","Type6","Type7","Type8"];
+	$scope.enterpriseTypeFilter=["Medium","Tier-I","Small","Micro"];
 	
 	$scope.getActiveManufacturers = function(){
 		var activeManufacturers = manufactureService.getActiveManufacturers();

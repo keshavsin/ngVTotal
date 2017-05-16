@@ -9,9 +9,9 @@
  */
 vtApp.controller('ProductCtrl',['$scope', '$route', '$routeParams', '$log', '$location', 'ProductService',  function ($scope, $route, $routeParams, $log, $location, productService) {
 	
-	$scope.healthCategoryFilter=["Health Category 1","Health Category 2","Health Category 3","Health Category 4","Health Category 5"];
+	$scope.healthCategoryFilter=["Digestive","Rejuvenative","Respiratory","Skin"];
 	
-	$scope.manufactureFilter = ["Manufacture1","Manufacture2","Manufacture3","Manufacture4","Manufacture5","Manufacture6"];
+	$scope.manufactureFilter = [];
 	
 	$scope.recipeTypeFilter = ["Veg","Non-Veg"];
 	

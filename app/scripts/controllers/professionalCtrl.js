@@ -34,9 +34,9 @@ vtApp.controller('ProfessionalCtrl',['$scope', '$rootScope', '$route', '$locatio
 		$scope.professionalTab.selectedTab = "CHANGE_PASSWORD_TAB";
 	}
 
-	$scope.healthSystemFilter=["Ayurveda","system1","system2","system3"];
-	$scope.locationFilter=["location1","location2","location3","location4","location5","location6"];
-	$scope.specializationFilter = ["specialization1","specialization2","specialization3","specialization4","specialization5","specialization6"];
+	$scope.healthSystemFilter=["Ayurveda","Unani","Siddha"];
+	$scope.locationFilter=["Bangalore","Chennai"];
+	$scope.specializationFilter = ["Skin","Gynaecologist","General Physician"];
 	$scope.doctorDetails=[{"name":"Doctor1", "image":"images/doctors/2.jpg", "url":"", "details":"Doctor details are as follows"},
 							{"name":"Doctor2", "image":"images/doctors/3.jpg", "url":"", "details":"Doctor details are as follows"},
 							{"name":"Doctor3", "image":"images/doctors/4.jpg", "url":"", "details":"Doctor details are as follows"},

@@ -106,6 +106,11 @@ vtApp.config(function ($routeProvider) {
 		controller: 'PasswordCtrl',
 		controllerAs: 'PasswordCtrl'
 	})
+	.when('/aboutus', {
+		templateUrl: 'views/aboutus.html'	,
+		controller: 'MainCtrl',
+		controllerAs: 'MainCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	});

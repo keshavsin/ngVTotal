@@ -7,7 +7,7 @@
             "baseURL": "http://localhost:9000/static"
         },
         "production": {
-            "baseURL": "http://localhost:8080/controllers"
+            "baseURL": "http://localhost:8080/vedictotal"
         },
       //API URL
         "appAPI": {

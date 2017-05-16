@@ -146,6 +146,7 @@
 .filterUlBlock .radio label {
     cursor: pointer;
     font-weight: 400;
+    font-size : 11px;
     margin-bottom: 0;
     min-height: 20px;
     padding-left: 20px;

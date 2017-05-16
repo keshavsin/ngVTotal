@@ -457,7 +457,6 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'postcss',
-    'ngtemplates',
     'concat',
     'ngAnnotate',
     'copy:dist',

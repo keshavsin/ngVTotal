@@ -196,11 +196,11 @@ PRODUCTS SLIDER SECTION
   <div class="container">
     <div class=" col-md-12 bg-shadow">
       <div class="row  details-list">
-        <div class="mt-25 clearfix">
+        <div class="clearfix">
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12 heading-list">
-                <h3 class="">Recently Explored</h3>
+                <h5 class="">Related Herbs</h5>
               </div>
               <div class="col-md-4" ng-repeat="explored in recentlyExplored">
                 <div class="box-white">
@@ -224,7 +224,7 @@ PRODUCTS SLIDER SECTION
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12 heading-list">
-                <h3 class="">Featured Products</h3>
+                <h5 class="">Related Products</h5>
               </div>
               <div class="col-md-4" ng-repeat="product in relatedProducts">
                 <div class="box-white">
@@ -249,60 +249,19 @@ PRODUCTS SLIDER SECTION
       </div>
     </div>
 </section>
-<!-- ================
-DOCTORS SLIDER SECTION 
-================ -->
-<section
-  class="pt-50 pb-70 bg-gray animatedParent animateOnce doctors_slide">
-  <div class="container">
-    <h2 class="first_heading animated fadeInLeft go">Professionals
-      Joined With US</h2>
-    <div class="animated fadeInRight go">
-      <div class="lSSlideOuter ">
-        <div class="lSSlideWrapper usingCss">
-          <ul id="doctors_slide" class="lightSlider lsGrab lSSlide"
-            style="width: 3737.5px; transform: translate3d(-1150px, 0px, 0px); height: 360px; padding-bottom: 0%;">
-            <li class="clone left" style="width: 277.5px; margin-right: 10px;"
-              ng-repeat="professional in featuredProfessionals">
-              <div class="box-white">
-                <a href="#/professionaldetails/{{professional.id}}">
-                  <div class="imghvr-zoom-in">
-                    <figure>
-                      <div class="no-bg">
-                        <img
-                          ng-src="{{professional.image == null ? 'images/noimage.jpg' : professional.image}}"
-                          class="img-responsive center-block">
-                        <h3>{{professional.name}}</h3>
-                        <h5>{{professional.education}}</h5>
-                        <h6>{{professional.specialization}}</h6>
-                      </div>
-                    </figure>
-                  </div>
-                </a>
-              </div>
-            </li>
-          </ul>
-          <div class="lSAction">
-            <a class="lSPrev"></a><a class="lSNext"></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 <!-- 
 =========================
 BLOG SECTION
 =========================
  -->
-<section class="pt-50 pb-70  animatedParent animateOnce">
+<section class="pb-70  animatedParent animateOnce">
   <div class="container">
+    <div class="col-md-9 animated fadeInLeft mb-20">
     <h2 class="first_heading animated fadeInLeft">Vedic Total Feeds</h2>
-    <div class="col-md-8 animated fadeInLeft mb-20">
       <div class="">
         <div id="mCSB_1" class="" tabindex="0">
-          <div id="mCSB_1_container" class=""
-            style="position: relative; top: -116px; left: 0px;" dir="ltr">
+          <div id="mCSB_1_container" class="" style="position: relative; top: 0px; left: 0px;" dir="ltr">
             <!-- ================ FIRST BLOG STATRT SECTION =============== -->
             <div class="pt-15 pb-15 clearfix"
               ng-repeat="blogDetails in blogList">
@@ -315,7 +274,7 @@ BLOG SECTION
                   <b>{{blogDetails.author}}</b><br> <i class="fa fa-clock-o"></i>{{blogDetails.date}}
                 </p>
               </div>
-              <div class="col-md-12 img-bg" style="width: 650px;">
+              <div class="col-md-12 img-bg" >
                 <img src="{{blogDetails.image}}" class="img-responsive"
                   alt="Image">
                 <h5>{{blogDetails.content}}</h5>
@@ -439,7 +398,7 @@ BLOG SECTION
     <!-- ====================
     ASK EXPERT SECTION 
     ==================== -->
-    <div class="col-md-4 animated fadeInRight go">
+    <div class="col-md-3 animated fadeInRight go">
       <div class="bg-orange clearfix ask-expert pt-10">
         <div class="col-md-6">
           <h4 class="pt-20">Ask the Expert</h4>
@@ -520,4 +479,3 @@ BLOG SECTION
     </div>
   </div>
 </section>
-<div ng-include="'views/common/testimonial.html'"></div>

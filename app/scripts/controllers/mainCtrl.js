@@ -33,7 +33,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 	}
 	
 	$scope.getExploreDetails = function() {
-		var myExploreDetails = exploreService.getExploreDetails('7114630e-f19c-4c7d-a5b5-d518d240993c');
+		var myExploreDetails = exploreService.getExploreDetails('e95d1d06-432d-4733-b59e-ba28bb938876');
 		myExploreDetails.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.exploreDetails = JSON.parse(msg.data.json);
@@ -50,6 +50,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		myRelatedProducts.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.relatedProducts = msg.data;
+				$scope.relatedProductsCollection = $scope.CarouselDemoCtrl($scope.relatedProducts);
 				//$scope.initializeExploreData();
 			} else {
 				toastr.error("Error fetching Exploration Details ... ");
@@ -135,6 +136,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		myActiveExplorations.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.recentlyExplored = msg.data;
+				$scope.recentlyExploredCollection = $scope.CarouselDemoCtrl($scope.recentlyExplored);
 			} else {
 				toastr.error("Error Fetching Recently Explored Herbs  ... ");
 			}
@@ -285,5 +287,58 @@ $scope.getNow = function(blogDate) {
 	}
 	
   $scope.init();
+
+//  Carousel Functions
+
+  $scope.displayMode = 'mobile'; // default value
+  $scope.myInterval = 7000;
+
+  $scope.$watch('displayMode', function(value) {
+  
+    switch (value) {
+      case 'mobile':
+        // do stuff for mobile mode
+          console.log(value);
+        break;
+      case 'tablet':
+        // do stuff for tablet mode
+          console.log(value);
+        break;
+    }
+  });
+
+  $scope.CarouselDemoCtrl = function(slides) {
+  $scope.slides = slides;
+
+    var i, first = [],
+      second, third;
+    var many = 1;
+
+    //##################################################    
+    //Need to be changed to update the carousel since the resolution changed
+    $scope.displayMode = "tablet";
+    //##################################################
+    if ($scope.displayMode == "mobile") {many = 1;}
+    else if ($scope.displayMode == "tablet") {many = 2;} 
+    else {many = 3;}
+    
+    for (i = 0; i < $scope.slides.length; i += many) {
+      second = {
+        image1: $scope.slides[i]
+      };
+      if (many == 1) {}
+      if ($scope.slides[i + 1] && (many == 2 || many == 3)) {
+        second.image2 = $scope.slides[i + 1];
+
+      }
+      if ($scope.slides[i + (many - 1)] && many == 3) {
+        second.image3 = $scope.slides[i + 2];
+      }
+      first.push(second);
+    }
+    $scope.groupedSlides = first;
+    return $scope.groupedSlides;
+}
+
 }]);
 

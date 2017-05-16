@@ -22,6 +22,7 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
 		myRelatedProducts.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.relatedProducts = msg.data;
+				$scope.relatedProductsCollection = $scope.CarouselDemoCtrl($scope.relatedProducts);
 				//$scope.initializeExploreData();
 			} else {
 				toastr.error("Error fetching Exploration Details ... ");
@@ -54,6 +55,7 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
 		myActiveExplorations.then(function(msg) {
 			if(msg.status == 200) {
 				$scope.exploreList = msg.data;
+				$scope.exploreListCollection = $scope.CarouselDemoCtrl($scope.exploreList);
 			} else {
 				toastr.error("Error fetching Exploration Details ... ");
 			}
@@ -110,5 +112,57 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
 	}
 
 	$scope.init();
+
+//  Carousel Functions
+
+  $scope.displayMode = 'mobile'; // default value
+  $scope.myInterval = 7000;
+
+  $scope.$watch('displayMode', function(value) {
+  
+    switch (value) {
+      case 'mobile':
+        // do stuff for mobile mode
+          console.log(value);
+        break;
+      case 'tablet':
+        // do stuff for tablet mode
+          console.log(value);
+        break;
+    }
+  });
+
+  $scope.CarouselDemoCtrl = function(slides) {
+  $scope.slides = slides;
+
+    var i, first = [],
+      second, third;
+    var many = 1;
+
+    //##################################################    
+    //Need to be changed to update the carousel since the resolution changed
+    $scope.displayMode = "tablet";
+    //##################################################
+    if ($scope.displayMode == "mobile") {many = 1;}
+    else if ($scope.displayMode == "tablet") {many = 2;} 
+    else {many = 3;}
+    
+    for (i = 0; i < $scope.slides.length; i += many) {
+      second = {
+        image1: $scope.slides[i]
+      };
+      if (many == 1) {}
+      if ($scope.slides[i + 1] && (many == 2 || many == 3)) {
+        second.image2 = $scope.slides[i + 1];
+
+      }
+      if ($scope.slides[i + (many - 1)] && many == 3) {
+        second.image3 = $scope.slides[i + 2];
+      }
+      first.push(second);
+    }
+    $scope.groupedSlides = first;
+    return $scope.groupedSlides;
+}
 	
 }]);

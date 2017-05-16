@@ -95,63 +95,137 @@ LATEST EXPLORATION SECTION
         </div>
       </div>
     </div>
-    <div class="row  details-list">
-      <div class="mt-25 clearfix">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-12 heading-list">
-              <h3 class="">Recently Explored</h3>
-            </div>
-            <carousel>
-            <slide ng-repeat="explored in exploreList">
-            <div class="col-md-4" >
-              <div class="box-white">
-                <a href="#/exploredetails/{{explored.id}}">
-                  <div class="imghvr-zoom-in">
-                    <figure>
-                      <div class="no-bg">
-                        <img
-                          ng-src="{{explored.image == null ? 'images/noimage.jpg' : explored.image}}"
-                          class="img-responsive center-block">
-                        <h5>{{explored.name}}</h5>
-                      </div>
-                    </figure>
-                  </div>
-                </a>
-              </div>
-            </div></slide></carousel>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-12 heading-list">
-              <h3 class="">Featured Products</h3>
-            </div>
-            <carousel>
-            <slide ng-repeat="product in relatedProducts">
-            <div class="col-md-4" ng-repeat="product in relatedProducts">
-              <div class="box-white">
-                <a href="#/productdetails/{{product.id}}">
-                  <div class="imghvr-zoom-in">
-                    <figure>
-                      <div class="no-bg">
-                        <img
-                          ng-src="{{product.image == null ? 'images/noimage.jpg' : product.image}}"
-                          class="img-responsive center-block">
-                        <h5>{{product.name}}</h5>
-                      </div>
-                    </figure>
-                  </div>
-                </a>
-              </div>
-            </div>
-            </slide>
-            </carousel>
-          </div>
-        </div>
 
-      </div>
+    <div class=" col-md-12 bg-shadow">
+      <div class="row  details-list">
+        <div class="clearfix">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12 heading-list">
+                <h5 class="">Related Herbs</h5>
+              </div>
+              </div>
+              <div dn-display-mode="displayMode">asdasd</div>
+                  <carousel interval="3000"> <slide
+                    ng-repeat="slideCollection in exploreListCollection"
+                    active="explored.active">
+                  <div>
+                    <div class="col-md-4">
+                      <div class="">
+                        <a href="#/exploredetails/{{slideCollection.image1.id}}">
+                          <div class="">
+                            <figure>
+                              <div>
+                                <img ng-src="{{slideCollection.image1.image}}"
+                                  style="margin: auto;  height: 160px; width:160px;">
+                                                          <h5>{{slideCollection.image1.name}}</h5>
+                              </div>
+                            </figure>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="">
+                        <a href="#/exploredetails/{{slideCollection.image2.id}}">
+                          <div class="">
+                            <figure>
+                              <div>
+                                <img ng-src="{{slideCollection.image2.image}}"
+                                  style="margin: auto;  height: 160px; width:160px;">
+                                                          <h5>{{slideCollection.image2.name}}</h5>
 
-    </div>
+                              </div>
+                            </figure>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="">
+                        <a href="#/exploredetails/{{slideCollection.image3.id}}">
+                          <div class="">
+                            <figure>
+                              <div>
+                                <img ng-src="{{slideCollection.image3.image}}"
+                                  style="margin: auto;  height: 160px; width:160px;">
+                              </div>                                                          <h5>{{slideCollection.image3.name}}</h5>
+                            </figure>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  </slide> 
+                  </carousel>
+            </div>
+
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-12 heading-list">
+                <h5 class="">Related Products</h5>
+              </div>
+              </div>
+              <div dn-display-mode="displayMode">asdasd</div>
+                  <carousel interval="3000"> <slide
+                    ng-repeat="slideCollection in relatedProductsCollection"
+                    active="explored.active">
+                  <div>
+                    <div class="col-md-4">
+                      <div class="">
+                        <a href="#/productdetails/{{slideCollection.image1.id}}">
+                          <div class="">
+                            <figure>
+                              <div>
+                                <img ng-src="{{slideCollection.image1.image}}"
+                                  style="margin: auto;  height: 160px; width:160px;">
+                                                          <h5>{{slideCollection.image1.name}}</h5>
+                              </div>
+                            </figure>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="">
+                        <a href="#/productdetails/{{slideCollection.image2.id}}">
+                          <div class="">
+                            <figure>
+                              <div>
+                                <img ng-src="{{slideCollection.image2.image}}"
+                                  style="margin: auto;  height: 160px; width:160px;">
+                                                          <h5>{{slideCollection.image2.name}}</h5>
+                              </div>
+                            </figure>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="">
+                        <a href="#/productdetails/{{slideCollection.image3.id}}">
+                          <div class="">
+                            <figure>
+                              <div>
+                                <img ng-src="{{slideCollection.image3.image}}"
+                                  style="margin: auto;  height: 160px; width:160px;">
+                                                          <h5>{{slideCollection.image3.name}}</h5>
+                              </div>
+                            </figure>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  </slide> 
+                  </carousel>
+            </div>
+            </div>
+            </div>
+          </div>
+ </div>
+  </div>
+
+
 </section>
 <!-- <div ng-include="'views/common/testimonial.html'"></div> -->

@@ -202,7 +202,10 @@ PRODUCTS SLIDER SECTION
               <div class="col-md-12 heading-list">
                 <h5 class="">Related Herbs</h5>
               </div>
-              <div class="col-md-4" ng-repeat="explored in recentlyExplored">
+              <div >
+              <carousel interval="3000">
+              <slide ng-repeat="explored in recentlyExplored" active="slide.active">
+              <div class="col-md-4" >
                 <div class="box-white">
                   <a href="#/exploredetails/{{explored.id}}">
                     <div class="imghvr-zoom-in">
@@ -210,7 +213,7 @@ PRODUCTS SLIDER SECTION
                         <div class="no-bg">
                           <img
                             ng-src="{{explored.image == null ? 'images/noimage.jpg' : explored.image}}"
-                            class="img-responsive center-block">
+                            class="img-responsive center-block" >
                           <h5>{{explored.name}}</h5>
                         </div>
                       </figure>
@@ -218,6 +221,8 @@ PRODUCTS SLIDER SECTION
                   </a>
                 </div>
               </div>
+              </slide>
+              </carousel></div>
             </div>
           </div>
 
@@ -226,7 +231,9 @@ PRODUCTS SLIDER SECTION
               <div class="col-md-12 heading-list">
                 <h5 class="">Related Products</h5>
               </div>
-              <div class="col-md-4" ng-repeat="product in relatedProducts">
+              <carousel interval="3000">
+              <slide ng-repeat="product in relatedProducts" active="slide.active">
+              <div class="col-md-4" >
                 <div class="box-white">
                   <a href="#/productdetails/{{product.id}}">
                     <div class="imghvr-zoom-in">
@@ -241,7 +248,8 @@ PRODUCTS SLIDER SECTION
                     </div>
                   </a>
                 </div>
-              </div>
+              </div></slide>
+              </carousel>
             </div>
           </div>
         </div>
@@ -250,8 +258,7 @@ PRODUCTS SLIDER SECTION
     </div>
 </section>
 
-<!-- 
-=========================
+<!-- ================
 BLOG SECTION
 =========================
  -->

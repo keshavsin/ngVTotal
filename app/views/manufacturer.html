@@ -107,9 +107,9 @@
 									<div class="col-sm-8">
 									<div class=" dropdown">
 										<am-multiselect class="input-sm" multiple="true"
-											ms-selected="{{system.id}}" ng-model="manufacturer.healthSystems"
+											ms-selected="{{system.name}}" ng-model="manufacturer.healthSystems"
 											ms-header="Health Systems"
-											options="system.id as system.name for system in systems">
+											options="system.name as system.name for system in systems">
 										</am-multiselect>
 									</div>
 									</div>
@@ -121,9 +121,9 @@
 									<div class="col-sm-8">
 									<div class=" dropdown">
 										<am-multiselect class="input-sm" multiple="true"
-											ms-selected="{{portfolio.id}}" ng-model="manufacturer.portfolio"
+											ms-selected="{{portfolio.name}}" ng-model="manufacturer.portfolio"
 											ms-header="Portfolio"
-											options="portfolio.id as portfolio.name for portfolio in portfolios">
+											options="portfolio.name as portfolio.name for portfolio in portfolios">
 										</am-multiselect>
 									</div>
 									</div>
@@ -187,7 +187,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="manufacturer.country" ng-change="getStates(manufacturer.country);"
-											ng-options="country.id as country.name for country in countries">
+											ng-options="country.name as country.name for country in countries">
 							</select>
 						</div>
 									</div>
@@ -200,7 +200,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="manufacturer.state" ng-change="getCities(manufacturer.state);"
-											ng-options="state.id as state.name for state in states">
+											ng-options="state.name as state.name for state in states">
 							</select>
 						</div>
 									</div>
@@ -213,7 +213,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="manufacturer.city" 
-											ng-options="city.id as city.name for city in cities">
+											ng-options="city.name as city.name for city in cities">
 							</select>
 						</div>
 									</div>
@@ -252,9 +252,9 @@
 									<div class="col-sm-8">
 									<div class=" dropdown">
 										<am-multiselect class="input-sm" multiple="true"
-											ms-selected="{{salesType.id}}" ng-model="manufacturer.salesType"
+											ms-selected="{{salesType.name}}" ng-model="manufacturer.salesType"
 											ms-header="Sales Type"
-											options="salesType.id as salesType.name for salesType in salesTypes">
+											options="salesType.name as salesType.name for salesType in salesTypes">
 										</am-multiselect>
 									</div>
 									</div>
@@ -281,7 +281,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" 
 											ng-model="manufacturer.type" required=""
-											ng-options="type.id as type.name for type in types">
+											ng-options="type.name as type.name for type in types">
 										</select>
 									</div>
 									</div>

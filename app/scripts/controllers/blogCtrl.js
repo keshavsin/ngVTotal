@@ -1,4 +1,4 @@
-vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogService','fileUploadService','LookupService',function($scope,$rootScope,$location,blogService,fileUploadService,lookupService){
+vtApp.controller('BlogController', ['$scope','$rootScope', '$routeParams','$location','BlogService','fileUploadService','LookupService',function($scope,$rootScope, $routeParams,$location,blogService,fileUploadService,lookupService){
 
 	$scope.blog = {};
 	var formdata = new FormData();
@@ -19,7 +19,11 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 
 	$scope.initBlog = function(){
 		// Checking the session 
-		if($rootScope.sessionProfile != null){
+			// Get Blog Details
+		if ($location.$$path.startsWith('/blogdetails')) {
+			$scope.getBlog($routeParams.id);
+		} 
+		// if($rootScope.sessionProfile != null){
 			// If user Logged in loading init methods
 			// Load All Blogs
 			var getBlogs = blogService.getAllBlogs();
@@ -39,10 +43,10 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 					toastr.error("Error Fetching System");
 				}
 			})
-		}else{
-			// If User not logged in route to home page			
-			$location.path('/');
-		}
+		// }else{
+		// 	// If User not logged in route to home page			
+		// 	$location.path('/');
+		// }
 	}
 
 	// Creating Blog
@@ -73,6 +77,9 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 			if(msg.status == 200){
 				$scope.isAddBlogEnabled = true;
 				$scope.blog = msg.data;
+				$scope.blogDetails = $scope.blog;
+				$scope.getBlogComments($scope.blogDetails.id);
+				$scope.getBlogLikes($scope.blogDetails.id);
 			}else{
 				toastr.error("Error Fetching Blog");
 			}
@@ -94,6 +101,96 @@ vtApp.controller('BlogController', ['$scope','$rootScope','$location','BlogServi
 			}
 		})
 	}
+
+	$scope.showComments = function(blogDetails){
+		blogDetails.showComments = !blogDetails.showComments;
+	}
+
+	$scope.getBlogComments = function(blogId) {
+		var getBlogComments = blogService.getBlogComments(blogId);
+		getBlogComments.then(function(msg){
+			if(msg.status == 200){
+				var commentsList = msg.data;
+				var i;
+						$scope.blogDetails.comments = commentsList;
+						for(i = 0; i < $scope.blogDetails.comments.length; i++){
+							$scope.blogDetails.comments[i].reply = false;
+							$scope.getCommentReplies($scope.blogDetails.comments[i].id);
+						}
+			}else{
+				toastr.error("Error Fetching Blog Comments");
+			}
+		})
+	}
+
+	$scope.getCommentReplies = function(commentId){
+		var getCommentReplies = blogService.getCommentReplies(commentId);
+		getCommentReplies.then(function(msg){
+			if(msg.status == 200){
+				var j;
+					for(j = 0; $scope.blogDetails.comments.length; j++){
+						if(commentId == $scope.blogDetails.comments[j].id){
+							$scope.blogDetails.comments[j].replies = msg.data;
+						}
+					}
+			}else{
+				toastr.error("Error Fetching Comment Replies");
+			}
+		})
+	}
+	
+	$scope.getBlogLikes = function(blogId){
+		var getBlogLikes = blogService.getBlogLikes(blogId);
+		getBlogLikes.then(function(msg){
+			if(msg.status == 200){
+			var blogLikes = msg.data;
+			$scope.blogDetails.likes = blogLikes;
+			}else{
+				toastr.error("Error Fetching Blog Likes");
+			}
+		})
+	}
+
+	// Blog Since
+	$scope.getNow = function(blogDate) {
+		return moment(blogDate).fromNow();	
+	}
+
+	// Insert Blog Comment
+	$scope.insertBlogComment = function(comment,blogDetails){
+		var blogComment = {};
+		blogComment.comment = comment;
+		blogComment.blog = blogDetails.id;
+		var insertBlogComment = blogService.insertBlogComment(blogComment);
+		insertBlogComment.then(function(msg){
+			if(msg.status == 200){
+				$scope.getBlogComments(blogDetails.id);
+			}else{
+				toastr.error("Error Commenting The Blog");
+			}
+		})
+	}
+
+	// Insert Comment Reply
+	$scope.addReply = function(comment){
+		comment.reply = !comment.reply;	
+	}
+
+	$scope.insertCommentReply = function(reply, commentDetails){
+		var commentReply = {};
+		commentReply.comment = reply;
+		commentReply.commentId = commentDetails.id;
+		var insertCommentReply = blogService.insertCommentReply(commentReply);
+		insertCommentReply.then(function(msg){
+			if(msg.status == 200){
+				$scope.getCommentReplies(commentDetails.id);
+				$scope.commentReply = '';
+			}else{
+				toastr.error("Error Fetching ");
+			}
+		})
+	}
+
 
 	// File Upload
 	$scope.clearFiles = function () {

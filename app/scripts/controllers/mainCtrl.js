@@ -143,6 +143,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		});
 	}
 
+// Blogs Section
 	$scope.getAllBlogs = function(){
 		var getAllBlogs = blogService.getAllBlogs();
 		getAllBlogs.then(function(msg){
@@ -250,9 +251,10 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		})
 	}
 
-$scope.getNow = function(blogDate) {
-	return moment(blogDate).fromNow();	
-}
+// Moment to get Blog posted on, Commented on and Replied on  
+	$scope.getNow = function(blogDate) {
+		return moment(blogDate).fromNow();	
+	}
 
 
 	$scope.addReply = function(comment){

@@ -41,11 +41,11 @@ FIRST HEADER SECTION
         </ul>
       </li>
       <li> <a data-toggle="modal" href='#Subscribe'>Subscribe </a></li>  -->
-      <li ng-show="sessionProfile == null"> <a class="btn btn-brdr sign_inbtn" data-toggle="modal" ng-click="openLogin()"> Sign In</a></li>
-      <li ng-show="sessionProfile == null"> <a class="btn btn-brdr sign_inbtn" data-toggle="modal" ng-click="openRegister()"> Sign Up</a>  </li>    
-      <li ng-show="sessionProfile == null"> <a class="btn btn-brdr sign_inbtn" data-toggle="modal" href="#/forgotpassword">Forgot Password</a>  </li>    
+      <li ng-show="sessionProfile == null"> <a class="btn btn-brdr sign_inbtn" data-toggle="modal"  style="color:white;" ng-click="openLogin()"> Sign In</a></li>
+      <li ng-show="sessionProfile == null"> <a class="btn btn-brdr sign_inbtn" data-toggle="modal"  style="color:white;" ng-click="openRegister()"> Sign Up</a>  </li>    
+      <li ng-show="sessionProfile == null"> <a class="btn btn-brdr sign_inbtn" data-toggle="modal"  style="color:white;" href="#/forgotpassword">Forgot Password</a>  </li>    
         <li ng-show="sessionProfile != null" class="dropdown" ><a href="javascript:void(0);"
-          class="dropdown-toggle" data-toggle="dropdown" role="button"
+          class="dropdown-toggle" data-toggle="dropdown" role="button" style="color:white;"
           aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, {{sessionProfile.name}}<span
             class="caret"></span></a>
           <ul class="dropdown-menu">

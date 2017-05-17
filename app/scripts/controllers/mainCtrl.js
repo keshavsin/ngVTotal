@@ -117,12 +117,12 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
 		qArray.push(obj);
 		});
 		$scope.contentObject = qArray;
-		for(i = 0; i < $scope.contentObject.length; i++){
-			if($scope.contentObject[i].name == "Default Text"){
-				$scope.contentObject.defaultText = $scope.contentObject[0].text;
+		for(var i = 0; i < $scope.contentObject.length; i++){
+			if($scope.contentObject[i].name == "Top 5 Actions"){
+				$scope.contentObject.defaultText = $scope.contentObject[i].text;
+					$scope.displaySecondary($scope.contentObject[i].text);
 			}
 		}
-		$scope.displaySecondary($scope.contentObject[0].text);
 	}
 	
 

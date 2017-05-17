@@ -49,431 +49,492 @@
 	</div>
 
 	<div ng-show="isAddHerbEnabled">
+
+		<ul class="nav nav-tabs">
+			<li ng-class="herbTab.selectedTab == 'HERB_DETAILS' ? 'active' : ''"><a
+				href ng-click='herbDetailsTab();'>Herb Details</a></li>
+			<li ng-class="herbTab.selectedTab == 'HOME_REMEDIES' ? 'active' : ''"><a
+				href ng-click="homeRemediesTab();">Home Remedies</a></li>
+			<li
+				ng-class="herbTab.selectedTab == 'SAFETY_INDICATIONS' ? 'active' : ''"><a
+				href ng-click="safetyIndicationsTab();">Safety Indications</a></li>
+			<li ng-class="herbTab.selectedTab == 'DID_YOU_KNOW' ? 'active' : ''"><a
+				href ng-click="dykTab();">Did You Know</a></li>
+			<li
+				ng-class="herbTab.selectedTab == 'WEB_CATEGORIES' ? 'active' : ''"><a
+				href ng-click="webCategoriesTab();">Web Categories</a></li>
+		</ul>
 		<form name="herbform" novalidate>
 			<div class="container-fluid">
-				<div class="row col-sm-6">
-					<input type="hidden" ng-model="herb.id">
-					<div class="form-group"
-						ng-class="{ 'has-error' : herbform.herbName.$invalid && !herbform.herbName.$pristine }">
-						<label class=" col-sm-5 control-label">Herb Name<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<input type="text" name="herbName" typeahead-min-length="1"
-								typeahead-on-select="onSelect($item, $model, $label)"
-								placeholder=" Herb Name" required
-								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-								ng-model="herb.name" typeahead-editable='false'
-								ng-maxlength="150" />
-							<p
-								ng-show="herbform.herbName.$invalid && !herbform.herbName.$pristine"
-								class="help-block">Name is required or too long.</p>
+
+				<div ng-show="herbTab.selectedTab == 'HERB_DETAILS'">
+					<br />
+					<div class="row col-sm-6">
+						<input type="hidden" ng-model="herb.id">
+						<div class="form-group"
+							ng-class="{ 'has-error' : herbform.herbName.$invalid && !herbform.herbName.$pristine }">
+							<label class=" col-sm-5 control-label">Herb Name<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<input type="text" name="herbName" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									placeholder=" Herb Name" required
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									ng-model="herb.name" typeahead-editable='false'
+									ng-maxlength="150" />
+								<p
+									ng-show="herbform.herbName.$invalid && !herbform.herbName.$pristine"
+									class="help-block">Name is required or too long.</p>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Image<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<input type="file" class=" form-control btn btn-default"
+									id="file1" name="file" ng-files="getTheFiles($files)">
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Description<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<textarea rows="3" col="5" type="text" name="description"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Description" required ng-model="herb.description"
+									typeahead-editable='false' ng-maxlength="150"></textarea>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Native Names<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<div class="row">
+									<div class="col-sm-12">
+										<div class=" dropdown">
+											<am-multiselect class="input-sm" multiple="true"
+												ms-selected="{{language}}" ng-model="herb.nativeNames"
+												ms-header="Language"
+												options="language as language.name for language in languages">
+											</am-multiselect>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12" ng-show="herb.nativeNames.length > 0"
+										ng-repeat="nativeName in herb.nativeNames">
+										<div class="col-sm-4">{{nativeName.name}}</div>
+										<div class="col-sm-8">
+											<input type="text" name="nativeName" typeahead-min-length="1"
+												typeahead-on-select="onSelect($item, $model, $label)"
+												class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+												placeholder="Native Name" required
+												ng-model="nativeName.nativeName" typeahead-editable='false'
+												ng-maxlength="150" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br />
+
+						<div>
+							<label class=" col-sm-5 control-label">Therapeutic
+								Actions<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{therapeuticAction}}"
+										ng-model="herb.therapeuticActions"
+										ms-header="Therapeutic Actions"
+										options="therapeuticAction as therapeuticAction.name for therapeuticAction in therapeuticActions">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Therapeutic Types<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{therapeuticType}}"
+										ng-model="herb.therapeuticTypes" ms-header="Therapeutic Types"
+										options="therapeuticType as therapeuticType.name for therapeuticType in therapeuticTypes">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Primary
+								Indications<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{herbIndication}}"
+										ng-model="herb.primaryIndications"
+										ms-header="Primary Indications"
+										options="herbIndication as herbIndication.name for herbIndication in herbIndications">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Secondary
+								Indications<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{herbIndication}}"
+										ng-model="herb.secondaryIndications"
+										ms-header="Secondary Indications"
+										options="herbIndication as herbIndication.name for herbIndication in herbIndications">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+						<div>
+							<label class=" col-sm-5 control-label">External
+								Indications<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{herbIndication}}"
+										ng-model="herb.externalIndications"
+										ms-header="External Indications"
+										options="herbIndication as herbIndication.name for herbIndication in herbIndications">
+									</am-multiselect>
+								</div>
+							</div>
 						</div>
 					</div>
+					<div class="row col-sm-6">
+						<div>
+							<label class=" col-sm-5 control-label">Forms of
+								Consumption<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{formOfConsumption}}"
+										ng-model="herb.formOfConsumptions"
+										ms-header="Forms of Consumption"
+										options="formOfConsumption as formOfConsumption.name for formOfConsumption in formOfConsumptions">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+						<br /> <br /> <br />
 
-					<div>
-						<label class=" col-sm-5 control-label">Image<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<input type="file" class=" form-control btn btn-default"
-								id="file1" name="file" ng-files="getTheFiles($files)">
+						<div>
+							<label class=" col-sm-5 control-label">Herb Taste<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{taste}}" ng-model="herb.taste"
+										ms-header="Herb Taste"
+										options="taste as taste.name for taste in herbTaste">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Chemical Compounds<span
+								class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{chemicalCompound}}"
+										ng-model="herb.chemicalCompounds"
+										ms-header="Chemical Compounds"
+										options="chemicalCompound as chemicalCompound.name for chemicalCompound in chemicalCompounds">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Primary Action<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{therapeuticAction}}"
+										ng-model="herb.primaryActions" ms-header="Primary Actions"
+										options="therapeuticAction as therapeuticAction.name for therapeuticAction in therapeuticActions">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Secondary Action<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{therapeuticAction}}"
+										ng-model="herb.secondaryActions" ms-header="Secondary Actions"
+										options="therapeuticAction as therapeuticAction.name for therapeuticAction in therapeuticActions">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Purification
+								Method<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{purification}}" ng-model="herb.purifications"
+										ms-header="Purification"
+										options="purification as purification.name for purification in purifications">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">References<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{reference}}" ng-model="herb.references"
+										ms-header="References"
+										options="reference as reference.name for reference in references">
+									</am-multiselect>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Formulations<span
+								class="text-danger">*</span></label>
+							<div class="col-sm-7">
+								<input type="text" name="formulations" typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Formulations" required
+									ng-model="herb.formulations" typeahead-editable='false'
+									ng-maxlength="150" />
+							</div>
 						</div>
 					</div>
+				</div>
 
-					<div>
-						<label class=" col-sm-5 control-label">Description<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<textarea rows="3" col="5" type="text" name="description"
+				<!-- Home Remedies Section -->
+				<div ng-show="herbTab.selectedTab == 'HOME_REMEDIES'">
+					<br />
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-3">
+								<label class=" control-label">Home Remedies<span
+									class="text-danger">*</span></label>
+							</div>
+							<div class="col-sm-6">
+								<textarea rows="2" cols="3" name="homeRemedies"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Home Remedies" required ng-model="homeRemedy"
+									typeahead-editable='false' ng-maxlength="150"></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a ng-click="addHomeRemedies();"><md-tooltip
+										md-direction="right">Add Home Remedy</md-tooltip><span
+									class="col-sm-5 glyphicon glyphicon-plus"></span></a>
+							</div>
+						</div>
+						<br />
+
+						<div class="row" ng-repeat="homeRemedy in herb.homeRemedies">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<textarea rows="2" cols="3" ng-model="homeRemedy"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Home Remedies" typeahead-editable='false'></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a ng-click="removeHomeRemedy($index);"><md-tooltip
+										md-direction="right">Remove Home Remedy</md-tooltip><span
+									class="glyphicon glyphicon-remove"></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Safety Indications Section -->
+				<div ng-show="herbTab.selectedTab == 'SAFETY_INDICATIONS'">
+					<br />
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-3">
+								<label class="control-label">Safety Indications<span
+									class="text-danger">*</span>
+								</label>
+							</div>
+							<div class="col-sm-6">
+								<textarea rows="2" cols="3" name="safetyIndications"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Safety Indications" required
+									ng-model="safetyIndication" typeahead-editable='false'
+									ng-maxlength="150"></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a ng-click="addSafetyIndication();"><md-tooltip
+										md-direction="right">Add Safety Indication</md-tooltip><span
+									class="glyphicon glyphicon-plus"></span></a>
+							</div>
+						</div>
+						<br />
+
+						<div class="row" ng-repeat="indication in herb.safetyIndications">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<textarea rows="2" cols="3" ng-model="indication"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Safety Indications" typeahead-editable='false'></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a ng-click="removeSafetyIndication($index);"><md-tooltip
+										md-direction="right">Remove Safety Indication</md-tooltip><span
+									class="glyphicon glyphicon-remove"></span></a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-show="herbTab.selectedTab == 'DID_YOU_KNOW'">
+					<br />
+
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-3">
+								<label class="control-label">Did You Know<span
+									class="text-danger">*</span></label>
+							</div>
+							<div class="col-sm-6">
+								<textarea rows="2" cols="3" name="didYouKnow"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Did You Know" required ng-model="didYouKnow"
+									typeahead-editable='false' ng-maxlength="150"></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a ng-click="addDidYouKnow();"><md-tooltip
+										md-direction="right">Add Did You Know</md-tooltip><span
+									class="glyphicon glyphicon-plus"></span></a>
+							</div>
+						</div>
+						<br />
+
+						<div class="row" ng-repeat="didYouKnow in herb.didYouKnow">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-6">
+								<textarea rows="2" cols="3" ng-model="didYouKnow"
+									typeahead-min-length="1"
+									typeahead-on-select="onSelect($item, $model, $label)"
+									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+									placeholder="Did You Know" typeahead-editable='false'></textarea>
+							</div>
+							<div class="col-sm-1">
+								<a ng-click="removeDidYouKnow($index);"><md-tooltip
+										md-direction="right">Remove Did You Know</md-tooltip><span
+									class="glyphicon glyphicon-remove"></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Web Categories Section -->
+				<div ng-show="herbTab.selectedTab == 'WEB_CATEGORIES'">
+					<br />
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="dropdown">
+								<select class="form-control input-sm" name="webCategory"
+									ng-model="webCategory" required=""
+									ng-options="webCategory as webCategory.name for webCategory in webCategories">
+									<option value="">--Web Category--</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<textarea rows="2" cols="3" ng-model="title"
 								typeahead-min-length="1"
 								typeahead-on-select="onSelect($item, $model, $label)"
 								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-								placeholder="Description" required ng-model="herb.description"
-								typeahead-editable='false' ng-maxlength="150" ></textarea>
+								placeholder="Title" typeahead-editable='false'></textarea>
 						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Native Names<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class="row">
-								<div class="col-sm-12">
-									<div class=" dropdown">
-										<am-multiselect class="input-sm" multiple="true"
-											ms-selected="{{language}}" ng-model="herb.nativeNames"
-											ms-header="Language"
-											options="language as language.name for language in languages">
-										</am-multiselect>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12" ng-show="herb.nativeNames.length > 0"
-									ng-repeat="nativeName in herb.nativeNames">
-									<div class="col-sm-4">{{nativeName.name}}</div>
-									<div class="col-sm-8">
-										<input type="text" name="nativeName" typeahead-min-length="1"
-											typeahead-on-select="onSelect($item, $model, $label)"
-											class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-											placeholder="Native Name" required
-											ng-model="nativeName.nativeName" typeahead-editable='false'
-											ng-maxlength="150" />
-									</div>
-								</div>
-							</div>
+						<div class="col-sm-4">
+							<textarea rows="2" cols="3" type="text" ng-model="content"
+								typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								placeholder="Content" typeahead-editable='false'></textarea>
+						</div>
+						<div class="col-sm-1">
+							<a ng-click="addWebCategory();"><md-tooltip
+									md-direction="right">Add Web Category</md-tooltip><span
+								class="glyphicon glyphicon-plus"></span></a>
 						</div>
 					</div>
 					<br />
-
-					<div>
-						<label class=" col-sm-5 control-label">Therapeutic Actions<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{therapeuticAction}}"
-									ng-model="herb.therapeuticActions"
-									ms-header="Therapeutic Actions"
-									options="therapeuticAction as therapeuticAction.name for therapeuticAction in therapeuticActions">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Therapeutic Types<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{therapeuticType}}"
-									ng-model="herb.therapeuticTypes" ms-header="Therapeutic Types"
-									options="therapeuticType as therapeuticType.name for therapeuticType in therapeuticTypes">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Primary Indications<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{herbIndication}}"
-									ng-model="herb.primaryIndications"
-									ms-header="Primary Indications"
-									options="herbIndication as herbIndication.name for herbIndication in herbIndications">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Secondary
-							Indications<span class="text-danger">*</span>
-						</label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{herbIndication}}"
-									ng-model="herb.secondaryIndications"
-									ms-header="Secondary Indications"
-									options="herbIndication as herbIndication.name for herbIndication in herbIndications">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-					<div>
-						<label class=" col-sm-5 control-label">External
-							Indications<span class="text-danger">*</span>
-						</label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{herbIndication}}"
-									ng-model="herb.externalIndications"
-									ms-header="External Indications"
-									options="herbIndication as herbIndication.name for herbIndication in herbIndications">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<div class="row col-sm-6">
-
-					<div>
-						<label class=" col-sm-5 control-label">Forms of
-							Consumption<span class="text-danger">*</span>
-						</label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{formOfConsumption}}"
-									ng-model="herb.formOfConsumptions"
-									ms-header="Forms of Consumption"
-									options="formOfConsumption as formOfConsumption.name for formOfConsumption in formOfConsumptions">
-								</am-multiselect>
-							</div>
-						</div>
-					</div><br/><br/><br/>
-
-					<div>
-						<label class=" col-sm-5 control-label">Herb Taste<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{taste}}" ng-model="herb.taste"
-									ms-header="Herb Taste"
-									options="taste as taste.name for taste in herbTaste">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Chemical Compounds<span
-							class="text-danger">*</span>
-						</label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{chemicalCompound}}"
-									ng-model="herb.chemicalCompounds"
-									ms-header="Chemical Compounds"
-									options="chemicalCompound as chemicalCompound.name for chemicalCompound in chemicalCompounds">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Primary Action<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{therapeuticAction}}"
-									ng-model="herb.primaryActions" ms-header="Primary Actions"
-									options="therapeuticAction as therapeuticAction.name for therapeuticAction in therapeuticActions">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Secondary Action<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{therapeuticAction}}"
-									ng-model="herb.secondaryActions" ms-header="Secondary Actions"
-									options="therapeuticAction as therapeuticAction.name for therapeuticAction in therapeuticActions">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Purification Method<span
-							class="text-danger">*</span>
-						</label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{purification}}" ng-model="herb.purifications"
-									ms-header="Purification"
-									options="purification as purification.name for purification in purifications">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">References<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class=" dropdown">
-								<am-multiselect class="input-sm" multiple="true"
-									ms-selected="{{reference}}" ng-model="herb.references"
-									ms-header="References"
-									options="reference as reference.name for reference in references">
-								</am-multiselect>
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Formulations<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<input type="text" name="formulations" typeahead-min-length="1"
+					<div class="row" ng-repeat="webCategory in herb.webCategories">
+						<div class="col-sm-3">
+							<input type="text" ng-model="webCategory.webCategory.name"
+								typeahead-min-length="1" ng-disabled="true"
 								typeahead-on-select="onSelect($item, $model, $label)"
 								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-								placeholder="Formulations" required ng-model="herb.formulations"
-								typeahead-editable='false' ng-maxlength="150" />
+								placeholder="Title" typeahead-editable='false' />
+						</div>
+						<div class="col-sm-4">
+							<textarea rows="2" cols="3" ng-model="webCategory.title"
+								typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								placeholder="Title" typeahead-editable='false'></textarea>
+						</div>
+						<div class="col-sm-4">
+							<textarea rows="2" cols="3" type="text"
+								ng-model="webCategory.content" typeahead-min-length="1"
+								typeahead-on-select="onSelect($item, $model, $label)"
+								class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
+								placeholder="Content" typeahead-editable='false'></textarea>
+						</div>
+						<div class="col-sm-1">
+							<a ng-click="removeWebCategory($index);"><md-tooltip
+									md-direction="right">Remove Web Category</md-tooltip><span
+								class="glyphicon glyphicon-remove"></span></a>
 						</div>
 					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Home Remedies<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class="row">
-								<div class=" col-sm-11">
-									<input type="text" name="homeRemedies" typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Home Remedies" required ng-model="homeRemedy"
-										typeahead-editable='false' ng-maxlength="150" />
-								</div>
-								<div>
-									<a ng-click="addHomeRemedies();"><md-tooltip md-direction="right">Add Home Remedy</md-tooltip><span class="col-sm-5 glyphicon glyphicon-plus"></span></a>
-								</div>
-							</div>
-							<div ng-repeat="homeRemedy in herb.homeRemedies">
-								<input type="text" ng-model="homeRemedy"
-									typeahead-min-length="1" ng-disabled="true"
-									typeahead-on-select="onSelect($item, $model, $label)"
-									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-									placeholder="Home Remedies" typeahead-editable='false' />
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Safety Indications<span
-							class="text-danger">*</span>
-						</label>
-						<div class="col-sm-7">
-							<div class="row">
-								<div class=" col-sm-11">
-									<input type="text" name="safetyIndications"
-										typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Safety Indications" required
-										ng-model="safetyIndication" typeahead-editable='false'
-										ng-maxlength="150" />
-								</div>
-								<div>
-									<a ng-click="addSafetyIndication();"><md-tooltip
-											md-direction="right">Add Safety Indication</md-tooltip><span
-										class="glyphicon glyphicon-plus"></span></a>
-								</div>
-							</div>
-							<div ng-repeat="indication in herb.safetyIndications">
-								<input type="text" ng-model="indication"
-									typeahead-min-length="1" ng-disabled="true"
-									typeahead-on-select="onSelect($item, $model, $label)"
-									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-									placeholder="Safety Indications" typeahead-editable='false' />
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<label class=" col-sm-5 control-label">Did You Know<span
-							class="text-danger">*</span></label>
-						<div class="col-sm-7">
-							<div class="row">
-								<div class=" col-sm-11">
-									<input type="text" name="didYouKnow" typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Did You Know" required ng-model="didYouKnow"
-										typeahead-editable='false' ng-maxlength="150" />
-								</div>
-								<div>
-									<a ng-click="addDidYouKnow();"><md-tooltip
-											md-direction="right">Add Did You Know</md-tooltip><span
-										class="glyphicon glyphicon-plus"></span></a>
-								</div>
-							</div>
-							<div ng-repeat="didYouKnow in herb.didYouKnow">
-								<input type="text" ng-model="didYouKnow"
-									typeahead-min-length="1" ng-disabled="true"
-									typeahead-on-select="onSelect($item, $model, $label)"
-									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-									placeholder="Did You Know" typeahead-editable='false' />
-																	<div>
-									<a ng-click="removeDidYouKnow($index);"><md-tooltip
-											md-direction="right">Remove Did You Know</md-tooltip><span
-										class="glyphicon glyphicon-remove"></span></a>
-							</div>
-
-							</div>
-						</div>
-					</div>
-
-					<div>
-						<div class="col-sm-12">
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="dropdown">
-										<select class="form-control input-sm" name="webCategory"
-											ng-model="webCategory" required=""
-											ng-options="webCategory as webCategory.name for webCategory in webCategories">
-											<option value="">--Web Category--</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<input type="text" ng-model="title" typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Title" typeahead-editable='false' />
-								</div>
-								<div class="col-sm-4">
-									<textarea rows="2" cols="3" type="text" ng-model="content"
-										typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Content" typeahead-editable='false'></textarea>
-								</div>
-								<div>
-									<a ng-click="addWebCategory();"><md-tooltip
-											md-direction="right">Add Web Category</md-tooltip><span
-										class="glyphicon glyphicon-plus"></span></a>
-								</div>
-							</div>
-							<div ng-repeat="webCategory in herb.webCategories">
-								<div class="col-sm-4">
-									<input type="text" ng-model="webCategory.webCategory.name"
-										typeahead-min-length="1" ng-disabled="true"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Title" typeahead-editable='false' />
-								</div>
-								<div class="col-sm-4">
-									<input type="text" ng-model="webCategory.title"
-										ng-disabled="true" typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Title" typeahead-editable='false' />
-								</div>
-								<div class="col-sm-4">
-									<textarea rows="2" cols="3" type="text"
-										ng-model="webCategory.content" ng-disabled="true"
-										typeahead-min-length="1"
-										typeahead-on-select="onSelect($item, $model, $label)"
-										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										placeholder="Content" typeahead-editable='false' ></textarea>
-								</div>
-								<div>
-									<a ng-click="removeWebCategory($index);"><md-tooltip
-											md-direction="right">Remove Web Category</md-tooltip><span
-										class="glyphicon glyphicon-remove"></span></a>
-							</div></div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</form>
 	</div>
-	</div>
-</div>	</div>
+</div>

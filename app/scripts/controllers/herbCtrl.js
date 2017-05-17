@@ -7,9 +7,32 @@ vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbServi
 	$scope.herbList = {};
 	$scope.herb.webCategories = [];
 	var formdata = new FormData();
-	
+	$scope.herbTab = {};
+
+	$scope.herbDetailsTab = function(){
+		$scope.herbTab.selectedTab = "HERB_DETAILS";
+	}
+
+	$scope.homeRemediesTab = function(){
+		$scope.herbTab.selectedTab = "HOME_REMEDIES";
+	}
+
+	$scope.safetyIndicationsTab = function(){
+		$scope.herbTab.selectedTab = "SAFETY_INDICATIONS";
+	}
+
+	$scope.dykTab = function(){
+		$scope.herbTab.selectedTab = "DID_YOU_KNOW";
+	}
+
+	$scope.webCategoriesTab = function(){
+		$scope.herbTab.selectedTab = "WEB_CATEGORIES";
+	}
+
 	$scope.initHerb = function(){
 		if($rootScope.sessionProfile != null){
+			// Make Herb Details Tab as Default
+			$scope.herbTab.selectedTab = "HERB_DETAILS";
 			var getTherepeuticActions = lookupService.getAllActiveLookups('TherepeuticAction');
 			getTherepeuticActions.then(function(msg){
 				if(msg.status ==  200){
@@ -217,6 +240,14 @@ vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbServi
 
 	$scope.removeDidYouKnow = function(index){
 		$scope.herb.didYouKnow.splice(index, 1);
+	}
+
+	$scope.removeHomeRemedy = function(index){
+		$scope.herb.homeRemedies.splice(index, 1);
+	}
+
+	$scope.removeSafetyIndication = function(index){
+		$scope.herb.safetyIndications.splice(index, 1);
 	}
 
 	// File Upload

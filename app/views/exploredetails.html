@@ -57,7 +57,7 @@ LATEST EXPLORATION SECTION
           <div class="col-md-7">
             <h4 class="txt1 ">Did You Know?</h4>
             <ul class="pl-10" ng-repeat="dyk in exploreDetails.didYouKnow">
-              <li ng-show="dyk != null">{{dyk}}</li>
+              <li ng-show="dyk != null" ng-bind-html="dyk"></li>
             </ul>
             <p class="border-btm">
             <div class="row font-12 ul-Indications">
@@ -66,7 +66,7 @@ LATEST EXPLORATION SECTION
                   <div>
                     <h4 class="txt1 ">Indications</h4>
                     <ul class="pl-10">
-                      <li>{{contentObject.defaultText}}</li>
+                      <li ng-bind-html="contentObject.defaultText"></li>
                     </ul>
                   </div>
                 </div>

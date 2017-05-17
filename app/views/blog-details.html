@@ -7,7 +7,7 @@
       <hr>
       <img src="{{blog.image}}" class="img-responsive" alt="Image">
       <hr>
-      <pre>{{blog.content}}</pre>
+      <pre><p ng-bind-html="blog.content"></p></pre>
       <hr>
 
       <!-- Comments Form -->

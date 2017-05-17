@@ -354,7 +354,7 @@ BLOG SECTION
                 <img src="{{blogDetails.image}}" class="img-responsive"
                   alt="Image">
                                   </a>
-                <h5><pre>{{blogDetails.content.split('\n')[0]}}</pre></h5>
+                <h5 ng-bind-html="blogDetails.content.split('\n')[0]"></h5>
               </div>
               <div class="col-md-12 clearfix">
                 <div class="comments">

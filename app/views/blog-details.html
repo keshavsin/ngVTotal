@@ -1,363 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Vedic Total</title>
-<link rel="icon" type="image/png" href="assets/images/favicon.png" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="Author" content="Vivanta Technologies"/>
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<!-- =======ANIMATION CSS======== -->
-<!--[if lte IE 9]> <link href="assets/css/animations-ie-fix.css" rel='stylesheet'> <![endif]-->
-<link rel="stylesheet" type="text/css" href="assets/css/animations.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/font-awesome-animation.min.css" />
-<script type='text/javascript' src="assets/js/jquery.min.js"></script>
-<script type='text/javascript' src="assets/js/main.js"></script>
-<script type='text/javascript' src="assets/js/jquery.validate.min.js"></script>
-<script type='text/javascript' src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<link rel="stylesheet" type="text/css" href="assets/css/lightslider.css" />
-<script type='text/javascript' src="assets/js/lightslider.js"></script>
-<link rel="stylesheet" type="text/css" href="assets/css/materialize.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/mobile.css" />
-<script type="text/javascript" src="assets/js/materialize.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;subset=devanagari,latin-ext" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.min.css" />
-</head>
-<body>
-<!--Preloader-->
-<div id="loading" class="preloader">
-  <div class="loading-center">
-    <div class="bg-loading"> <img src="assets/images/logo.png" class="img-responsive center-block" alt="Image">
-      <div class="loading-center-absolute">
-        <div class="object object_one"></div>
-        <div class="object object_two"></div>
-        <div class="object object_three"></div>
-        <div class="object object_four"></div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ================================
-  FIRST HEADER SECTION 
-  ================================ -->
-<div class="first-header hidden-xs hidden-sm">
-  <div class="container">
-    <ul class="nav navbar-nav navbar-static-top pull-right">
-      <li class="dropdown notifications-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="assets/images/chat.png" class="img-responsive" alt="Image"> <span class="label label-warning">10</span> </a>
-        <ul class="dropdown-menu">
-          <li class="header">You have 10 Messages</li>
-          <li> 
-            <!-- inner menu: contains the actual data -->
-            <div class="slimScrollDiv">
-              <ul class="menu">
-                <li> <a href="#"> <i class="fa fa-users text-aqua"></i> 5 new members joined today </a> </li>
-                <li> <a href="#"> <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                  page and may cause design problems </a> </li>
-                <li> <a href="#"> <i class="fa fa-users text-red"></i> 5 new members joined </a> </li>
-                <li> <a href="#"> <i class="fa fa-shopping-cart text-green"></i> 25 sales made </a> </li>
-                <li> <a href="#"> <i class="fa fa-user text-red"></i> You changed your username </a> </li>
-              </ul>
-            </div>
-          </li>
-          <li class="footer"><a href="explore-list.html">View all</a></li>
-        </ul>
-      </li>
-      <li class="dropdown notifications-menu"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> <img src="assets/images/notification.png" class="img-responsive faa-ring animated" alt="Image"><!-- <i class="fa fa-bell-o fa-1x faa-ring animated"></i>  --><span class="label label-warning">10</span> </a>
-        <ul class="dropdown-menu">
-          <li class="header">You have 10 notifications</li>
-          <li> 
-            <!-- inner menu: contains the actual data -->
-            <div class="slimScrollDiv">
-              <ul class="menu">
-                <li> <a href="#"> <i class="fa fa-users text-aqua"></i> 5 new members joined today </a> </li>
-                <li> <a href="#"> <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                  page and may cause design problems </a> </li>
-                <li> <a href="#"> <i class="fa fa-users text-red"></i> 5 new members joined </a> </li>
-                <li> <a href="#"> <i class="fa fa-shopping-cart text-green"></i> 25 sales made </a> </li>
-                <li> <a href="#"> <i class="fa fa-user text-red"></i> You changed your username </a> </li>
-              </ul>
-            </div>
-          </li>
-          <li class="footer"><a href="explore-list.html">View all</a></li>
-        </ul>
-      </li>
-      <li> <a data-toggle="modal" href='#Subscribe'>Subscribe </a></li>
-      <li> <a data-toggle="modal" href='#login-modal'> Sign in | Login</a>
-    </ul>
-  </div>
-</div>
-<!-- ==============================
-  HEADER STATRT
-  ============================= -->
-<header> 
-  <!-- ================= START MOBILE HEADER SECTION ================ -->
-  <div class="hidden-lg hidden-md sticky-header">
-    <nav class="light-blue lighten-1 navbar-fixed-top" role="navigation">
-      <div class="nav-wrapper container ">
-        <div id="nav-mobile" class="side-nav"> 
-          <!-- =============== MOBILE HEADER MENUS SECTION =============== -->
-          <div class="sidebar-overlay"></div>
-          <aside id="sidebar" class="sidebar sidebar-default sidebar-fixed-left open" role="navigation">
-            <div class="sidebar-header header-cover">
-              <div class="sidebar-image"> <a href="index"><img src="assets/images/logo.png" class="img-responsive center-block" alt="Image"></a> </div>
-            </div>
-            <ul class="nav sidebar-nav">
-              <li><a href="index.html"><i class="fa fa-home"></i>HOME</a></li>
-              <li><a href="#"><i class="fa fa-user"></i>ABOUT US</a></li>
-              <li><a href="#"><i class="fa fa-building"></i>EXPLORE</a></li>
-              <li><a href="#"><i class="fa fa-graduation-cap"></i>CARRER</a></li>
-              <li><a href="#"><i class="fa fa-phone"></i>CONTACT US</a></li>
-              <li><a style="background-color: #46ce72; color: #fff; text-transform: uppercase;"><i class="fa fa-hand-o-right"></i>Quick Contact</a></li>
-              <li><a href="tel:123456789"><i class="fa fa-phone"></i>+91-123456789 </a></li>
-              <li><a href="mailto:info@vedictotal.in"><i class="fa fa-envelope-o"></i>info@vedictotal.in</a></li>
-            </ul>
-          </aside>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12"> <a href="" data-activates="nav-mobile" class="button-collapse"> <i class="fa fa-bars"></i></a> <a href="index"> <img src="assets/images/logo.png" class="mainlogo" alt="Image"> </a></div>
-      </div>
-    </nav>
-  </div>
-  <!-- =================DESKTOP MENU START ================= -->
-  <div class="hidden-xs hidden-sm">
-    <nav class="navbar navbar-default navbar-custom">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-2">
-            <div class="navbar-header"> <a class="" href="#"> <img src="assets/images/logo.png" class="img-responsive center-block" alt="Image"> </a> </div>
-          </div>
-          <div class="col-md-10">
-            <div id="navbar" class="navbar-collapse collapse row">
-              <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="index.html"> <img src="assets/images/menus/1.1.png" class="img-responsive center-block" alt="Image">Home</a></li>
-                <li class=""><a href="#"> <img src="assets/images/menus/2.1.png" class="img-responsive center-block" alt="Image">Explore</a></li>
-                <li><a href="#"> <img src="assets/images/menus/4.1.png" class="img-responsive center-block" alt="Image">About</a></li>
-                <li><a href="#"> <img src="assets/images/menus/3.1.png" class="img-responsive center-block" alt="Image">Carrer</a></li>
-                <li><a href="#"> <img src="assets/images/menus/5.1.png" class="img-responsive center-block" alt="Image">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
-</header>
-<!-- ====================
-  modals of login and register
-  ==================== -->
-<div class="modal fade" id="login-modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">
-          <ul class="nav nav-tabs nav-tabs-custom nav-modal">
-            <li class="active"><a href="#login" data-toggle="tab"> <i class="fa fa-sign-in"></i> Login</a></li>
-            <li><a href="#create" data-toggle="tab"> <i class="fa fa-edit"></i> Create Account</a></li>
-          </ul>
-        </h4>
-      </div>
-      <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane active in" id="login">
-            <form>
-              <div class="form-group">
-                <label>User Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="User Name">
-              </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <button type="button" class="btn btn-primary">Login</button>
-              <div class="login-help"> <a href="#create" data-toggle="tab">Register</a> - <a href="#">Forgot Password</a> </div>
-            </form>
-          </div>
-          <div class="tab-pane fade" id="create">
-            <form id="tab">
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User Name">
-              </div>
-              <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email Id">
-              </div>
-              <div class="form-group">
-                <label>Phone Number</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone Number">
-              </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Confirm Password">
-              </div>
-              <div class="form-group"> <a  data-toggle="modal" data-target="#termsModal">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                    Agree with the terms and conditions </label>
-                </div>
-                </a> </div>
-              <div>
-                <button class="btn btn-primary">Create Account</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Terms and conditions modal -->
-<div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="Terms and conditions" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Terms and conditions</h3>
-      </div>
-      <div class="modal-body terms-modal">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <ul>
-          <li>cepteur sint occaecat cupidatat non qui officia deserunt</li>
-          <li>cepteur sint occaecat cupidatat non qui officia deserunt</li>
-          <li>cepteur sint occaecat cupidatat non qui officia deserunt</li>
-          <li>cepteur sint occaecat cupidatat non qui officia deserunt</li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="agreeButton" data-dismiss="modal">Agree</button>
-        <button type="button" class="btn btn-default" id="disagreeButton" data-dismiss="modal">Disagree</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Subscribe modal -->
-<div class="modal fade" id="Subscribe" role="dialog" aria-labelledby="Subscribe" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 class="modal-title">Subscribe</h3>
-      </div>
-      <div class="modal-body terms-modal">
-        <form id="tab">
-          <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User Name">
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email Id">
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Phone Number">
-          </div>
-          <div>
-            <button class="btn btn-primary">Submit</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- 
-  =========================
-  BLOG DETAILS SECTION
-  =========================
-  -->
-<div class="container blog-details-page  mt-25 mb-45">
+<div class="container blog-details-page  mt-25 mb-45" ng-init="initBlog()">
   <div class="row">
     <div class="col-lg-8 pb-45 white-box">
-      <h1 class="new-heading pt-10">Blog Post Title</h1>
-      <p class="author"> <i class="fa fa-user"></i> Satya Praksh <i class="fa fa-clock-o"></i> <i>Posted on August 24, 2013 at 9:00 PM </i></p>
+      <h1 class="new-heading pt-10">{{blog.title}}</h1>
+      <p class="author"> <i class="fa fa-user"></i> {{blog.author}} <i class="fa fa-clock-o"></i> <i>Posted {{getNow(blog.date);}} </i></p>
       </p>
       <hr>
-      <img src="assets/images/banner/1.jpg" class="img-responsive" alt="Image">
+      <img src="{{blog.image}}" class="img-responsive" alt="Image">
       <hr>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, tenetur natus doloremque laborum quos iste ipsum rerum obcaecati impedit odit illo dolorum ab tempora nihil dicta earum fugiat. Temporibus, voluptatibus.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+      <pre>{{blog.content}}</pre>
       <hr>
-      
+
       <!-- Comments Form -->
       <div class="well">
         <h4>Leave a Comment:</h4>
         <form role="form">
           <div class="form-group">
-            <textarea class="form-control" rows="3"></textarea>
+            <textarea class="form-control" ng-model="blogComment" rows="3"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" ng-click="insertBlogComment(blogComment,blogDetails)">Submit</button>
         </form>
       </div>
       <hr>
       <!-- Posted Comments --> 
-      <!-- Comment -->
-      <div class="media"> <a class="pull-left" href="#"> <img class="media-object" src="http://placehold.it/64x64" alt=""> </a>
-        <div class="media-body">
-          <h4 class="media-heading">Satya Prakash <small>August 25, 2014 at 9:30 PM</small> </h4>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          <div class="pt-10 pb-10 blog-replay">
+
+      <div ng-repeat="comment in blogDetails.comments">
+          <div class="media"> <a class="pull-left" href="#"> <img class="media-object"                             ng-src="{{comment.commenterImage == null ? 'images/noimage.jpg' : comment.commenterImage}}" style="width: 60px" alt=""> </a>
+                <div class="media-body">
+          <h4 class="media-heading">{{comment.commentedBy == null ? 'Anonymous' : comment.commentedBy}} <small>Commented {{getNow(comment.date);}}</small> </h4>
+            {{comment.comment}}          
+            <div class="pt-10 pb-10 blog-replay">
             <div class="col-md-12">
               <ul class="list-inline">
-                <li> <a href=""><i class="fa fa-thumbs-up"></i> Like (25) </a></li>
-                <li> <a data-toggle="collapse" data-target="#demo2"> <i class="fa fa-comments"></i> Replay </a></li>
+                <li> <a  ng-click="addReply(comment)"> <i class="fa fa-comments" ></i> Reply </a></li>
               </ul>
             </div>
-          </div>
-        </div>
-        <div class="col-md-12 blog-comments">
-          <div id="demo2" class="collapse">
-            <div class="col-md-12">
-              <div class="row">
-                <p><b>Enter Your Replay</b></p>
-                <form action="" method="POST" role="form">
-                  <div class="form-group">
-                    <textarea name="" id="input" class="form-control" rows="3" required="required" placeholder="Enter your Comments"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              </div>
-            </div>
+            {{reply}}
+                          <div ng-repeat="reply in comment.replies"
+                            ng-show="comment.reply">
+                            <div class="media-left">
+                              <img
+                                ng-src="{{reply.replierImage == null ? 'images/noimage.jpg' : reply.replierImage}}"
+                                class="media-object" style="width: 60px">
+                            </div>
+                            <div class="media-body">
+                              <h4 class="media-heading">
+                                {{reply.repliedBy}} <small><i>Replied
+                                    {{getNow(reply.date);}}</i></small>
+                              </h4>
+                              <p>{{reply.comment}}</p>
+                            </div>
+                          </div>
+                          <textarea ng-show="comment.reply" ng-model="commentReply"
+                            name="" id="input" class="form-control" rows="2" cols="1"
+                            required="required" placeholder="Enter your Comments"></textarea>
+                          <button ng-show="comment.reply" type="submit"
+                            class="btn btn-primary"
+                            ng-click="insertCommentReply(commentReply,comment)">Submit</button>
+
           </div>
         </div>
       </div>
-      
-      <!-- Comment -->
-      <div class="media"> <a class="pull-left" href="#"> <img class="media-object" src="http://placehold.it/64x64" alt=""> </a>
-        <div class="media-body">
-          <h4 class="media-heading">Satya Prakash <small>August 25, 2014 at 9:30 PM</small> </h4>
-          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. 
-          <!-- Nested Comment -->
-          <div class="media"> <a class="pull-left" href="#"> <img class="media-object" src="http://placehold.it/64x64" alt=""> </a>
-            <div class="media-body">
-              <h4 class="media-heading">Nested Satya Prakash <small>August 25, 2014 at 9:30 PM</small> </h4>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. </div>
-          </div>
-          <!-- End Nested Comment --> 
-        </div>
       </div>
+
     </div>
     <!-- Blog Sidebar Widgets Column -->
     <div class="col-md-4">
@@ -401,240 +105,7 @@
             </a> </div>
         </div>
       </div>
-      
       <!-- Blog Categories Well -->
-      <div class="col-md-12 blog-bg mt-20 mb-20">
-        <h4 class="headingblog">Other Blog  Categories</h4>
-        <div class="list-group list-group-custom row"> 
-          <!--  <a href="#" class="list-group-item active">Blog Categories</a> --> 
-          <a href="#" class="list-group-item">First  item</a> <a href="#" class="list-group-item">Second item</a> <a href="#" class="list-group-item">Third item</a> 
-           <a href="#" class="list-group-item">Fourth item</a>  
-           <a href="#" class="list-group-item">Five item</a>  
-           <a href="#" class="list-group-item">Six item</a> </div>
-      </div>
-      <!-- Blog Categories Well -->
-      <div class="col-md-12 blog-bg mt-20 mb-20">
-        <h4 class="heading-border pb-10">Side Widget Well</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-      </div>
     </div>
   </div>
 </div>
-
-<!-- 
-  =========================
-  TESTIMONIAL SECTION
-  =========================
-   -->
-<section>
-  <div class="parallax-container">
-    <div class="container content testimonial-slider animatedParent animateOnce">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h2 class="first_heading animated fadeInLeft">Testimonials</h2>
-        <div id="carousel-example-generic" class="carousel slide animated fadeInRight" data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="testimonials-upper"> <i class="fa fa-quote-left"></i> </div>
-            <div class="testimonials-lower"> <i class="fa fa-quote-right"></i> </div>
-            <div class="item active">
-              <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-6"> <img src="assets/images/client.png" class="center-block img-responsive" alt="Image"> </div>
-                <div class="col-md-10 col-sm-10 col-xs-12">
-                  <div class="caption">
-                    <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</h3>
-                    <h5>- Mr. Customer Name , Designation, Company Name</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="col-md-2 col-sm-2 col-xs-6"> <img src="assets/images/client.png" class="center-block img-responsive" alt=""> </div>
-                  <div class="col-md-10 col-sm-10 col-xs-12">
-                    <div class="caption">
-                      <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-                        <p></p>
-                      </h3>
-                      <h5>- Mr. Customer Name , Designation, Company Name</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="col-md-2 col-sm-2 col-xs-6"> <img src="assets/images/client.png" class="center-block img-responsive" alt=""> </div>
-                  <div class="col-md-10 col-sm-10 col-xs-12">
-                    <div class="caption">
-                      <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</h3>
-                      <h5>- Mr. Customer Name , Designation, Company Name </h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a class="left carousel-control left-carosel" href="#carousel-example-generic" data-slide="prev"><i class="fa fa-angle-left" aria-hidden="true"></i> </a> <a class="right carousel-control right-carosel" href="#carousel-example-generic" data-slide="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a> </div>
-    </div>
-    <div class="parallax"> <img src="assets/images/background-testimonials.jpg"  class="img-responsive" alt=""> </div>
-  </div>
-</section>
-<!-- ==============================
-  FOOTER START
-  ============================== -->
-<footer class="footer-style-new">
-  <div class="container">
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      <h4>About Vedic Total</h4>
-      <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamcoquis nostrud exercitation ullamco.</p>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      <h4>Our Contacts</h4>
-      <div>
-        <dl class="dl-horizontal">
-          <dt><i class="fa fa-map-marker"></i> </dt>
-          <dd>Vedic Total <br>
-            First Floor, 2nd Cross, <br>
-            Bannerugatta Road , Bangalore</dd>
-          <dt><i class="fa fa-phone-square"></i></dt>
-          <dd><a href="tel:1234 567 890"> +91 1234 567 890</a></dd>
-          <dt><i class="fa fa-mobile"></i></dt>
-          <dd><a href="tel:1234 567 890"> 0123456890,</a><a href="tel:1234 567 890">1234 567890</a></dd>
-          <dt> <i class="fa fa-envelope"></i></dt>
-          <dd><a href="mailto:info@vedic-total.in">info@vedic-total.in </a></dd>
-        </dl>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      <div>
-        <h4>Quck Links</h4>
-        <dl class="dl-horizontal quick-links">
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd><a href="#"> Safe Harbor Provision</a></dd>
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd><a href="#"> About us</a></dd>
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd> <a href="#">Explore</a> </dd>
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd><a href="#">Carrer</a></dd>
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd> <a href="#"> Terms of use </a> </dd>
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd> <a href="#"> Privacy Statement </a> </dd>
-          <dt><i class="fa fa-angle-double-right" aria-hidden="true"></i></dt>
-          <dd><a href="#"> Site Map</a>
-            </li>
-          </dd>
-        </dl>
-      </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      <h4>Follow Us On</h4>
-      <ul class="list-inline sicon">
-        <li>
-          <div class="icon-circle"> <a href="#" class="ifacebook" title="Facebook"><i class="fa fa-facebook"></i></a> </div>
-        </li>
-        <li>
-          <div class="icon-circle"> <a href="#" class="itwittter" title="Twitter"><i class="fa fa-twitter"></i></a> </div>
-        </li>
-        <li>
-          <div class="icon-circle"> <a href="#" class="igoogle" title="Google+"><i class="fa fa-google-plus"></i></a> </div>
-        </li>
-        <li>
-          <div class="icon-circle"> <a href="#" class="iLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a> </div>
-        </li>
-      </ul>
-      <h4 class="mt-20">News Letter</h4>
-      <form action="" method="POST" role="form">
-        <div class="form-group">
-          <input type="email" class="form-control" id="" placeholder="Enter Your mail id">
-        </div>
-        <button type="submit" class="btn btn-primary btn-view">Submit</button>
-      </form>
-    </div>
-    <div class="foot-links col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-          <p>Copyright© 2017, Vedic Total , All rights reserved.</p>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right"> Powred by : <a href="#" target="_blank">Vedic Total</a> </div>
-      </div>
-    </div>
-  </div>
-</footer>
-<!--  ============= BACK TO TOP SECTION=============== --> 
-<a href="#" class="back-to-top-new">Back to Top</a> 
-<script type="text/javascript">
-      // create the back to top button
-      $('body').prepend('<a href="#" class="back-to-top-new">Back to Top</a>');
-      var amountScrolled = 10;
-      $(window).scroll(function() {
-        if ( $(window).scrollTop() > amountScrolled ) {
-          $('a.back-to-top-new').fadeIn('slow');
-        } else {
-          $('a.back-to-top-new').fadeOut('slow');
-        }
-      });
-      $('a.back-to-top-new, a.simple-back-to-top-new').click(function() {
-        $('html, body').animate({
-          scrollTop: 0
-        }, 700);
-        return false;
-      });
-       var win = $(window);
-        win.on('load', function() {
-            $('.preloader').fadeOut('slow');;
-        });
-      </script> 
-<script type="text/javascript">
-     $(document).ready(function() {
-      $('#Business_slide,#doctors_slide').lightSlider({
-          item:4,
-          auto:false,
-          loop:true,
-          pager:false,
-          slideMove:2,
-          //slideMargin: 5,
-          easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
-          speed:600,
-          responsive : [
-              {
-                  breakpoint:800,
-                  settings: {
-                      item:3,
-                      slideMove:1,
-                      //slideMargin:6,
-                    }
-
-              },
-              {
-                  breakpoint:480,
-                  settings: {
-                      item:1,
-                      slideMove:1
-                    }
-              }
-          ]
-      });  
-    });
-   </script> 
-<script>
-  (function ($) {
-    $(window).load(function () {
-      $(".inner").mCustomScrollbar();
-    });
-  })(jQuery);
-   </script> 
-<script type="text/javascript" src="assets/js/smoothscroll.js"></script> 
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="assets/js/css3-animate-it.js"></script>
-</body>
-</html>

@@ -350,9 +350,11 @@ BLOG SECTION
                 </p>
               </div>
               <div class="col-md-12 img-bg" >
+              <a href="#/blogdetails/{{blogDetails.id}}">
                 <img src="{{blogDetails.image}}" class="img-responsive"
                   alt="Image">
-                <h5>{{blogDetails.content}}</h5>
+                                  </a>
+                <h5><pre>{{blogDetails.content.split('\n')[0]}}</pre></h5>
               </div>
               <div class="col-md-12 clearfix">
                 <div class="comments">
@@ -418,7 +420,7 @@ BLOG SECTION
                             <div class="media-body">
                               <h4 class="media-heading">
                                 {{reply.repliedBy}} <small><i>Replied on
-                                    {{reply.date}}</i></small>
+                                    {{getNow(reply.date);}}</i></small>
                               </h4>
                               <p>{{reply.comment}}</p>
                             </div>

@@ -56,10 +56,10 @@ vtApp.config(function ($routeProvider) {
 		controller: 'ExploreCtrl',
 		controllerAs: 'ExploreCtrl'
 	})
-	.when('/blogdetails/', {
+	.when('/blogdetails/:id', {
 		templateUrl: 'views/blog-details.html',
-		controller: 'ExploreCtrl',
-		controllerAs: 'ExploreCtrl'
+		controller: 'BlogController',
+		controllerAs: 'BlogController'
 	})
 	.when('/secured/herbs/', {
 		templateUrl: 'views/herb.html',

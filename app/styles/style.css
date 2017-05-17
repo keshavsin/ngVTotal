@@ -1757,5 +1757,17 @@ text-align: center;
 
  .carousel-control.right {
     background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgb(255, 255, 255) 100%);
- 
+}
+
+pre {
+     word-break: break-word; 
+    white-space: pre-wrap;
+    padding: 9px;
+    font-size: 14px;
+    word-wrap: break-word;
+    background-color: #ffffff;
+    border: 0px solid #ccc;
+    border-radius: 0px;
+    width:720px;
+    text-align: justify;
 }

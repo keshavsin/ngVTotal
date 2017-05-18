@@ -185,12 +185,12 @@
 							<div class="form-group">
 								<label class=" col-sm-4 control-label">About</label>
 								<div class="col-sm-8">
-									<input type="text" name="ProfessionalName"
+									<textarea rows="2" cols="3" name="ProfessionalName"
 										typeahead-min-length="1"
 										typeahead-on-select="onSelect($item, $model, $label)"
 										placeholder=" About"
 										class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
-										ng-model="professional.about" typeahead-editable='false' />
+										ng-model="professional.about" typeahead-editable='false' ></textarea>
 								</div>
 							</div>
 							<!-- End of Author  -->
@@ -339,7 +339,7 @@
 							<!-- End of Author  -->
 
 							<div class="form-group">
-								<label class=" col-sm-4 control-label">Country</label>
+								<label class=" col-sm-4 control-label">Country</label>s
 								<div class="col-sm-8">
 									<input type="text" name="ProfessionalName"
 										typeahead-min-length="1"

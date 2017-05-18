@@ -98,24 +98,27 @@ LATEST EXPLORATION SECTION
               ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}"
               class="img-responsive center-block">
             <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-            <h4 class="txt1">
-              <span
-                ng-repeat="native in exploreDetails.nativeNames | limitTo:2">{{native.name}}({{native.nativeName}})</span>
-            </h4>
-            <p class="border-btm text-center">
-              <span ng-repeat="tAction in exploreDetails.therapeuticActions">{{tAction.name}}
-              </span>
-            </p>
-            <p class="text-center">
-              <span class="txt-colour"
-                ng-repeat="tType in exploreDetails.therapeuticTypes">
-                {{tType.name}}&nbsp;&nbsp;</span>
-            </p>
+            <a data-target="#id1" data-toggle="tooltip" data-placement="bottom" title="{{exploreDetails.nativeNames.name}}"><h4 class="txt1">
+              <span>Native Names</span>
+            </h4></a>
+          <p class="border-btm text-center">
+            <span class="txt-colour"
+              ng-repeat="tType in exploreDetails.therapeuticActions">
+              {{tType.name}}&nbsp;&nbsp;</span>
+          </p>
+          <p class="text-center">
+            <span class="txt-colour"
+              ng-repeat="tType in exploreDetails.therapeuticTypes">
+              {{tType.name}}&nbsp;&nbsp;</span>
+          </p>
             <p class="text-justify">
             <ul class="ul-basic">
               <li ng-repeat="booster in exploreDetails.boosters">{{booster}}</li>
             </ul>
             </p>
+                      <h4 class="new-heading pull-left text-center">Super Bio
+            Rejuvenator Herb</h4>
+             <p ng-bind-html="exploreDetails.description"></p>
           </div>
           <div class="col-md-8 animated fadeInRight bg-light-gray border-lft">
             <div class="col-md-7">

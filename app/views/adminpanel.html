@@ -16,6 +16,9 @@
             <li ng-class="isShowUserManagement == true? 'active' : ''"><a ng-click="enableUserManagement()">User Management</a></li>
             <li ng-class="isShowHerbManagement == true? 'active' : ''"><a ng-click="enableHerbManagement()">Herb Management</a></li>
             <li ng-class="isShowBlogManagement == true? 'active' : ''"><a ng-click="enableBlogManagement()">Blog Management</a></li>
+            <li ><a href="#/secured/professional">Professional Management</a></li>
+            <li ><a href="#/secured/manufacturer">Manufacturer Management</a></li>
+            <li ng-class="isShowLookupManagement == true? 'active' : ''"><a ng-click="enableLookupManagement()">Lookup</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -25,5 +28,8 @@
   <div ng-show="isShowBlogManagement" ng-include="'views/blog.html'"></div>
   <div ng-show="isShowHerbManagement" ng-include="'views/herb.html'"></div>
   <div ng-show="isShowUserManagement" ng-include="'views/usermanagement.html'"></div>
+  <div ng-show="isShowProfessionalManagement" ng-include="'views/professional.html'"></div>
+  <div ng-show="isShowManufacturerManagement" ng-include="'views/manufacturer.html'"></div>
+  <div ng-show="isShowLookupManagement" ng-include="'views/lookup.html'"></div>
   </div>
 </div>

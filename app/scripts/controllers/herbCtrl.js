@@ -113,6 +113,16 @@ vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbServi
 					toastr.error("Error Fetching Web Categories");
 				}
 			})
+			// Get herb classifications
+			var getHerbClassifications = lookupService.getAllActiveLookups('herbClassification');
+			getHerbClassifications.then(function(msg){
+				if(msg.status ==  200){
+					$scope.herbClassifications = msg.data;
+				}else{
+					toastr.error("Error Fetching Herb Classifications");
+				}
+			})
+			// Get all herbs
 			var getAllHerbs = herbService.getAll();
 			getAllHerbs.then(function(msg){
 				if(msg.status ==  200){

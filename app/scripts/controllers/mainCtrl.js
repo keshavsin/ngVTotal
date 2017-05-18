@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the vtApp
  */
-vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductService', 'ManufactureService', 'ProfessionalService', 'appSettings', 'BlogService', function ($scope, $location, exploreService, productService, manufactureService, professionalService, appSettings, blogService) {
+vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductService', 'ManufactureService', 'ProfessionalService', 'appSettings', 'BlogService', 'toastr', function ($scope, $location, exploreService, productService, manufactureService, professionalService, appSettings, blogService, toastr) {
 
 	$scope.blogs = [];
 	$scope.addCommentReply = false;

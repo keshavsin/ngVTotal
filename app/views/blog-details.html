@@ -1,13 +1,13 @@
 <div class="container blog-details-page  mt-25 mb-45" ng-init="initBlog()">
   <div class="row">
     <div class="col-lg-8 pb-45 white-box">
-      <h1 class="new-heading pt-10">{{blog.title}}</h1>
-      <p class="author"> <i class="fa fa-user"></i> {{blog.author}} <i class="fa fa-clock-o"></i> <i>Posted {{getNow(blog.date);}} </i></p>
+      <h1 class="new-heading pt-10">{{blogDetails.title}}</h1>
+      <p class="author"> <i class="fa fa-user"></i> {{blogDetails.author}} <i class="fa fa-clock-o"></i> <i>Posted {{getNow(blogDetails.date);}} </i></p>
       </p>
       <hr>
-      <img src="{{blog.image}}" class="img-responsive" alt="Image">
+      <img src="{{blogDetails.image}}" class="img-responsive" alt="Image">
       <hr>
-      <pre><p ng-bind-html="blog.content"></p></pre>
+      <pre><p ng-bind-html="blogDetails.content"></p></pre>
       <hr>
 
       <!-- Comments Form -->

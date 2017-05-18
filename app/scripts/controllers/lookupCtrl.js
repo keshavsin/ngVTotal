@@ -1,4 +1,4 @@
-vtApp.controller('LookupController', ['$scope','$rootScope','$location','LookupService',function($scope,$rootScope,$location,lookupService){
+vtApp.controller('LookupController', ['$scope','$rootScope','$location','LookupService', 'toastr',function($scope,$rootScope,$location,lookupService, toastr){
 	
 	$scope.lookup = {}; 
 	$scope.lookupType="Please Select";
@@ -41,6 +41,7 @@ vtApp.controller('LookupController', ['$scope','$rootScope','$location','LookupS
 			if(msg.status == 200){
 				toastr.success("Lookup Created Successfully");
 				$scope.getAllLookups($scope.lookupType);
+				$scope.lookup = {};
 			}else{
 				toastr.error("Error Creating Lookup");
 			}

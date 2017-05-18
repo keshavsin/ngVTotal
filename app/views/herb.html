@@ -81,10 +81,25 @@
 									placeholder=" Herb Name" required
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 									ng-model="herb.name" typeahead-editable='false'
-									ng-maxlength="150" />
+									/>
 								<p
 									ng-show="herbform.herbName.$invalid && !herbform.herbName.$pristine"
 									class="help-block">Name is required or too long.</p>
+							</div>
+						</div>
+
+						<div>
+							<label class=" col-sm-5 control-label">Herb Classification<span class="text-danger">*</span>
+							</label>
+							<div class="col-sm-7">
+								<div class=" dropdown">
+									<am-multiselect class="input-sm" multiple="true"
+										ms-selected="{{herbClassification}}"
+										ng-model="herb.herbClassifications"
+										ms-header="Herb Classifications"
+										options="herbClassification as herbClassification.name for herbClassification in herbClassifications">
+									</am-multiselect>
+								</div>
 							</div>
 						</div>
 
@@ -106,7 +121,7 @@
 									typeahead-on-select="onSelect($item, $model, $label)"
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 									placeholder="Description" required ng-model="herb.description"
-									typeahead-editable='false' ng-maxlength="150"></textarea>
+									typeahead-editable='false'></textarea>
 							</div>
 						</div>
 
@@ -135,7 +150,7 @@
 												class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 												placeholder="Native Name" required
 												ng-model="nativeName.nativeName" typeahead-editable='false'
-												ng-maxlength="150" />
+												/>
 										</div>
 									</div>
 								</div>
@@ -204,21 +219,7 @@
 								</div>
 							</div>
 						</div>
-						<div>
-							<label class=" col-sm-5 control-label">External
-								Indications<span class="text-danger">*</span>
-							</label>
-							<div class="col-sm-7">
-								<div class=" dropdown">
-									<am-multiselect class="input-sm" multiple="true"
-										ms-selected="{{herbIndication}}"
-										ng-model="herb.externalIndications"
-										ms-header="External Indications"
-										options="herbIndication as herbIndication.name for herbIndication in herbIndications">
-									</am-multiselect>
-								</div>
-							</div>
-						</div>
+
 					</div>
 					<div class="row col-sm-6">
 						<div>
@@ -355,7 +356,7 @@
 									typeahead-on-select="onSelect($item, $model, $label)"
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 									placeholder="Home Remedies" required ng-model="homeRemedy"
-									typeahead-editable='false' ng-maxlength="150"></textarea>
+									typeahead-editable='false'></textarea>
 							</div>
 							<div class="col-sm-1">
 								<a ng-click="addHomeRemedies();"><md-tooltip
@@ -400,7 +401,7 @@
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 									placeholder="Safety Indications" required
 									ng-model="safetyIndication" typeahead-editable='false'
-									ng-maxlength="150"></textarea>
+									></textarea>
 							</div>
 							<div class="col-sm-1">
 								<a ng-click="addSafetyIndication();"><md-tooltip
@@ -443,7 +444,7 @@
 									typeahead-on-select="onSelect($item, $model, $label)"
 									class="form-control input-sm ng-pristine ng-invalid ng-invalid-required ng-valid-pattern"
 									placeholder="Did You Know" required ng-model="didYouKnow"
-									typeahead-editable='false' ng-maxlength="150"></textarea>
+									typeahead-editable='false'></textarea>
 							</div>
 							<div class="col-sm-1">
 								<a ng-click="addDidYouKnow();"><md-tooltip

@@ -1,4 +1,4 @@
-vtApp.controller('BlogController', ['$scope','$rootScope', '$routeParams','$location','BlogService','fileUploadService','LookupService',function($scope,$rootScope, $routeParams,$location,blogService,fileUploadService,lookupService){
+vtApp.controller('BlogController', ['$scope','$rootScope', '$routeParams','$location','BlogService','fileUploadService','LookupService', 'toastr',function($scope,$rootScope, $routeParams,$location,blogService,fileUploadService,lookupService, toastr){
 
 	$scope.blog = {};
 	var formdata = new FormData();
@@ -21,7 +21,7 @@ vtApp.controller('BlogController', ['$scope','$rootScope', '$routeParams','$loca
 		// Checking the session 
 			// Get Blog Details
 		if ($location.$$path.startsWith('/blogdetails')) {
-			$scope.getBlog($routeParams.id);
+			$scope.getBlogDetails($routeParams.id);
 		} 
 		// if($rootScope.sessionProfile != null){
 			// If user Logged in loading init methods
@@ -70,14 +70,26 @@ vtApp.controller('BlogController', ['$scope','$rootScope', '$routeParams','$loca
 		}
 	}
 
-	// Get the blog Details
+	// Get Blog
 	$scope.getBlog = function(blogId){
 		var getBlog = blogService.getBlogDetails(blogId);
 		getBlog.then(function(msg){
 			if(msg.status == 200){
 				$scope.isAddBlogEnabled = true;
 				$scope.blog = msg.data;
-				$scope.blogDetails = $scope.blog;
+			}else{
+				toastr.error("Error Fetching Blog");
+			}
+		})
+	}
+
+	// Get the blog Details
+	$scope.getBlogDetails = function(blogId){
+		var getBlog = blogService.getBlogDetails(blogId);
+		getBlog.then(function(msg){
+			if(msg.status == 200){
+				$scope.isAddBlogEnabled = true;
+				$scope.blogDetails = msg.data;
 				$scope.getBlogComments($scope.blogDetails.id);
 				$scope.getBlogLikes($scope.blogDetails.id);
 			}else{

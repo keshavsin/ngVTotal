@@ -4,18 +4,28 @@ vtApp.controller('AdminCtrl', ['$scope','$rootScope','$location','AdminService',
 		$scope.isShowUserManagement = true;
 		$scope.isShowHerbManagement = false;
 		$scope.isShowBlogManagement = false;
+		$scope.isShowLookupManagement = false;
 	}
 
 	$scope.enableBlogManagement = function(){
 		$scope.isShowUserManagement = false;
 		$scope.isShowHerbManagement = false;
 		$scope.isShowBlogManagement = true;
+		$scope.isShowLookupManagement = false;
 	}
 
 	$scope.enableHerbManagement = function(){
 		$scope.isShowUserManagement = false;
 		$scope.isShowHerbManagement = true;
 		$scope.isShowBlogManagement = false;
+		$scope.isShowLookupManagement = false;
+	}
+
+	$scope.enableLookupManagement = function(){
+		$scope.isShowUserManagement = false;
+		$scope.isShowHerbManagement = false;
+		$scope.isShowBlogManagement = false;
+		$scope.isShowLookupManagement = true;
 	}
 
 	$scope.init = function(){

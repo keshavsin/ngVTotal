@@ -7,7 +7,7 @@
  * # ExploreCtrl
  * explore Controller of the vtApp
  */
-vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', 'ProductService', 'toastr' function ($scope, $route, $location, $routeParams, $log, exploreService, productService, toastr) {
+vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', 'ProductService', 'toastr', function ($scope, $route, $location, $routeParams, $log, exploreService, productService, toastr) {
 	
 	$scope.healthCategoryFilter=["Digestive","Rejuvenative","Respiratory","Skin"];
 	

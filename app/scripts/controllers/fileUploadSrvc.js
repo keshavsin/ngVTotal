@@ -4,7 +4,7 @@ vtApp.factory('fileUploadService', function($http) {
 		upload : function(formdata) {
 			var request = {
                     method: 'POST',
-                    url: 'http://localhost:8080/controllers/api/fileupload/upload',
+                    url: 'controllers/api/fileupload/upload',
                     data: formdata,
                     headers: {
                         'Content-Type': undefined

@@ -1,4 +1,4 @@
-vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbService','LookupService','fileUploadService',function($scope,$rootScope,$location,herbService,lookupService,fileUploadService){
+vtApp.controller('HerbController', ['$scope','$rootScope','$location','HerbService','LookupService','fileUploadService', 'toastr',function($scope,$rootScope,$location,herbService,lookupService,fileUploadService, toastr){
 
 	$scope.herb = {};
 	$scope.herb.homeRemedies = [];

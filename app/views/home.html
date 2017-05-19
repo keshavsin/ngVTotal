@@ -98,9 +98,19 @@ LATEST EXPLORATION SECTION
               ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}"
               class="img-responsive center-block">
             <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-            <a data-target="#id1" data-toggle="tooltip" data-placement="bottom" title="{{exploreDetails.nativeNames.name}}"><h4 class="txt1">
-              <span>Native Names</span>
+          <a href="#" popover-template="'nativeNames.html'"
+            popover-trigger="mouseenter" popover-placement="bottom"
+            popover-title="Native Names"><h4 class="txt1">
+              Native Names
             </h4></a>
+          <script type="text/ng-template" id="nativeNames.html">
+        <div class="container-fluid" ng-repeat="nativeName in exploreDetails.nativeNames">
+        <div class="row"> 
+                  <div class="col-sm-12"><b>{{nativeName.name}}</b>&nbsp;&nbsp;:&nbsp;&nbsp;{{nativeName.nativeName}}</div>
+        </div>
+        </div>
+    </script>
+
           <p class="border-btm text-center">
             <span class="txt-colour"
               ng-repeat="tType in exploreDetails.therapeuticActions">
@@ -157,6 +167,10 @@ LATEST EXPLORATION SECTION
             </div>
           </div>
         </div>
+                <a ng-click="openAskAQuestion();"><h6>
+              Ask a question on <b>{{exploreDetails.name}}</b>
+            </h6></a>
+
       </div>
     </div>
   </div>

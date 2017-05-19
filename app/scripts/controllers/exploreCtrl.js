@@ -7,7 +7,7 @@
  * # ExploreCtrl
  * explore Controller of the vtApp
  */
-vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', 'ProductService', 'toastr', function ($scope, $route, $location, $routeParams, $log, exploreService, productService, toastr) {
+vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams','$log', 'ExploreService', 'ProductService', 'toastr', '$modal', function ($scope, $route, $location, $routeParams, $log, exploreService, productService, toastr, $modal) {
 	
 	$scope.healthCategoryFilter=["Digestive","Rejuvenative","Respiratory","Skin"];
 	
@@ -164,5 +164,33 @@ vtApp.controller('ExploreCtrl',['$scope', '$route', '$location', '$routeParams',
     $scope.groupedSlides = first;
     return $scope.groupedSlides;
 }
+
+	//MODAL WINDOW FOR ASK A QUESTION
+	$scope.openAskAQuestion = function() {
+		var modalInstance = $modal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: "views/modals/askAQuestion.html",
+			controller: 'AskaQuestionCtrl',
+			size: 'md',
+			resolve: {
+				infoToLoginControllerFromParent: function() {
+					//return $scope.items;
+				}
+			}
+		});
+		modalInstance.result.then(function(selectedObj) {
+		// 	console.log(" Login Details passed to parent " + JSON.stringify(selectedObj));
+		// 	if (selectedObj == null) {
+		// 		$rootScope.authenticated = false;
+		// 	} else {
+		// 		$rootScope.sessionProfile = selectedObj;
+		// 		$rootScope.authenticated = true;
+		// 		sessionService.saveSession($rootScope.sessionProfile);
+		// 		$scope.updateMenu();
+		// 	}
+		// }, function() {
+		// 	$log.info('Modal dismissed at: ' + new Date());
+		});
+	};
 	
 }]);

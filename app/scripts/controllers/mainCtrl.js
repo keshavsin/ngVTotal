@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the vtApp
  */
-vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductService', 'ManufactureService', 'ProfessionalService', 'appSettings', 'BlogService', 'toastr', function ($scope, $location, exploreService, productService, manufactureService, professionalService, appSettings, blogService, toastr) {
+vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductService', 'ManufactureService', 'ProfessionalService', 'appSettings', 'BlogService', 'toastr', '$modal', function ($scope, $location, exploreService, productService, manufactureService, professionalService, appSettings, blogService, toastr, $modal) {
 
 	$scope.blogs = [];
 	$scope.addCommentReply = false;
@@ -341,6 +341,34 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
     $scope.groupedSlides = first;
     return $scope.groupedSlides;
 }
+
+	//MODAL WINDOW OF ASK A QUESTION
+	$scope.openAskAQuestion = function() {
+		var modalInstance = $modal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: "views/modals/askAQuestion.html",
+			controller: 'AskaQuestionCtrl',
+			size: 'md',
+			resolve: {
+				infoToLoginControllerFromParent: function() {
+					//return $scope.items;
+				}
+			}
+		});
+		modalInstance.result.then(function(selectedObj) {
+		// 	console.log(" Login Details passed to parent " + JSON.stringify(selectedObj));
+		// 	if (selectedObj == null) {
+		// 		$rootScope.authenticated = false;
+		// 	} else {
+		// 		$rootScope.sessionProfile = selectedObj;
+		// 		$rootScope.authenticated = true;
+		// 		sessionService.saveSession($rootScope.sessionProfile);
+		// 		$scope.updateMenu();
+		// 	}
+		// }, function() {
+		// 	$log.info('Modal dismissed at: ' + new Date());
+		});
+	};
 
 }]);
 

@@ -37,9 +37,18 @@ LATEST EXPLORATION SECTION
             ng-src="{{exploreDetails.image == null ? 'images/noimage.jpg' : exploreDetails.image}}"
             class="img-responsive center-block" alt="Image">
           <!-- <h3 class="organge-box ">Tulasi , Indian Basil</h3> -->
-          <a href="#nativenames"><h4 class="txt1">
-              <span>Native Names</span>
+          <a href="#" popover-template="'nativeNames.html'"
+            popover-trigger="mouseenter" popover-placement="bottom"
+            popover-title="Native Names"><h4 class="txt1">
+              Native Names
             </h4></a>
+          <script type="text/ng-template" id="nativeNames.html">
+        <div class="container-fluid" ng-repeat="nativeName in exploreDetails.nativeNames">
+        <div class="row">
+                  <div class="col-sm-12"><b>{{nativeName.name}}</b>&nbsp;&nbsp;:&nbsp;&nbsp;{{nativeName.nativeName}}</div>
+        </div>
+        </div>
+    </script>
           <p class="border-btm text-center">
             <span class="txt-colour"
               ng-repeat="tType in exploreDetails.therapeuticActions">
@@ -89,7 +98,7 @@ LATEST EXPLORATION SECTION
               </div>
             </div>
           </div>
-          <a href=""><h6>
+          <a ng-click="openAskAQuestion()"><h6>
               Ask a question on <b>{{exploreDetails.name}}</b>
             </h6></a>
         </div>
@@ -104,126 +113,123 @@ LATEST EXPLORATION SECTION
               <div class="col-md-12 heading-list">
                 <h5 class="">Related Herbs</h5>
               </div>
-              </div>
-                  <carousel interval="3000"> <slide
-                    ng-repeat="slideCollection in exploreListCollection"
-                    active="explored.active">
-                  <div>
-                    <div class="col-md-4">
-                      <div class="">
-                        <a href="#/exploredetails/{{slideCollection.image1.id}}">
-                          <div class="">
-                            <figure>
-                              <div>
-                                <img ng-src="{{slideCollection.image1.image}}"
-                                  style="margin: auto;  height: 160px; width:160px;">
-                                                          <h5>{{slideCollection.image1.name}}</h5>
-                              </div>
-                            </figure>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="">
-                        <a href="#/exploredetails/{{slideCollection.image2.id}}">
-                          <div class="">
-                            <figure>
-                              <div>
-                                <img ng-src="{{slideCollection.image2.image}}"
-                                  style="margin: auto;  height: 160px; width:160px;">
-                                                          <h5>{{slideCollection.image2.name}}</h5>
-
-                              </div>
-                            </figure>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="">
-                        <a href="#/exploredetails/{{slideCollection.image3.id}}">
-                          <div class="">
-                            <figure>
-                              <div>
-                                <img ng-src="{{slideCollection.image3.image}}"
-                                  style="margin: auto;  height: 160px; width:160px;">
-                              </div>                                                          <h5>{{slideCollection.image3.name}}</h5>
-                            </figure>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  </slide> 
-                  </carousel>
             </div>
+            <carousel interval="3000"> <slide
+              ng-repeat="slideCollection in exploreListCollection"
+              active="explored.active">
+            <div>
+              <div class="col-md-4">
+                <div class="">
+                  <a href="#/exploredetails/{{slideCollection.image1.id}}">
+                    <div class="">
+                      <figure>
+                        <div>
+                          <img ng-src="{{slideCollection.image1.image}}"
+                            style="margin: auto; height: 160px; width: 160px;">
+                          <h5>{{slideCollection.image1.name}}</h5>
+                        </div>
+                      </figure>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="">
+                  <a href="#/exploredetails/{{slideCollection.image2.id}}">
+                    <div class="">
+                      <figure>
+                        <div>
+                          <img ng-src="{{slideCollection.image2.image}}"
+                            style="margin: auto; height: 160px; width: 160px;">
+                          <h5>{{slideCollection.image2.name}}</h5>
+
+                        </div>
+                      </figure>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="">
+                  <a href="#/exploredetails/{{slideCollection.image3.id}}">
+                    <div class="">
+                      <figure>
+                        <div>
+                          <img ng-src="{{slideCollection.image3.image}}"
+                            style="margin: auto; height: 160px; width: 160px;">
+                        </div>
+                        <h5>{{slideCollection.image3.name}}</h5>
+                      </figure>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            </slide> </carousel>
+          </div>
 
           <div class="col-md-6">
             <div class="row">
               <div class="col-md-12 heading-list">
                 <h5 class="">Related Products</h5>
               </div>
+            </div>
+            <carousel interval="3000"> <slide
+              ng-repeat="slideCollection in relatedProductsCollection"
+              active="explored.active">
+            <div>
+              <div class="col-md-4">
+                <div class="">
+                  <a href="#/productdetails/{{slideCollection.image1.id}}">
+                    <div class="">
+                      <figure>
+                        <div>
+                          <img ng-src="{{slideCollection.image1.image}}"
+                            style="margin: auto; height: 160px; width: 160px;">
+                          <h5>{{slideCollection.image1.name}}</h5>
+                        </div>
+                      </figure>
+                    </div>
+                  </a>
+                </div>
               </div>
-                  <carousel interval="3000"> <slide
-                    ng-repeat="slideCollection in relatedProductsCollection"
-                    active="explored.active">
-                  <div>
-                    <div class="col-md-4">
-                      <div class="">
-                        <a href="#/productdetails/{{slideCollection.image1.id}}">
-                          <div class="">
-                            <figure>
-                              <div>
-                                <img ng-src="{{slideCollection.image1.image}}"
-                                  style="margin: auto;  height: 160px; width:160px;">
-                                                          <h5>{{slideCollection.image1.name}}</h5>
-                              </div>
-                            </figure>
-                          </div>
-                        </a>
-                      </div>
+              <div class="col-md-4">
+                <div class="">
+                  <a href="#/productdetails/{{slideCollection.image2.id}}">
+                    <div class="">
+                      <figure>
+                        <div>
+                          <img ng-src="{{slideCollection.image2.image}}"
+                            style="margin: auto; height: 160px; width: 160px;">
+                          <h5>{{slideCollection.image2.name}}</h5>
+                        </div>
+                      </figure>
                     </div>
-                    <div class="col-md-4">
-                      <div class="">
-                        <a href="#/productdetails/{{slideCollection.image2.id}}">
-                          <div class="">
-                            <figure>
-                              <div>
-                                <img ng-src="{{slideCollection.image2.image}}"
-                                  style="margin: auto;  height: 160px; width:160px;">
-                                                          <h5>{{slideCollection.image2.name}}</h5>
-                              </div>
-                            </figure>
-                          </div>
-                        </a>
-                      </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="">
+                  <a href="#/productdetails/{{slideCollection.image3.id}}">
+                    <div class="">
+                      <figure>
+                        <div>
+                          <img ng-src="{{slideCollection.image3.image}}"
+                            style="margin: auto; height: 160px; width: 160px;">
+                          <h5>{{slideCollection.image3.name}}</h5>
+                        </div>
+                      </figure>
                     </div>
-                    <div class="col-md-4">
-                      <div class="">
-                        <a href="#/productdetails/{{slideCollection.image3.id}}">
-                          <div class="">
-                            <figure>
-                              <div>
-                                <img ng-src="{{slideCollection.image3.image}}"
-                                  style="margin: auto;  height: 160px; width:160px;">
-                                                          <h5>{{slideCollection.image3.name}}</h5>
-                              </div>
-                            </figure>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  </slide> 
-                  </carousel>
+                  </a>
+                </div>
+              </div>
             </div>
-            </div>
-            </div>
+            </slide> </carousel>
           </div>
- </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
+  </div>
 </section>
 <!-- <div ng-include="'views/common/testimonial.html'"></div> -->

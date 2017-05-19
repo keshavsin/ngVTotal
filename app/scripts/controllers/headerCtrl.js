@@ -179,6 +179,41 @@ vtApp.controller('RegisterCtrl', ['$scope', '$modalInstance', '$location', 'info
     };
 }]);
 
+////MODAL CONTROLLER OF Ask a Question
+vtApp.controller('AskaQuestionCtrl',['$route', '$scope', '$modalInstance', '$location', 'infoToLoginControllerFromParent','HeaderService', function($route, $scope, $modalInstance, $location, infoToLoginControllerFromParent, headerService) {
+
+   $scope.ok = function() {
+   	var details =  headerService.login($scope.loginDetails);
+   	details.then(function(msg) {
+			var jsonResult = null;
+			if (msg.status == 200) {
+				$modalInstance.close(jsonResult);
+			} else if (msg.status == 401) {
+				if ($scope.loginDetails.role=='GENERAL') {
+					$scope.loginErrorMessage = "Invalid username or password, Please retry";
+				} else {
+					$scope.loginErrorMessage = "Invalid username or password, Check your mail box for the verification email";
+				}
+				$scope.isLoginError = true;
+			} else {
+				$scope.loginErrorMessage = "Error while processing your request";
+				$scope.isLoginError = true;
+			}
+		},function errorCallback(response) {
+			$location.path('/login');
+		});
+       
+   };
+   $scope.cancel = function() {
+		$modalInstance.dismiss('cancel');
+   };
+    
+    $scope.close = function() {
+		$modalInstance.dismiss('cancel');
+    };
+
+}]);
+
 
 ////MODAL CONTROLLER For Forgot Password
 vtApp.controller('PasswordCtrl', ['$scope', '$location', 'HeaderService',function($scope, $location, headerService) {

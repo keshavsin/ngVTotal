@@ -342,7 +342,7 @@ vtApp.controller('MainCtrl',['$scope', '$location', 'ExploreService', 'ProductSe
     return $scope.groupedSlides;
 }
 
-	//MODAL WINDOW OF ASK A QUESTION
+	//MODAL WINDOW FOR ASK A QUESTION
 	$scope.openAskAQuestion = function() {
 		var modalInstance = $modal.open({
 			animation: $scope.animationsEnabled,

@@ -39,4 +39,9 @@ vtApp.service('HeaderService',['appSettings', 'apiServices', function (appSettin
 		return apiServices.doAPIRequest(appSettings.appAPI.common.changePassword, login, null, "sessionStorage");
 	};
 
+	this.askAQuestion = function(askAQuestion) {
+		console.log("Isnide Service for Ask a Question");
+		return apiServices.doAPIRequest(appSettings.appAPI.common.askAQuestion, askAQuestion, null, "sessionStorage");
+	};
+
 }]);

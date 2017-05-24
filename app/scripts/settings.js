@@ -43,6 +43,10 @@
                 "logout": {
                     "url": "/api/logout",
                     "method": "GET"
+                },
+                "askAQuestion": {
+                    "url": "/api/askaquestion/create",
+                    "method": "POST"
                 }
             },
 			"explore": {

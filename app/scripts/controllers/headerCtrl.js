@@ -20,6 +20,9 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', '$routeParams',
 				}
 			})
 		}
+		if(sessionService.isLoggedIn()) {
+			$rootScope.sessionProfile = sessionService.getSession();
+		}
 		console.log(" Inside init of header Controller");
 	}
 	
@@ -57,6 +60,7 @@ vtApp.controller('HeaderCtrl',['$rootScope', '$scope', '$route', '$routeParams',
 			if (selectedObj == null) {
 				$rootScope.authenticated = false;
 			} else {
+				
 				$rootScope.sessionProfile = selectedObj;
 				$rootScope.authenticated = true;
 				sessionService.saveSession($rootScope.sessionProfile);

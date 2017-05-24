@@ -133,7 +133,7 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 				})
 				var getSystem = lookupService.getAllActiveLookups('System');
 				getSystem.then(function(msg){
-					if(msg.data.status == 200){
+					if(msg.status == 200){
 						$scope.system = msg.data.data;
 					}else{
 						toastr.error("Error Fetching System");
@@ -178,6 +178,11 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 		}if(manufacturer.salesType != null){
 			manufacturer.salesType = manufacturer.salesType.join();
 		}
+		if (typeof manufacturer.address == 'undefined' || manufacturer.address == null) {
+			toastr.error("Address is required.  Please enter address");
+			return;
+		}
+		
 		var jsonData = {}; 
 		jsonData = manufacturer;
 		jsonData.json = JSON.stringify(manufacturer);
@@ -202,9 +207,9 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 		getManufacturer.then(function(msg){
 			if(msg.status == 200){
 				$scope.manufacturer = JSON.parse(msg.data.json);
-				$scope.manufacturer.healthSystems = $scope.manufacturer.healthSystems.split(','); 
-				$scope.manufacturer.portfolio = $scope.manufacturer.portfolio.split(','); 
-				$scope.manufacturer.salesType = $scope.manufacturer.salesType.split(','); 
+				$scope.manufacturer.healthSystems = typeof $scope.manufacturer.healthSystems != 'undefined' && $scope.manufacturer.healthSystems != null ? $scope.manufacturer.healthSystems.split(',') : null; 
+				$scope.manufacturer.portfolio = typeof $scope.manufacturer.portfolio != 'undefined' && $scope.manufacturer.portfolio != null ? $scope.manufacturer.portfolio.split(',') : null; 
+				$scope.manufacturer.salesType = typeof $scope.manufacturer.salesType != 'undefined' && $scope.manufacturer.salesType != null ? $scope.manufacturer.salesType.split(',') : null; 
 				$scope.manufacturer.id = msg.data.id;
 				$scope.isAddManufacturerEnabled = true;
 			}else{
@@ -239,7 +244,10 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 	}
 
 	$scope.createProduct = function(product){
-		var createproduct = productService.createProduct(product);		
+		if(typeof product.system != 'undefined' && product.system != null){
+			product.system = product.system.join(); 
+		}		
+		var createproduct = productService.createProduct(product);
 		createproduct.then(function(msg){
 			if(msg.status == 200){
 				$scope.productId = msg.data;
@@ -259,6 +267,7 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 		var getProduct = productService.getProduct(productId);
 		getProduct.then(function(msg){
 			if(msg.status == 200){
+				msg.data.system = typeof msg.data.system != 'undefined' && msg.data.system != null ? msg.data.system.split(',') : null;
 				$scope.product = msg.data;
 				$scope.isAddProductEnabled = true;
 			}else{
@@ -268,6 +277,9 @@ vtApp.controller('ManufacturerCtrl',['$scope','$rootScope', '$route','$location'
 	}
 	
 	$scope.updateProduct = function(product){
+		if(typeof product.system != 'undefined' && product.system != null){
+			product.system = product.system.join(); 
+		}		
 		var updateProduct = productService.updateProduct(product);
 		updateProduct.then(function(msg){
 			if(msg.status == 200){

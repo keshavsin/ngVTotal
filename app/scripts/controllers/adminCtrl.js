@@ -28,6 +28,28 @@ vtApp.controller('AdminCtrl', ['$scope','$rootScope','$location','AdminService',
 		$scope.isShowLookupManagement = true;
 	}
 
+	$scope.enableManufacturerManagement = function(){
+		$scope.isShowUserManagement = false;
+		$scope.isShowHerbManagement = false;
+		$scope.isShowBlogManagement = false;
+		$scope.isShowLookupManagement = false;
+		$scope.isManufacturerManagement = true;
+	}	
+	
+
+	$scope.initmanufacturers = function(){
+		$scope.enableManufacturerManagement();
+		var manufacturerService = manufacturerService.getManufacturers();
+		getAllUsers.then(function(msg){
+			if(msg.status == 200){
+				$scope.usersList = msg.data;
+			}else{
+				toastr.error("Error Fetching Users");
+			}
+		})
+	}
+
+
 	$scope.init = function(){
 		$scope.enableUserManagement();
 		var getAllUsers = adminService.getUsers();

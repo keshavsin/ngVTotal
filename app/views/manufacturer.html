@@ -187,7 +187,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="manufacturer.country" ng-change="getStates(manufacturer.country);"
-											ng-options="country.name as country.name for country in countries">
+											ng-options="country.id as country.name for country in countries">
 							</select>
 						</div>
 									</div>
@@ -200,7 +200,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="manufacturer.state" ng-change="getCities(manufacturer.state);"
-											ng-options="state.name as state.name for state in states">
+											ng-options="state.id as state.name for state in states">
 							</select>
 						</div>
 									</div>
@@ -213,7 +213,7 @@
 									<div class="dropdown">
 										<select class="form-control input-sm" name="Role"
 											ng-model="manufacturer.city" 
-											ng-options="city.name as city.name for city in cities">
+											ng-options="city.id as city.name for city in cities">
 							</select>
 						</div>
 									</div>
@@ -584,7 +584,7 @@
 							<div class="col-sm-9">
 									<div class=" dropdown">
 										<am-multiselect class="input-sm" multiple="true"
-											ms-selected="{{system.id}}" ng-model="product.systems"
+											ms-selected="{{system.id}}" ng-model="product.system"
 											ms-header=" System "
 											options="system.id as system.name for system in systems">
 										</am-multiselect>
